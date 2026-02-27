@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sacramentos y Requisitos - Parroquia Cristo Resucitado</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e5a61f",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#211c11",
+                        "text-main": "#181611",
+                        "text-secondary": "#887c63",
+                        "border-color": "#e5e2dc",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light text-text-main font-display antialiased">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-color bg-white px-10 py-3 shadow-sm">
+<div class="flex items-center gap-4 text-text-main">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">church</span>
+</div>
+<h2 class="text-text-main text-lg font-bold leading-tight tracking-[-0.015em]">Parroquia Cristo Resucitado</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 hidden md:flex">
+<nav class="flex items-center gap-9">
+<a class="text-text-main text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Inicio</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Sacramentos</a>
+<a class="text-text-main text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Horarios de Misa</a>
+<a class="text-text-main text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Comunidad</a>
+<a class="text-text-main text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Contacto</a>
+</nav>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-yellow-600 transition-colors shadow-md">
+<span class="truncate">Donar</span>
+</button>
+</div>
+<button class="md:hidden text-text-main">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex flex-col items-center w-full">
+<div class="layout-content-container flex flex-col max-w-[960px] w-full px-4 md:px-6 py-8">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 py-4">
+<a class="text-text-secondary text-sm font-medium leading-normal hover:text-text-main" href="#">Inicio</a>
+<span class="text-text-secondary text-sm font-medium leading-normal">/</span>
+<span class="text-text-main text-sm font-medium leading-normal">Sacramentos</span>
+</div>
+<!-- Hero Title -->
+<div class="flex flex-col gap-4 py-8 text-center md:text-left">
+<h1 class="text-text-main text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">Sacramentos y Requisitos</h1>
+<p class="text-text-secondary text-lg font-normal leading-relaxed max-w-[720px]">
+                        Los sacramentos son signos eficaces de la gracia, instituidos por Cristo y confiados a la Iglesia, por los cuales se nos dispensa la vida divina. Aquí encontrarás una guía completa para su celebración en nuestra comunidad.
+                    </p>
+</div>
+<!-- Quick Navigation (Optional, for better UX) -->
+<div class="flex gap-3 overflow-x-auto pb-6 no-scrollbar snap-x">
+<a class="snap-start shrink-0 px-4 py-2 rounded-full border border-border-color bg-white text-sm font-medium text-text-secondary hover:bg-primary/10 hover:text-primary hover:border-primary transition-all" href="#bautismo">Bautismo</a>
+<a class="snap-start shrink-0 px-4 py-2 rounded-full border border-border-color bg-white text-sm font-medium text-text-secondary hover:bg-primary/10 hover:text-primary hover:border-primary transition-all" href="#confirmacion">Confirmación</a>
+<a class="snap-start shrink-0 px-4 py-2 rounded-full border border-border-color bg-white text-sm font-medium text-text-secondary hover:bg-primary/10 hover:text-primary hover:border-primary transition-all" href="#eucaristia">Eucaristía</a>
+<a class="snap-start shrink-0 px-4 py-2 rounded-full border border-border-color bg-white text-sm font-medium text-text-secondary hover:bg-primary/10 hover:text-primary hover:border-primary transition-all" href="#matrimonio">Matrimonio</a>
+<a class="snap-start shrink-0 px-4 py-2 rounded-full border border-border-color bg-white text-sm font-medium text-text-secondary hover:bg-primary/10 hover:text-primary hover:border-primary transition-all" href="#reconciliacion">Reconciliación</a>
+</div>
+<!-- Divider -->
+<hr class="border-t border-border-color my-6"/>
+<!-- Bautismo Section -->
+<section class="flex flex-col gap-8 py-10 scroll-mt-20" id="bautismo">
+<div class="flex flex-col md:flex-row justify-between items-start gap-6">
+<div class="flex flex-col gap-3 max-w-[600px]">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">water_drop</span>
+<span class="uppercase tracking-widest text-xs font-bold">Iniciación Cristiana</span>
+</div>
+<h2 class="text-text-main text-3xl font-bold leading-tight">Bautismo</h2>
+<p class="text-text-main text-base font-normal leading-relaxed">
+                                El fundamento de toda la vida cristiana, el pórtico de la vida en el espíritu y la puerta que abre el acceso a los otros sacramentos. Por el Bautismo somos liberados del pecado y regenerados como hijos de Dios.
+                            </p>
+</div>
+<button class="shrink-0 flex items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold shadow-sm hover:bg-yellow-600 transition-colors">
+                            Agendar Bautismo
+                        </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Requirement Card -->
+<div class="flex flex-col gap-3 rounded-xl border border-border-color bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined">description</span>
+</div>
+<h3 class="text-text-main text-base font-bold">Acta de Nacimiento</h3>
+<p class="text-text-secondary text-sm">Copia original reciente del registro civil del niño(a).</p>
+</div>
+<!-- Requirement Card -->
+<div class="flex flex-col gap-3 rounded-xl border border-border-color bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined">school</span>
+</div>
+<h3 class="text-text-main text-base font-bold">Charla Pre-bautismal</h3>
+<p class="text-text-secondary text-sm">Asistencia obligatoria para padres y padrinos. Se imparte el primer sábado de mes.</p>
+</div>
+<!-- Requirement Card -->
+<div class="flex flex-col gap-3 rounded-xl border border-border-color bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined">diversity_3</span>
+</div>
+<h3 class="text-text-main text-base font-bold">Padrinos</h3>
+<p class="text-text-secondary text-sm">Deben ser católicos confirmados. Si viven en pareja, deben estar casados por la Iglesia.</p>
+</div>
+</div>
+</section>
+<hr class="border-t border-border-color/60"/>
+<!-- Confirmación Section -->
+<section class="flex flex-col gap-8 py-10 scroll-mt-20" id="confirmacion">
+<div class="flex flex-col md:flex-row justify-between items-start gap-6">
+<div class="flex flex-col gap-3 max-w-[600px]">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">local_fire_department</span>
+<span class="uppercase tracking-widest text-xs font-bold">Iniciación Cristiana</span>
+</div>
+<h2 class="text-text-main text-3xl font-bold leading-tight">Confirmación</h2>
+<p class="text-text-main text-base font-normal leading-relaxed">
+                                Con el Bautismo y la Eucaristía, el sacramento de la Confirmación constituye el conjunto de los "sacramentos de la iniciación cristiana". Enriquece a los bautizados con una fuerza especial del Espíritu Santo.
+                            </p>
+</div>
+<button class="shrink-0 flex items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-white border border-border-color text-text-main text-sm font-bold shadow-sm hover:bg-background-light transition-colors">
+                            Ver Fechas de Catequesis
+                        </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-start gap-4 rounded-xl border border-border-color bg-white p-5">
+<div class="text-primary mt-1">
+<span class="material-symbols-outlined">history_edu</span>
+</div>
+<div>
+<h3 class="text-text-main text-base font-bold">Fe de Bautismo</h3>
+<p class="text-text-secondary text-sm mt-1">Certificado reciente y actualizado.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 rounded-xl border border-border-color bg-white p-5">
+<div class="text-primary mt-1">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<div>
+<h3 class="text-text-main text-base font-bold">Curso de Catequesis</h3>
+<p class="text-text-secondary text-sm mt-1">Completar el programa de preparación (duración 1 año).</p>
+</div>
+</div>
+</div>
+</section>
+<hr class="border-t border-border-color/60"/>
+<!-- Matrimonio Section -->
+<section class="flex flex-col gap-8 py-10 scroll-mt-20" id="matrimonio">
+<div class="flex flex-col md:flex-row justify-between items-start gap-6">
+<div class="flex flex-col gap-3 max-w-[600px]">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">favorite</span>
+<span class="uppercase tracking-widest text-xs font-bold">Servicio a la Comunidad</span>
+</div>
+<h2 class="text-text-main text-3xl font-bold leading-tight">Matrimonio</h2>
+<p class="text-text-main text-base font-normal leading-relaxed">
+                                La alianza matrimonial, por la que el varón y la mujer constituyen entre sí un consorcio de toda la vida, ordenado por su misma índole natural al bien de los cónyuges y a la generación y educación de la prole.
+                            </p>
+</div>
+<button class="shrink-0 flex items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold shadow-sm hover:bg-yellow-600 transition-colors">
+                            Información de Bodas
+                        </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Requirement Card -->
+<div class="flex flex-col gap-3 rounded-xl border border-border-color bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined">folder_shared</span>
+</div>
+<h3 class="text-text-main text-base font-bold">Partidas de Bautismo</h3>
+<p class="text-text-secondary text-sm">De ambos contrayentes. Deben ser recientes (menos de 6 meses) y legalizadas por la diócesis.</p>
+</div>
+<!-- Requirement Card -->
+<div class="flex flex-col gap-3 rounded-xl border border-border-color bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined">handshake</span>
+</div>
+<h3 class="text-text-main text-base font-bold">Curso Prematrimonial</h3>
+<p class="text-text-secondary text-sm">Certificado de finalización del curso de preparación para la vida conyugal.</p>
+</div>
+<!-- Requirement Card -->
+<div class="flex flex-col gap-3 rounded-xl border border-border-color bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+<h3 class="text-text-main text-base font-bold">Entrevista Pastoral</h3>
+<p class="text-text-secondary text-sm">Programar entrevista con el Párroco al menos 6 meses antes de la fecha deseada.</p>
+</div>
+</div>
+</section>
+<hr class="border-t border-border-color/60"/>
+<!-- Otros Sacramentos Section (Grid Style for compact view) -->
+<section class="py-10 w-full">
+<h2 class="text-text-main text-2xl font-bold mb-8">Otros Sacramentos y Servicios</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Eucaristía -->
+<div class="flex flex-col rounded-xl border border-border-color bg-white overflow-hidden group">
+<div class="bg-primary/5 p-6 border-b border-border-color/50">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">emoji_food_beverage</span>
+<h3 class="text-lg font-bold text-text-main" id="eucaristia">Primera Comunión</h3>
+</div>
+<p class="text-text-secondary text-sm">El sacramento en el que recibimos el Cuerpo y la Sangre de Cristo.</p>
+</div>
+<div class="p-6 flex flex-col gap-2">
+<p class="text-xs font-bold uppercase tracking-wider text-text-secondary mb-1">Requisitos</p>
+<ul class="list-disc list-inside text-sm text-text-main space-y-1 marker:text-primary">
+<li>Tener al menos 8 años cumplidos.</li>
+<li>Haber cursado 2 años de catequesis.</li>
+<li>Fe de Bautismo.</li>
+</ul>
+</div>
+</div>
+<!-- Reconciliación -->
+<div class="flex flex-col rounded-xl border border-border-color bg-white overflow-hidden group">
+<div class="bg-primary/5 p-6 border-b border-border-color/50">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">church</span>
+<h3 class="text-lg font-bold text-text-main" id="reconciliacion">Reconciliación (Confesión)</h3>
+</div>
+<p class="text-text-secondary text-sm">El perdón de los pecados cometidos después del Bautismo.</p>
+</div>
+<div class="p-6 flex flex-col gap-2">
+<p class="text-xs font-bold uppercase tracking-wider text-text-secondary mb-1">Horarios</p>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-sm text-text-main border-b border-dashed border-border-color pb-1">
+<span>Jueves Eucarísticos</span>
+<span class="font-medium">5:00 PM - 7:00 PM</span>
+</div>
+<div class="flex justify-between text-sm text-text-main pb-1">
+<span>Antes de cada Misa</span>
+<span class="font-medium">30 min antes</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Unción de los enfermos -->
+<div class="flex flex-col rounded-xl border border-border-color bg-white overflow-hidden group">
+<div class="bg-primary/5 p-6 border-b border-border-color/50">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">healing</span>
+<h3 class="text-lg font-bold text-text-main">Unción de los Enfermos</h3>
+</div>
+<p class="text-text-secondary text-sm">Otorga consuelo, paz y ánimo. También perdona pecados si el enfermo no pudo confesarse.</p>
+</div>
+<div class="p-6 flex flex-col gap-2">
+<p class="text-xs font-bold uppercase tracking-wider text-text-secondary mb-1">Contacto de Urgencia</p>
+<p class="text-sm text-text-main">Para solicitar la visita de un sacerdote a un enfermo grave o anciano:</p>
+<a class="flex items-center gap-2 text-primary font-bold text-sm mt-1 hover:underline" href="tel:+50412345678">
+<span class="material-symbols-outlined text-lg">call</span>
+                                    Llamar a Oficina Parroquial
+                                </a>
+</div>
+</div>
+<!-- Orden Sacerdotal -->
+<div class="flex flex-col rounded-xl border border-border-color bg-white overflow-hidden group">
+<div class="bg-primary/5 p-6 border-b border-border-color/50">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">volunteer_activism</span>
+<h3 class="text-lg font-bold text-text-main">Vocaciones</h3>
+</div>
+<p class="text-text-secondary text-sm">¿Sientes el llamado a servir a Dios? El Orden Sacerdotal consagra a hombres al servicio de la Iglesia.</p>
+</div>
+<div class="p-6 flex flex-col gap-2 h-full justify-between">
+<div>
+<p class="text-xs font-bold uppercase tracking-wider text-text-secondary mb-1">Información</p>
+<p class="text-sm text-text-main">Acércate al párroco para un acompañamiento vocacional o visita el seminario diocesano.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="w-full mt-10 mb-10">
+<div class="relative overflow-hidden rounded-2xl bg-text-main p-8 md:p-12 text-center">
+<div class="relative z-10 flex flex-col items-center gap-4">
+<h2 class="text-white text-2xl md:text-3xl font-bold">¿Tienes dudas sobre tu proceso?</h2>
+<p class="text-gray-300 max-w-lg">
+                                Nuestra secretaría parroquial está disponible para ayudarte a revisar tus documentos y guiarte en cada paso.
+                            </p>
+<div class="flex gap-4 mt-2">
+<button class="flex h-12 items-center justify-center rounded-lg bg-primary px-6 font-bold text-white transition-colors hover:bg-yellow-600">
+                                    Contactar Secretaría
+                                </button>
+</div>
+</div>
+<!-- Decorative circle -->
+<div class="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-white/5 blur-3xl"></div>
+<div class="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="flex flex-col gap-6 border-t border-border-color bg-white px-10 py-10 text-center md:text-left">
+<div class="layout-content-container mx-auto flex w-full max-w-[960px] flex-col md:flex-row justify-between gap-8">
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-center md:justify-start gap-2 text-text-main font-bold">
+<span class="material-symbols-outlined text-primary">church</span>
+<span>Parroquia Cristo Resucitado</span>
+</div>
+<p class="text-text-secondary text-sm">
+                        Una comunidad de fe, esperanza y caridad.<br/>
+                        Honduras, C.A.
+                     </p>
+</div>
+<div class="flex flex-col gap-4 md:flex-row md:gap-12 text-sm text-text-main justify-center">
+<div class="flex flex-col gap-2">
+<span class="font-bold text-text-secondary">Enlaces</span>
+<a class="hover:underline" href="#">Inicio</a>
+<a class="hover:underline" href="#">Boletín Parroquial</a>
+<a class="hover:underline" href="#">Donaciones</a>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-bold text-text-secondary">Horarios de Oficina</span>
+<span>Lun - Vie: 8:00 AM - 12:00 MD</span>
+<span>Lun - Vie: 2:00 PM - 5:00 PM</span>
+<span>Sáb: 8:00 AM - 12:00 MD</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-bold text-text-secondary">Síguenos</span>
+<div class="flex gap-4 justify-center md:justify-start">
+<!-- Social Placeholders -->
+<a class="size-8 bg-background-light rounded-full flex items-center justify-center hover:bg-primary/20 text-text-main transition-colors" href="#">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.791-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+</a>
+<a class="size-8 bg-background-light rounded-full flex items-center justify-center hover:bg-primary/20 text-text-main transition-colors" href="#">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center text-xs text-text-secondary mt-4">
+                 © 2024 Parroquia Cristo Resucitado. Todos los derechos reservados.
+             </div>
+</footer>
+</div>
+</body></html>

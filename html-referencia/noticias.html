@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Noticias y Blog - Parroquia Cristo Resucitado</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e4a921",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#211c11",
+                        "text-main": "#28292B",
+                    },
+                    fontFamily: {
+                        "display": ["Newsreader", "serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Newsreader', serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-text-main dark:bg-background-dark dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full bg-white border-b border-[#f4f3f0] dark:bg-background-dark dark:border-white/10">
+<div class="px-6 lg:px-40 flex justify-center py-2">
+<div class="flex w-full max-w-[1280px] items-center justify-between">
+<div class="flex items-center gap-8">
+<!-- Logo & Brand -->
+<div class="flex items-center gap-3 text-text-main dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 21V9.5h2V21h-2zm-6 0V11.5h2V21H5zm12 0V11.5h2V21h-2zM12 2L2 7l10 5 10-5-10-5z"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">Parroquia Cristo Resucitado</h2>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Inicio</a>
+<a class="text-sm font-bold text-primary" href="#">Noticias</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Eventos</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Sacramentos</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Donaciones</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Contacto</a>
+</nav>
+</div>
+<!-- Search -->
+<div class="flex items-center gap-4">
+<div class="hidden md:flex w-64 items-center rounded-full bg-[#f4f3f0] px-3 py-2 dark:bg-white/5">
+<span class="material-symbols-outlined text-[#887d63] text-[20px]">search</span>
+<input class="ml-2 w-full bg-transparent text-sm text-text-main placeholder-[#887d63] focus:outline-none dark:text-white" placeholder="Buscar..." type="text"/>
+</div>
+<!-- Mobile Menu Trigger -->
+<button class="lg:hidden p-2 text-text-main dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<div class="w-full max-w-[1280px] mx-auto px-6 lg:px-40 py-8 flex flex-col gap-10">
+<!-- Page Title Area -->
+<div class="flex flex-col gap-2">
+<h1 class="text-text-main dark:text-white text-5xl font-black leading-tight tracking-tight">Noticias y Blog Parroquial</h1>
+<p class="text-[#887d63] dark:text-[#a89d83] text-lg font-normal max-w-2xl">
+                    Mantente informado sobre las últimas actividades, reflexiones espirituales y anuncios importantes de nuestra comunidad en Honduras.
+                </p>
+</div>
+<!-- Featured Article (Hero) -->
+<div class="relative w-full rounded-2xl overflow-hidden group shadow-lg">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 transition-opacity duration-300"></div>
+<!-- Background Image -->
+<div class="h-[500px] w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Interior de iglesia durante ceremonia religiosa con luz tenue" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvULQk5S3bCIBpnlxPGK3kpPAbymVYcLuIovvw4GIYdQEg0h48M6cgBeima9FKsZHxdcgqiwKtX1GtCrT9dyQA6IGz9xMT0F4QLAU44EGlZQ5Og5JyepHdo0pZlZ_nFxVCU6CY8gDoeUCn7zVL5saV9IGycHy4G3V1tmt086ubkU_UDiAYAklIkewRZzhmnsC7JojXEwLXxocIkfqgNcX6Ii8Vq2S8BjD2MxfZ34ePGNkZAM0weYSzk9wKfzCZaMTsRftH_QQ3VXY');">
+</div>
+<div class="absolute bottom-0 left-0 z-20 p-8 md:p-12 w-full md:w-3/4 lg:w-2/3">
+<span class="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-black uppercase bg-primary rounded-full">
+                        Destacado
+                    </span>
+<h2 class="text-3xl md:text-5xl font-black text-white leading-tight mb-4 drop-shadow-md">
+                        Celebración Solemne de la Semana Santa 2024
+                    </h2>
+<p class="text-white/90 text-base md:text-lg font-medium mb-6 line-clamp-2 md:line-clamp-none drop-shadow-sm">
+                        Revive los momentos más sagrados de nuestra última Semana Mayor, donde la comunidad se unió en fe y devoción a través de las procesiones y liturgias.
+                    </p>
+<button class="bg-white hover:bg-gray-100 text-text-main font-bold py-3 px-6 rounded-lg transition-colors flex items-center gap-2">
+                        Leer Artículo Completo
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Filters & Categories -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 py-4 border-b border-[#f4f3f0] dark:border-white/10">
+<h3 class="text-2xl font-bold text-text-main dark:text-white">Últimas Publicaciones</h3>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full bg-text-main text-white text-sm font-medium transition hover:opacity-90 dark:bg-white dark:text-text-main">
+                        Todas
+                    </button>
+<button class="px-4 py-2 rounded-full bg-[#f4f3f0] text-text-main text-sm font-medium hover:bg-primary/20 transition dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10">
+                        Comunidad
+                    </button>
+<button class="px-4 py-2 rounded-full bg-[#f4f3f0] text-text-main text-sm font-medium hover:bg-primary/20 transition dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10">
+                        Liturgia
+                    </button>
+<button class="px-4 py-2 rounded-full bg-[#f4f3f0] text-text-main text-sm font-medium hover:bg-primary/20 transition dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10">
+                        Juventud
+                    </button>
+<button class="px-4 py-2 rounded-full bg-[#f4f3f0] text-text-main text-sm font-medium hover:bg-primary/20 transition dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10">
+                        Voluntariado
+                    </button>
+</div>
+</div>
+<!-- News Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-16">
+<!-- Article Card 1 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100">
+<img alt="Grupo de jóvenes riendo en reunión al aire libre" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Grupo de jóvenes riendo en reunión al aire libre" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvPLHto7C_gqjexsDl45JgI7BsK-Y_5f-VSXfsZqEGbUF5kt0I59TM5rINDekEtNftD2C9C9F2MBvuXd8gQMZZ1s6rvCjn5QZln9ZVaR4xxVtrR8lm3RK63K88QVvJh9wpCNu6sQxgNyAj2ezzP_FtsDSlOx9_WZpALbIwBOspaDAcz3jjOBZ-N0LWXvXOInADnrsznOBjSixjKjMhcESMYHeBI26MhSX8JGTY8-R1VxnLSOQV0rk9DFhk07S0lufGp4QvvI0avGM"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-text-main text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                Juventud
+                            </span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs text-[#887d63] font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px] align-middle">calendar_today</span>
+                            15 de Abril, 2024
+                        </div>
+<h3 class="text-xl font-bold text-text-main dark:text-white group-hover:text-primary transition-colors leading-tight">
+                            Retiro Espiritual de Jóvenes: "Luz en el Camino"
+                        </h3>
+<p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
+                            Más de 50 jóvenes de nuestra parroquia se reunieron este fin de semana para compartir experiencias, orar y fortalecer su fe en un ambiente de fraternidad.
+                        </p>
+<a class="inline-flex items-center text-primary text-sm font-bold mt-2 hover:underline" href="#">
+                            Leer Más <span class="material-symbols-outlined text-[16px] ml-1">arrow_right_alt</span>
+</a>
+</div>
+</article>
+<!-- Article Card 2 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100">
+<img alt="Manos entregando donación de alimentos a familia" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Manos entregando donación de alimentos a familia" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8qD0gnDthg1Ga1SYjEk2lRxIA2pJMMSwv9sJ9ngrTTG9O2ZmmhBTxVmhAUL2vT8zu2OSJmkOG5Uqafum0QaTe3U5hu7bUsZrU1CBurPQFt4La3s-3Kd_SxfgQVXhH5TX1Ghd6OBRdREvnTScfFe1V38u1vpA2IH9f7_T6sZJyI_urKvhmtx2riQmGCV4aeGaiPIqbcp9eDYjQOUFHDY3IS03l-I8RiDaG1YWfB_0C7WJy-WFkdS8lDZXwz2N4qkTI8cNFDyfxHwQ"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-text-main text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                Comunidad
+                            </span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs text-[#887d63] font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px] align-middle">calendar_today</span>
+                            10 de Abril, 2024
+                        </div>
+<h3 class="text-xl font-bold text-text-main dark:text-white group-hover:text-primary transition-colors leading-tight">
+                            Jornada de Donación de Alimentos
+                        </h3>
+<p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
+                            Gracias a la generosidad de nuestros feligreses, logramos recolectar y distribuir más de 200 canastas básicas a familias necesitadas del sector.
+                        </p>
+<a class="inline-flex items-center text-primary text-sm font-bold mt-2 hover:underline" href="#">
+                            Leer Más <span class="material-symbols-outlined text-[16px] ml-1">arrow_right_alt</span>
+</a>
+</div>
+</article>
+<!-- Article Card 3 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100">
+<img alt="Sacerdote bendiciendo durante misa dominical" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Sacerdote bendiciendo durante misa dominical" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzoNY_crXMh5vUsTrK9h6viKYN6JwJooWgBMS5sVDizzFWB-5zKEmDgS07P8UlD3NLTj5st4vBML7MImwsDEJFw8RQ0dOzaNP8dIq54AYhLZRvuzTDs6p22H2YXUCvmaNoU1m4S1QzjYdFU8yAf5gNyloPgOJJJxAiYkxjoQQuPBnOfzYWvgZ4CRNpSX3c9s_pOOpZGNVpOuJY9ZT-RAZ0yKiRDsMimbm2yjKmltSyZTToDgEMRCaHixFy9-ISRs0_RVky1fIrpjM"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-text-main text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                Liturgia
+                            </span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs text-[#887d63] font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px] align-middle">calendar_today</span>
+                            05 de Abril, 2024
+                        </div>
+<h3 class="text-xl font-bold text-text-main dark:text-white group-hover:text-primary transition-colors leading-tight">
+                            Nuevos Horarios de Misa Dominical
+                        </h3>
+<p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
+                            A partir del próximo mes, ajustaremos los horarios de las eucaristías para acomodar mejor a nuestra creciente comunidad de fieles.
+                        </p>
+<a class="inline-flex items-center text-primary text-sm font-bold mt-2 hover:underline" href="#">
+                            Leer Más <span class="material-symbols-outlined text-[16px] ml-1">arrow_right_alt</span>
+</a>
+</div>
+</article>
+<!-- Article Card 4 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100">
+<img alt="Grupo de personas restaurando un banco de iglesia" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Grupo de personas restaurando un banco de iglesia" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWGvr648J2n3T-tZrJ0qY3N0YzSO4TcC3YuHjJG6jZySct4iY-VqhvbA1rSH6zUZ_FntAbHXhSFusY52xF56u4pil1LDWHI-dq0eX2YB6u6rMGKJWb1qWVy2CZ2fGSMom5PGcsfioY7yS4tMaPcxcVRsO34VBNK7H_Is46FNeNF9SYffYFrnnwQANOq90PEzRVdNKz_PXNjVbNby2As3VY-SacvBrE874EEXN0KfBCLS2fqdjnzD2mkxdaTMNjSnY9Qc05R_gjbOs"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-text-main text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                Voluntariado
+                            </span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs text-[#887d63] font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px] align-middle">calendar_today</span>
+                            28 de Marzo, 2024
+                        </div>
+<h3 class="text-xl font-bold text-text-main dark:text-white group-hover:text-primary transition-colors leading-tight">
+                            Restauración del Templo Parroquial
+                        </h3>
+<p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
+                            Voluntarios de todas las edades se unieron este sábado para labores de limpieza y mantenimiento de nuestra amada iglesia.
+                        </p>
+<a class="inline-flex items-center text-primary text-sm font-bold mt-2 hover:underline" href="#">
+                            Leer Más <span class="material-symbols-outlined text-[16px] ml-1">arrow_right_alt</span>
+</a>
+</div>
+</article>
+<!-- Article Card 5 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100">
+<img alt="Velas encendidas en un ambiente de oración" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Velas encendidas en un ambiente de oración" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6cSKT3cBjNSMa0XJFIXXScLKJtC5kYLIY12DOWq2E_j6s5gJZawyBJ-jmDVIH-TxRldIArTXt2YBZ1C8O6l7zbiORip1YOH4LigMltvR65BgeD9P_Dg7j1n-9Tk9u5Fx2H9ccl8y7FSYIXfFMBwvLmjtHGtRYB5_ewBktapLGeX0k2EpEARygL7-kJB_pzEFF7Zd2UJFRu6Sf0jk6SgKlc80Us8uEZMLq-YawaYGhYjmP8ybJ1NohUzXwub6mna7BESlVZYLGOao"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-text-main text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                Reflexión
+                            </span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs text-[#887d63] font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px] align-middle">calendar_today</span>
+                            25 de Marzo, 2024
+                        </div>
+<h3 class="text-xl font-bold text-text-main dark:text-white group-hover:text-primary transition-colors leading-tight">
+                            Mensaje del Párroco: La Esperanza
+                        </h3>
+<p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
+                            Una reflexión profunda sobre el significado de la esperanza en tiempos difíciles y cómo podemos ser luz para los demás.
+                        </p>
+<a class="inline-flex items-center text-primary text-sm font-bold mt-2 hover:underline" href="#">
+                            Leer Más <span class="material-symbols-outlined text-[16px] ml-1">arrow_right_alt</span>
+</a>
+</div>
+</article>
+<!-- Article Card 6 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100">
+<img alt="Niños jugando en un evento comunitario" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Niños jugando en un evento comunitario" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbllLl91F7NXjiZM9OTr4bC9_ftmTvN4dR7WG44p4Sb0CVoNp9nR7XS7PPqCLMkXznhQ0btxLigQEKJUhXVEYUTJPCFCMXhRFyGspfWZ-3rUre6RHL0PoEwuLO1tlDEtK-nROkTK-pdqw-yXaW7kXSiw625oYCQ2793TRQQfx8Ej3qT7Ldl-wP0zRb_hvvCIEzhJ0sWp55To1KjYHURLl4TnFLDSH7pzbwCorsjO0Pz9SIkLkGXycHYXmld_C2GKNcYrQUNxYYzfo"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-text-main text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                                Comunidad
+                            </span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs text-[#887d63] font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px] align-middle">calendar_today</span>
+                            20 de Marzo, 2024
+                        </div>
+<h3 class="text-xl font-bold text-text-main dark:text-white group-hover:text-primary transition-colors leading-tight">
+                            Celebración del Día de la Familia
+                        </h3>
+<p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
+                            Una tarde llena de juegos, música y convivencia para todas las familias de nuestra parroquia. ¡Gracias por asistir!
+                        </p>
+<a class="inline-flex items-center text-primary text-sm font-bold mt-2 hover:underline" href="#">
+                            Leer Más <span class="material-symbols-outlined text-[16px] ml-1">arrow_right_alt</span>
+</a>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-2 pb-12">
+<button class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#f4f3f0] text-text-main hover:bg-[#f4f3f0] dark:border-white/10 dark:text-white dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary text-text-main font-bold shadow-md">
+                    1
+                </button>
+<button class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#f4f3f0] text-text-main hover:bg-[#f4f3f0] dark:border-white/10 dark:text-white dark:hover:bg-white/10 transition-colors">
+                    2
+                </button>
+<button class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#f4f3f0] text-text-main hover:bg-[#f4f3f0] dark:border-white/10 dark:text-white dark:hover:bg-white/10 transition-colors">
+                    3
+                </button>
+<button class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#f4f3f0] text-text-main hover:bg-[#f4f3f0] dark:border-white/10 dark:text-white dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-text-main text-white py-12 px-6 lg:px-40 mt-auto dark:bg-black">
+<div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="col-span-1 md:col-span-2 flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 21V9.5h2V21h-2zm-6 0V11.5h2V21H5zm12 0V11.5h2V21h-2zM12 2L2 7l10 5 10-5-10-5z"></path>
+</svg>
+</div>
+<span class="text-xl font-bold font-display">Cristo Resucitado</span>
+</div>
+<p class="text-gray-400 max-w-sm text-sm">
+                    Una comunidad de fe, esperanza y caridad en el corazón de Honduras. Únete a nosotros para celebrar la vida y el evangelio.
+                </p>
+<div class="flex gap-4 mt-2">
+<a class="text-gray-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-gray-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="text-gray-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">call</span></a>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-primary mb-1">Enlaces Rápidos</h4>
+<a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Inicio</a>
+<a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Sobre Nosotros</a>
+<a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Horarios de Misa</a>
+<a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Contacto</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-primary mb-1">Boletín</h4>
+<p class="text-gray-400 text-sm">Suscríbete para recibir noticias semanales.</p>
+<div class="flex gap-2 mt-1">
+<input class="bg-white/10 border border-white/20 rounded px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-primary w-full" placeholder="Tu correo" type="email"/>
+<button class="bg-primary text-text-main font-bold rounded px-4 py-2 text-sm hover:bg-primary/90 transition-colors">OK</button>
+</div>
+</div>
+</div>
+<div class="max-w-[1280px] mx-auto mt-12 pt-8 border-t border-white/10 text-center text-gray-500 text-xs">
+            © 2024 Parroquia Cristo Resucitado. Todos los derechos reservados.
+        </div>
+</footer>
+</body></html>

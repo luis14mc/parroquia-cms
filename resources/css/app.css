@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-parroquia-darkBg: #1a1a2e;
+    --color-parroquia-darkText: #e0e0e0;
+    --color-parroquia-gold: #d4a843;
+    --color-parroquia-cream: #faf8f0;
+    --color-parroquia-brown: #5c3d2e;
+}
