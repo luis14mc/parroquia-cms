@@ -46,6 +46,7 @@ RUN apk add --no-cache \
     libjpeg-turbo-dev \
     freetype-dev \
     libzip-dev \
+    sqlite-dev \
     icu-dev \
     oniguruma-dev \
     postgresql-dev \
