@@ -69,13 +69,7 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
                 <div class="flex items-center gap-3">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary">
-                        <span class="material-symbols-outlined text-2xl">church</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <h1 class="text-lg font-bold leading-none tracking-tight text-text-dark">Parroquia Cristo Resucitado</h1>
-                        <span class="text-xs text-gray-500 font-medium">Comunidad de Fe y Esperanza</span>
-                    </div>
+                    <img src="/images/logos/Logo_PCR.png" alt="Parroquia Cristo Resucitado" class="h-12 w-auto object-contain"/>
                 </div>
                 <!-- Estado de mantenimiento -->
                 <div class="flex items-center gap-2 px-4 py-2 bg-secondary/10 rounded-full">
@@ -174,13 +168,7 @@
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                 <!-- Logo y nombre -->
                 <div class="flex items-center gap-3">
-                    <div class="flex items-center justify-center w-9 h-9 rounded-full bg-primary/10 text-primary">
-                        <span class="material-symbols-outlined text-xl">church</span>
-                    </div>
-                    <div>
-                        <p class="text-white font-bold text-sm leading-none">Parroquia Cristo Resucitado</p>
-                        <span class="text-xs text-gray-500">Comunidad de Fe y Esperanza</span>
-                    </div>
+                    <img src="/images/logos/Logo_PCR_Blanco.png" alt="Parroquia Cristo Resucitado" class="h-10 w-auto object-contain"/>
                 </div>
                 <!-- Redes sociales -->
                 <div class="flex items-center gap-3">
