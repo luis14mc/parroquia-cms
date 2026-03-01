@@ -132,21 +132,21 @@
                         <span class="material-symbols-outlined">schedule</span>
                     </div>
                     <h3 class="font-bold text-text-dark text-sm mb-1">Horario de Misas</h3>
-                    <p class="text-xs text-gray-400">Lun–Vie 6:30 AM<br/>Sáb–Dom 6:00 PM</p>
+                    <p class="text-xs text-gray-400">Lun–Vie 7:00 AM, 5:00 PM y 7:00 PM<br/>Sáb 7:00 AM y 5:30 PM<br/>Dom 9:15 AM y 11:00 AM, 5:00 PM y 7:00 PM</p>
                 </div>
                 <div class="bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-3">
                         <span class="material-symbols-outlined">location_on</span>
                     </div>
                     <h3 class="font-bold text-text-dark text-sm mb-1">Ubicación</h3>
-                    <p class="text-xs text-gray-400">Colonia San Francisco<br/>Tegucigalpa, Honduras</p>
+                    <p class="text-xs text-gray-400">Colonia Loarque<br/>Tegucigalpa, Honduras</p>
                 </div>
                 <div class="bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mx-auto mb-3">
                         <span class="material-symbols-outlined">call</span>
                     </div>
                     <h3 class="font-bold text-text-dark text-sm mb-1">Contáctanos</h3>
-                    <p class="text-xs text-gray-400">+504 2234-5678<br/>info@parroquiacristoresucitado.hn</p>
+                    <p class="text-xs text-gray-400">+504 94306883<br/>info@parroquiacristoresucitado.hn</p>
                 </div>
             </div>
 
@@ -156,7 +156,7 @@
                 <p class="text-sm sm:text-base text-gray-600 italic leading-relaxed">
                     "Que la luz de Cristo Resucitado ilumine siempre sus caminos y fortalezca sus corazones."
                 </p>
-                <p class="text-xs text-gray-400 mt-3 font-semibold">— P. Juan Pérez, Párroco</p>
+                <p class="text-xs text-gray-400 mt-3 font-semibold">— P. Javier Martinez, Párroco</p>
             </div>
 
         </div>
