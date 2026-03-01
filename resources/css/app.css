@@ -1,21 +1,26 @@
 @import 'tailwindcss';
 
+/* Dark mode basado en clase .dark en el elemento <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
 @theme {
-    /* Fuentes */
-    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
     --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-    /* Colores principales del diseño */
     --color-primary: #e3a822;
     --color-secondary: #9e2e21;
-    --color-background-light: #ffffff;
+
+    --color-background-light: #f8f7f6;
     --color-background-dark: #211c11;
+    --color-surface: #ffffff;
+    --color-surface-dark: #2a2418;
+
     --color-text-dark: #28292B;
     --color-text-light: #f8f7f6;
+    --color-muted: #887d63;
 }
