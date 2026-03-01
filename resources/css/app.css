@@ -6,12 +6,16 @@
 @source '../**/*.js';
 
 @theme {
+    /* Fuentes */
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-    --color-parroquia-darkBg: #1a1a2e;
-    --color-parroquia-darkText: #e0e0e0;
-    --color-parroquia-gold: #d4a843;
-    --color-parroquia-cream: #faf8f0;
-    --color-parroquia-brown: #5c3d2e;
+    /* Colores principales del diseño */
+    --color-primary: #e3a822;
+    --color-secondary: #9e2e21;
+    --color-background-light: #ffffff;
+    --color-background-dark: #211c11;
+    --color-text-dark: #28292B;
+    --color-text-light: #f8f7f6;
 }
