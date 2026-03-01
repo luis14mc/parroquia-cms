@@ -43,6 +43,8 @@ RUN apk add --no-cache \
     nginx \
     supervisor \
     libpng-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
     libzip-dev \
     icu-dev \
     oniguruma-dev \
