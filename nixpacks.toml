@@ -10,10 +10,11 @@ cmds = ["composer install --no-dev --optimize-autoloader", "npm ci"]
 [phases.build]
 cmds = [
     "npm run build",
+    "rm -f public/hot",
     "mkdir -p storage/framework/{cache/data,sessions,views,testing}",
     "mkdir -p storage/logs",
     "mkdir -p bootstrap/cache",
 ]
 
 [start]
-cmd = "php artisan optimize && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
+cmd = "rm -f public/hot && php artisan optimize && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
