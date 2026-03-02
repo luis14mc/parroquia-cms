@@ -99,16 +99,19 @@
 
             <div class="text-center">
 
-                {{-- Animated church icon / Logo --}}
+                {{-- Logo --}}
                 <div class="animate-fade-in-up inline-flex items-center justify-center mb-8">
                     <div class="relative">
                         {{-- Pulse ring --}}
                         <span class="absolute inset-0 rounded-full bg-primary/20 animate-pulse-ring" aria-hidden="true"></span>
-                        {{-- Icon container --}}
-                        <div class="relative w-20 h-20 rounded-full bg-linear-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg shadow-primary/30 animate-float">
-                            <span class="material-symbols-outlined text-4xl text-background-dark" style="font-variation-settings: 'FILL' 1, 'wght' 600;">
-                                church
-                            </span>
+                        {{-- Logo container --}}
+                        <div class="relative w-24 h-24 rounded-full bg-linear-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg shadow-primary/30 animate-float p-4">
+                            <img src="{{ asset('images/Logo_PCR_Blanco.png') }}"
+                                 alt="Logo Parroquia Cristo Resucitado"
+                                 class="w-full h-full object-contain drop-shadow-md"
+                                 width="64"
+                                 height="64"
+                                 loading="eager">
                         </div>
                     </div>
                 </div>

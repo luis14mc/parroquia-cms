@@ -6,7 +6,12 @@
             {{-- Brand Column --}}
             <div class="lg:col-span-1">
                 <a href="{{ route('home') }}" class="flex items-center gap-2 mb-4">
-                    <span class="material-symbols-outlined text-primary text-3xl">church</span>
+                    <img src="{{ asset('images/Logo_PCR_Blanco.png') }}"
+                         alt="Logo Parroquia Cristo Resucitado"
+                         class="h-10 w-auto"
+                         width="40"
+                         height="40"
+                         loading="lazy">
                     <span class="font-bold text-xl">Cristo Resucitado</span>
                 </a>
                 <p class="text-text-muted text-sm leading-relaxed mb-6">

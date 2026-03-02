@@ -5,9 +5,12 @@
         <div class="flex justify-between items-center h-16">
             {{-- Logo --}}
             <a href="{{ route('home') }}" class="flex items-center gap-2 group">
-                <span class="material-symbols-outlined text-primary text-3xl group-hover:scale-110 transition-transform">
-                    church
-                </span>
+                <img src="{{ asset('images/Logo_PCR.png') }}"
+                     alt="Logo Parroquia Cristo Resucitado"
+                     class="h-10 w-auto group-hover:scale-110 transition-transform"
+                     width="40"
+                     height="40"
+                     loading="eager">
                 <span class="font-bold text-lg text-secondary dark:text-text-light hidden sm:block">
                     Cristo Resucitado
                 </span>
