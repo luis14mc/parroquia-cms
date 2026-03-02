@@ -1,33 +1,32 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+declare(strict_types=1);
+
+use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\DimensionesController;
+use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\NoticiaController;
-use App\Http\Controllers\PastoralController;
-use App\Http\Controllers\EventoController;
-use App\Http\Controllers\IntencionController;
+use App\Http\Controllers\IntencionesController;
+use App\Http\Controllers\NoticiasController;
+use App\Http\Controllers\PastoralesController;
+use App\Http\Controllers\SacramentosController;
+use Illuminate\Support\Facades\Route;
 
-// Pagina de inicio
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Rutas principales del CMS de la Parroquia.
+| Usar controladores invocables para claridad y cache de rutas.
+|
+*/
+
 Route::get('/', HomeController::class)->name('home');
-
-// Paginas estaticas
-Route::view('/sacramentos', 'pages.sacramentos')->name('sacramentos');
-Route::view('/dimensiones', 'pages.dimensiones')->name('dimensiones');
-Route::view('/contacto', 'pages.contacto')->name('contacto');
-Route::view('/donaciones', 'pages.donaciones')->name('donaciones');
-
-// Pastorales
-Route::get('/pastorales', [PastoralController::class, 'index'])->name('pastorales');
-Route::get('/pastorales/{pastoral}', [PastoralController::class, 'show'])->name('pastoral');
-
-// Noticias
-Route::get('/noticias', [NoticiaController::class, 'index'])->name('noticias');
-Route::get('/noticias/{noticia}', [NoticiaController::class, 'show'])->name('noticia');
-
-// Actividades / Eventos
-Route::get('/actividades', [EventoController::class, 'index'])->name('eventos');
-Route::get('/actividades/{evento}', [EventoController::class, 'show'])->name('evento');
-
-// Intenciones de misa
-Route::get('/intenciones', [IntencionController::class, 'index'])->name('intenciones');
-Route::post('/intenciones', [IntencionController::class, 'store'])->name('intenciones.store');
+Route::get('/sacramentos', SacramentosController::class)->name('sacramentos');
+Route::get('/pastorales', PastoralesController::class)->name('pastorales');
+Route::get('/dimensiones', DimensionesController::class)->name('dimensiones');
+Route::get('/noticias', NoticiasController::class)->name('noticias');
+Route::get('/intenciones', IntencionesController::class)->name('intenciones');
+Route::get('/donaciones', DonacionesController::class)->name('donaciones');
+Route::get('/contacto', ContactoController::class)->name('contacto');

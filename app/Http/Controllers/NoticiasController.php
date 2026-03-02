@@ -6,13 +6,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 
-final class HomeController extends Controller
+/**
+ * Controller for the Noticias page.
+ */
+final class NoticiasController extends Controller
 {
     /**
-     * Display the home page.
+     * Display the noticias page.
      */
     public function __invoke(): View
     {
-        return view('home');
+        return view('noticias');
     }
 }

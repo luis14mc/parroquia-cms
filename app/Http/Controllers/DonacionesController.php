@@ -6,13 +6,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 
-final class HomeController extends Controller
+/**
+ * Controller for the Donaciones page.
+ */
+final class DonacionesController extends Controller
 {
     /**
-     * Display the home page.
+     * Display the donaciones page.
      */
     public function __invoke(): View
     {
-        return view('home');
+        return view('donaciones');
     }
 }

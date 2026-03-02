@@ -1,28 +1,37 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@yield('meta_description', 'Sitio oficial de la Parroquia Cristo Resucitado de Tegucigalpa, Honduras')">
-    <title>@yield('title', 'Parroquia Cristo Resucitado')</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700,900&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+    <title>{{ $title ?? config('app.name', 'Parroquia Cristo Resucitado') }}</title>
+    <meta name="description" content="{{ $description ?? 'Parroquia Cristo Resucitado - Comunidad de Fe y Esperanza en Honduras' }}">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <!-- Scripts & Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @yield('head')
+
+    @stack('head')
 </head>
-<body class="flex flex-col min-h-screen bg-background-light text-text-dark font-sans antialiased transition-colors duration-300 dark:bg-background-dark dark:text-text-light">
+<body class="min-h-screen flex flex-col bg-background-light text-text-dark font-sans antialiased overflow-x-hidden dark:bg-background-dark dark:text-text-light">
+    {{-- Header --}}
+    <x-header />
 
-    @include('partials.header')
-
-    <main class="flex-1">
-        @yield('content')
+    {{-- Main Content --}}
+    <main class="flex-grow">
+        {{ $slot }}
     </main>
 
-    @include('partials.footer')
+    {{-- Footer --}}
+    <x-footer />
 
     @stack('scripts')
 </body>
