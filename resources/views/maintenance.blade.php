@@ -100,20 +100,13 @@
             <div class="text-center">
 
                 {{-- Logo --}}
-                <div class="animate-fade-in-up inline-flex items-center justify-center mb-8">
-                    <div class="relative">
-                        {{-- Pulse ring --}}
-                        <span class="absolute inset-0 rounded-full bg-primary/20 animate-pulse-ring" aria-hidden="true"></span>
-                        {{-- Logo container --}}
-                        <div class="relative w-24 h-24 rounded-full bg-linear-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg shadow-primary/30 animate-float p-4">
-                            <img src="{{ asset('images/Logo_PCR_Blanco.png') }}"
-                                 alt="Logo Parroquia Cristo Resucitado"
-                                 class="w-full h-full object-contain drop-shadow-md"
-                                 width="64"
-                                 height="64"
-                                 loading="eager">
-                        </div>
-                    </div>
+                <div class="animate-fade-in-up inline-flex items-center justify-center mb-8 animate-float">
+                    <img src="{{ asset('images/Logo_PCR_Blanco.png') }}"
+                         alt="Logo Parroquia Cristo Resucitado"
+                         class="w-24 h-24 object-contain drop-shadow-lg"
+                         width="96"
+                         height="96"
+                         loading="eager">
                 </div>
 
                 {{-- Brand name --}}
@@ -136,94 +129,17 @@
                     Volveremos pronto con mejoras para servirte mejor.
                 </p>
 
-                {{-- System Status Card --}}
-                <output class="animate-fade-in-up delay-400 block"
-                        aria-label="Estado actual del sistema">
-
-                    <div class="relative backdrop-blur-xl bg-white/6 border border-white/8 rounded-2xl p-6 sm:p-8 max-w-md mx-auto shadow-2xl">
-
-                        {{-- Card header --}}
-                        <div class="flex items-center justify-between mb-6">
-                            <h2 class="text-sm font-bold uppercase tracking-wider text-text-light/60">
-                                Estado del Sistema
-                            </h2>
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold">
-                                <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" aria-hidden="true"></span>
-                                En progreso
-                            </span>
-                        </div>
-
-                        {{-- Status items --}}
-                        <ul class="space-y-4 text-left" aria-label="Detalle de servicios">
-                            {{-- Sitio Web --}}
-                            <li class="flex items-center justify-between gap-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-lg text-primary">language</span>
-                                    </div>
-                                    <span class="text-sm font-medium text-text-light/80">Sitio Web</span>
-                                </div>
-                                <span class="text-xs font-bold text-primary px-2.5 py-1 rounded-full bg-primary/10">
-                                    Actualizando
-                                </span>
-                            </li>
-
-                            {{-- Base de Datos --}}
-                            <li class="flex items-center justify-between gap-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-lg text-green-400">database</span>
-                                    </div>
-                                    <span class="text-sm font-medium text-text-light/80">Base de Datos</span>
-                                </div>
-                                <span class="text-xs font-bold text-green-400 px-2.5 py-1 rounded-full bg-green-500/10">
-                                    Operativa
-                                </span>
-                            </li>
-
-                            {{-- Servicios --}}
-                            <li class="flex items-center justify-between gap-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-lg text-green-400">cloud</span>
-                                    </div>
-                                    <span class="text-sm font-medium text-text-light/80">Servicios en la Nube</span>
-                                </div>
-                                <span class="text-xs font-bold text-green-400 px-2.5 py-1 rounded-full bg-green-500/10">
-                                    Operativo
-                                </span>
-                            </li>
-                        </ul>
-
-                        {{-- Progress bar --}}
-                        <div class="mt-6 pt-6 border-t border-white/6"
-                             x-data="{ progress: 0 }"
-                             x-init="setTimeout(() => progress = 75, 500)"
-                             aria-label="Progreso del mantenimiento">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-xs font-medium text-text-light/50">Progreso estimado</span>
-                                <span class="text-xs font-bold text-primary" x-text="progress + '%'">0%</span>
-                            </div>
-                            <progress class="sr-only" :value="progress" max="100" x-text="progress + '%'">0%</progress>
-                            <div class="w-full h-2 rounded-full bg-white/6 overflow-hidden" aria-hidden="true">
-                                <div class="h-full rounded-full bg-linear-to-r from-primary to-[#f0c050] transition-all duration-1000 ease-out"
-                                     :style="'width: ' + progress + '%'"></div>
-                            </div>
-                        </div>
-                    </div>
-                </output>
-
                 {{-- Contact info --}}
                 <div class="animate-fade-in-up delay-500 mt-10 space-y-4">
                     <p class="text-sm text-text-light/40">
                         ¿Necesitas ayuda urgente? Contáctanos:
                     </p>
                     <div class="flex flex-wrap items-center justify-center gap-4">
-                        <a href="tel:+50422001234"
+                        <a href="tel:+50494306883"
                            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/6 border border-white/8 text-text-light/70 hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all text-sm font-medium"
-                           aria-label="+504 2200-1234, llamar a la parroquia">
+                           aria-label="+504 9430-6883, llamar a la parroquia">
                             <span class="material-symbols-outlined text-lg" aria-hidden="true">phone</span>
-                            +504 2200-1234
+                            +504 9430-6883
                         </a>
                         <a href="mailto:info@cristoresucitado.hn"
                            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/6 border border-white/8 text-text-light/70 hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all text-sm font-medium"
@@ -234,28 +150,7 @@
                     </div>
                 </div>
 
-                {{-- Countdown / ETA --}}
-                <div class="animate-fade-in-up delay-700 mt-12"
-                     x-data="countdown()"
-                     x-init="init()"
-                     aria-label="Tiempo estimado de regreso">
-                    <p class="text-xs text-text-light/30 uppercase tracking-widest mb-4 font-medium">
-                        Tiempo estimado de regreso
-                    </p>
-                    <div class="inline-flex items-center gap-3 sm:gap-4">
-                        <template x-for="unit in units" :key="unit.label">
-                            <div class="flex items-center gap-3 sm:gap-4">
-                                <div class="flex flex-col items-center">
-                                    <span class="text-2xl sm:text-3xl font-black text-text-light tabular-nums"
-                                          x-text="String(unit.value).padStart(2, '0')">00</span>
-                                    <span class="text-[0.65rem] uppercase tracking-wider text-text-light/30 mt-1"
-                                          x-text="unit.label"></span>
-                                </div>
-                                <span class="text-text-light/20 text-xl font-light last:hidden" x-show="unit.label !== 'seg'" aria-hidden="true">:</span>
-                            </div>
-                        </template>
-                    </div>
-                </div>
+
             </div>
         </div>
     </main>
@@ -267,31 +162,6 @@
         </p>
     </footer>
 
-    {{-- Countdown Alpine component --}}
-    <script>
-        function countdown() {
-            return {
-                units: [
-                    { label: 'horas', value: 0 },
-                    { label: 'min', value: 0 },
-                    { label: 'seg', value: 0 },
-                ],
-                targetDate: null,
-                init() {
-                    // Set target to 4 hours from now (adjustable)
-                    this.targetDate = new Date(Date.now() + 4 * 60 * 60 * 1000);
-                    this.tick();
-                    setInterval(() => this.tick(), 1000);
-                },
-                tick() {
-                    const diff = Math.max(0, this.targetDate - Date.now());
-                    const totalSeconds = Math.floor(diff / 1000);
-                    this.units[0].value = Math.floor(totalSeconds / 3600);
-                    this.units[1].value = Math.floor((totalSeconds % 3600) / 60);
-                    this.units[2].value = totalSeconds % 60;
-                },
-            };
-        }
-    </script>
+
 </body>
 </html>
