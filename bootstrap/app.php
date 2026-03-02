@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Railway (y otros PaaS) usan reverse proxy para SSL.
+        // Confiar en todos los proxies para que Laravel lea
+        // X-Forwarded-For, X-Forwarded-Proto, etc.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
