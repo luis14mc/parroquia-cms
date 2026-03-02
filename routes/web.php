@@ -22,7 +22,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomeController::class)->name('home');
+// ── Maintenance Mode ──
+// Para restaurar el sitio, reemplazar Route::view por:
+//     Route::get('/', HomeController::class)->name('home');
+Route::view('/', 'maintenance')->name('maintenance');
 Route::get('/sacramentos', SacramentosController::class)->name('sacramentos');
 Route::get('/pastorales', PastoralesController::class)->name('pastorales');
 Route::get('/dimensiones', DimensionesController::class)->name('dimensiones');
