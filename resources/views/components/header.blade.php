@@ -4,20 +4,17 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             {{-- Logo --}}
-            <a href="{{ route('home') }}" class="flex items-center gap-2 group">
+            <a href="{{ route('home') }}" class="flex items-center group">
                 <img src="{{ asset('images/Logo_PCR.png') }}"
                      alt="Logo Parroquia Cristo Resucitado"
                      class="h-10 w-auto group-hover:scale-110 transition-transform"
                      width="40"
                      height="40"
                      loading="eager">
-                <span class="font-bold text-lg text-secondary dark:text-text-light hidden sm:block">
-                    Cristo Resucitado
-                </span>
             </a>
 
             {{-- Desktop Navigation --}}
-            <nav class="hidden lg:flex items-center gap-1">
+            <nav class="hidden lg:flex items-center">
                 <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                     Inicio
                 </x-nav-link>

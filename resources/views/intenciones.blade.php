@@ -1,212 +1,164 @@
-<x-layouts.app title="Intenciones de Misa | Parroquia Cristo Resucitado" description="Solicita una intención de misa para tus seres queridos. Estamos aquí para acompañarte en oración.">
-    
+<x-layouts.app title="Intenciones de Misa | Parroquia Cristo Resucitado" description="Envíe sus peticiones para ser ofrecidas en el altar durante nuestras celebraciones eucarísticas">
+
     {{-- Hero Section --}}
-    <x-hero-section 
-        title="Intenciones de <span class='text-primary'>Misa</span>"
-        subtitle="Solicita una intención de misa para tus seres queridos, ya sea en acción de gracias, por la salud, o en sufragio por los difuntos."
-        image="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=1920&q=80"
-        size="md"
-    />
+    <div class="relative w-full bg-text-dark text-white overflow-hidden py-16 md:py-24">
+        <div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
+        {{-- Cross Pattern Overlay --}}
+        <div class="absolute inset-0 z-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        <div class="relative z-10 flex flex-col items-center justify-center px-4 md:px-10 text-center max-w-[1200px] mx-auto">
+            <span class="mb-4 inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                <span class="material-symbols-outlined text-[16px]">edit_calendar</span>
+                Solicitudes en línea
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-6 max-w-3xl">
+                Intenciones de Misa
+            </h1>
+            <p class="text-gray-300 text-lg md:text-xl font-normal max-w-2xl leading-relaxed">
+                Envíe sus peticiones para ser ofrecidas en el altar durante nuestras próximas celebraciones eucarísticas. Unimos nuestra fe a la suya.
+            </p>
+        </div>
+    </div>
 
-    {{-- Intention Form Section --}}
-    <section class="py-16 lg:py-24 bg-white dark:bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-3 gap-12">
-                {{-- Info Side --}}
-                <div class="lg:col-span-1">
-                    <h2 class="text-2xl font-bold text-text-dark dark:text-text-light mb-6">¿Qué es una Intención de Misa?</h2>
-                    
-                    <p class="text-text-muted mb-6">
-                        Una intención de misa es una oración especial que se ofrece durante la celebración eucarística por una persona o intención particular.
-                    </p>
+    {{-- Main Content Grid --}}
+    <div class="max-w-[1200px] mx-auto px-4 py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
 
-                    <div class="space-y-4 mb-8">
-                        <div class="flex items-start gap-3">
-                            <span class="material-symbols-outlined text-primary mt-0.5">church</span>
-                            <div>
-                                <h3 class="font-semibold text-text-dark dark:text-text-light">Por los Vivos</h3>
-                                <p class="text-sm text-text-muted">Salud, trabajo, familia, acción de gracias</p>
-                            </div>
+        {{-- Left Column: Information --}}
+        <div class="lg:col-span-5 flex flex-col gap-8 order-2 lg:order-1">
+            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)]">
+                <h3 class="text-text-dark text-2xl font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-secondary">info</span>
+                    ¿Cómo funciona?
+                </h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Las intenciones recibidas serán presentadas durante las misas dominicales y celebraciones especiales. Por favor, considere los siguientes puntos:
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex gap-3 items-start">
+                        <div class="mt-1 min-w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+                            <span class="material-symbols-outlined text-[14px] font-bold">check</span>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <span class="material-symbols-outlined text-primary mt-0.5">candle</span>
-                            <div>
-                                <h3 class="font-semibold text-text-dark dark:text-text-light">Por los Difuntos</h3>
-                                <p class="text-sm text-text-muted">En sufragio del eterno descanso</p>
-                            </div>
+                        <span class="text-sm text-gray-700">Envíe su petición con al menos 24 horas de antelación.</span>
+                    </li>
+                    <li class="flex gap-3 items-start">
+                        <div class="mt-1 min-w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+                            <span class="material-symbols-outlined text-[14px] font-bold">check</span>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <span class="material-symbols-outlined text-primary mt-0.5">favorite</span>
-                            <div>
-                                <h3 class="font-semibold text-text-dark dark:text-text-light">Acción de Gracias</h3>
-                                <p class="text-sm text-text-muted">Agradecimiento por favores recibidos</p>
-                            </div>
+                        <span class="text-sm text-gray-700">Se leerá un máximo de 3 nombres por familia para mantener la solemnidad.</span>
+                    </li>
+                    <li class="flex gap-3 items-start">
+                        <div class="mt-1 min-w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+                            <span class="material-symbols-outlined text-[14px] font-bold">check</span>
                         </div>
+                        <span class="text-sm text-gray-700">La ofrenda es voluntaria y ayuda al sostenimiento de la parroquia.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-primary/10 rounded-2xl p-8 border border-primary/20">
+                <h4 class="text-primary text-lg font-bold mb-2">Horarios de Lectura</h4>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center border-b border-primary/20 pb-2">
+                        <span class="text-text-dark font-medium">Lunes a Sábado</span>
+                        <span class="text-gray-600">6:00 PM</span>
                     </div>
-
-                    <div class="card p-6 bg-primary/5 dark:bg-primary/10 border-primary/20">
-                        <h3 class="font-semibold text-text-dark dark:text-text-light mb-2 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary">info</span>
-                            Información Importante
-                        </h3>
-                        <ul class="text-sm text-text-muted space-y-2">
-                            <li>• Las intenciones se programan según disponibilidad</li>
-                            <li>• Ofrenda sugerida: L. 100.00</li>
-                            <li>• Puedes solicitar la fecha y horario de preferencia</li>
-                            <li>• Te confirmaremos la fecha asignada</li>
-                        </ul>
+                    <div class="flex justify-between items-center border-b border-primary/20 pb-2">
+                        <span class="text-text-dark font-medium">Domingos (Mañana)</span>
+                        <span class="text-gray-600">8:00 AM &amp; 10:00 AM</span>
                     </div>
-                </div>
-
-                {{-- Form Side --}}
-                <div class="lg:col-span-2">
-                    <div class="card p-8">
-                        <h2 class="text-2xl font-bold text-text-dark dark:text-text-light mb-6">Solicitar Intención de Misa</h2>
-                        
-                        <form class="space-y-6">
-                            @csrf
-                            {{-- Type of Intention --}}
-                            <div>
-                                <label class="block text-sm font-medium text-text-dark dark:text-text-light mb-3">
-                                    Tipo de Intención *
-                                </label>
-                                <div class="grid sm:grid-cols-3 gap-4">
-                                    <label class="relative flex items-center justify-center p-4 rounded-lg border-2 border-border-light dark:border-border-dark cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5">
-                                        <input type="radio" name="tipo" value="vivos" class="sr-only" required>
-                                        <div class="text-center">
-                                            <span class="material-symbols-outlined text-2xl text-primary mb-2 block">favorite</span>
-                                            <span class="text-sm font-medium text-text-dark dark:text-text-light">Por los Vivos</span>
-                                        </div>
-                                    </label>
-                                    <label class="relative flex items-center justify-center p-4 rounded-lg border-2 border-border-light dark:border-border-dark cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5">
-                                        <input type="radio" name="tipo" value="difuntos" class="sr-only">
-                                        <div class="text-center">
-                                            <span class="material-symbols-outlined text-2xl text-primary mb-2 block">candle</span>
-                                            <span class="text-sm font-medium text-text-dark dark:text-text-light">Por Difuntos</span>
-                                        </div>
-                                    </label>
-                                    <label class="relative flex items-center justify-center p-4 rounded-lg border-2 border-border-light dark:border-border-dark cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5">
-                                        <input type="radio" name="tipo" value="gracias" class="sr-only">
-                                        <div class="text-center">
-                                            <span class="material-symbols-outlined text-2xl text-primary mb-2 block">celebration</span>
-                                            <span class="text-sm font-medium text-text-dark dark:text-text-light">Acción de Gracias</span>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            {{-- Person Name --}}
-                            <div>
-                                <label for="persona" class="block text-sm font-medium text-text-dark dark:text-text-light mb-2">
-                                    Nombre de la Persona *
-                                </label>
-                                <input type="text" 
-                                       id="persona" 
-                                       name="persona" 
-                                       required
-                                       class="w-full px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-zinc-800 text-text-dark dark:text-text-light focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                                       placeholder="Por quién se ofrece la misa">
-                            </div>
-
-                            {{-- Intention Details --}}
-                            <div>
-                                <label for="intencion" class="block text-sm font-medium text-text-dark dark:text-text-light mb-2">
-                                    Intención Específica
-                                </label>
-                                <textarea id="intencion" 
-                                          name="intencion" 
-                                          rows="3"
-                                          class="w-full px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-zinc-800 text-text-dark dark:text-text-light focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"
-                                          placeholder="Describe brevemente la intención (opcional)"></textarea>
-                            </div>
-
-                            {{-- Date Preference --}}
-                            <div class="grid sm:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="fecha" class="block text-sm font-medium text-text-dark dark:text-text-light mb-2">
-                                        Fecha Preferida
-                                    </label>
-                                    <input type="date" 
-                                           id="fecha" 
-                                           name="fecha"
-                                           min="{{ date('Y-m-d') }}"
-                                           class="w-full px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-zinc-800 text-text-dark dark:text-text-light focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors">
-                                </div>
-                                <div>
-                                    <label for="horario" class="block text-sm font-medium text-text-dark dark:text-text-light mb-2">
-                                        Horario Preferido
-                                    </label>
-                                    <select id="horario" 
-                                            name="horario"
-                                            class="w-full px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-zinc-800 text-text-dark dark:text-text-light focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors">
-                                        <option value="">Sin preferencia</option>
-                                        <option value="6:30">6:30 AM (Lun-Sáb)</option>
-                                        <option value="12:00">12:00 PM</option>
-                                        <option value="18:00">6:00 PM</option>
-                                        <option value="domingo-8">Domingo 8:00 AM</option>
-                                        <option value="domingo-10">Domingo 10:00 AM</option>
-                                        <option value="domingo-12">Domingo 12:00 PM</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            {{-- Contact Info --}}
-                            <div class="border-t border-border-light dark:border-border-dark pt-6">
-                                <h3 class="font-semibold text-text-dark dark:text-text-light mb-4">Datos de Contacto</h3>
-                                <div class="grid sm:grid-cols-2 gap-6">
-                                    <div>
-                                        <label for="nombre" class="block text-sm font-medium text-text-dark dark:text-text-light mb-2">
-                                            Tu Nombre *
-                                        </label>
-                                        <input type="text" 
-                                               id="nombre" 
-                                               name="nombre" 
-                                               required
-                                               class="w-full px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-zinc-800 text-text-dark dark:text-text-light focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                                               placeholder="Tu nombre completo">
-                                    </div>
-                                    <div>
-                                        <label for="email" class="block text-sm font-medium text-text-dark dark:text-text-light mb-2">
-                                            Correo Electrónico *
-                                        </label>
-                                        <input type="email" 
-                                               id="email" 
-                                               name="email" 
-                                               required
-                                               class="w-full px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-zinc-800 text-text-dark dark:text-text-light focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                                               placeholder="tu@email.com">
-                                    </div>
-                                    <div class="sm:col-span-2">
-                                        <label for="telefono" class="block text-sm font-medium text-text-dark dark:text-text-light mb-2">
-                                            Teléfono
-                                        </label>
-                                        <input type="tel" 
-                                               id="telefono" 
-                                               name="telefono"
-                                               class="w-full px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-zinc-800 text-text-dark dark:text-text-light focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                                               placeholder="+504 0000-0000">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn-primary">
-                                <span class="material-symbols-outlined">send</span>
-                                Enviar Solicitud
-                            </button>
-                        </form>
+                    <div class="flex justify-between items-center">
+                        <span class="text-text-dark font-medium">Domingos (Tarde)</span>
+                        <span class="text-gray-600">5:00 PM</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    {{-- CTA --}}
-    <x-cta-section 
-        variant="primary"
-        title="¿Prefieres solicitar tu intención en persona?"
-        description="Visítanos en la oficina parroquial de lunes a sábado."
-        cta-text="Ver Ubicación"
-        cta-url="{{ route('contacto') }}"
-    />
+        {{-- Right Column: Form --}}
+        <div class="lg:col-span-7 order-1 lg:order-2">
+            <form class="bg-white rounded-2xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] p-6 md:p-10 border border-gray-100 flex flex-col gap-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-text-dark mb-2">Nueva Petición</h2>
+                    <p class="text-gray-500 text-sm">Complete el formulario a continuación para enviar su intención.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {{-- Intention Type Selection --}}
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-text-dark mb-3">Tipo de Intención</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="cursor-pointer group">
+                                <input checked class="peer sr-only" name="intention_type" type="radio" value="salud" />
+                                <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-gray-200 peer-checked:border-secondary peer-checked:bg-secondary/5 transition-all">
+                                    <span class="material-symbols-outlined mb-2 text-gray-400 peer-checked:text-secondary">cardiology</span>
+                                    <span class="text-sm font-medium text-gray-600 peer-checked:text-secondary">Salud</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer group">
+                                <input class="peer sr-only" name="intention_type" type="radio" value="difuntos" />
+                                <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-gray-200 peer-checked:border-text-dark peer-checked:bg-gray-100 transition-all">
+                                    <span class="material-symbols-outlined mb-2 text-gray-400 peer-checked:text-text-dark">filter_vintage</span>
+                                    <span class="text-sm font-medium text-gray-600 peer-checked:text-text-dark">Difuntos</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer group">
+                                <input class="peer sr-only" name="intention_type" type="radio" value="accion_gracias" />
+                                <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-gray-200 peer-checked:border-primary peer-checked:bg-primary/5 transition-all">
+                                    <span class="material-symbols-outlined mb-2 text-gray-400 peer-checked:text-primary">volunteer_activism</span>
+                                    <span class="text-sm font-medium text-gray-600 peer-checked:text-primary">Acción de Gracias</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    {{-- Personal Details --}}
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-semibold text-text-dark">Su Nombre Completo</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <span class="material-symbols-outlined text-[20px]">person</span>
+                            </div>
+                            <input class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400" placeholder="Ej. María González" type="text" />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-semibold text-text-dark">Teléfono / WhatsApp</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <span class="material-symbols-outlined text-[20px]">call</span>
+                            </div>
+                            <input class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400" placeholder="+504 9999-9999" type="tel" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2 md:col-span-2">
+                        <label class="text-sm font-semibold text-text-dark">Nombre de la persona o intención</label>
+                        <input class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400" placeholder="Escriba por quién o qué desea pedir..." type="text" />
+                        <p class="text-xs text-gray-500">Si es por difuntos, indique la fecha de aniversario si aplica.</p>
+                    </div>
+
+                    <div class="flex flex-col gap-2 md:col-span-2">
+                        <label class="text-sm font-semibold text-text-dark">Fecha deseada para la mención</label>
+                        <input class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" type="date" />
+                    </div>
+
+                    <div class="flex flex-col gap-2 md:col-span-2">
+                        <label class="text-sm font-semibold text-text-dark">Mensaje adicional (Opcional)</label>
+                        <textarea class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 resize-none" placeholder="Cualquier detalle extra que el padre deba saber..." rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-gray-100 flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <p class="text-xs text-gray-500 max-w-xs text-center md:text-left">
+                        Al enviar, usted acepta que la intención sea leída públicamente en la misa.
+                    </p>
+                    <button class="w-full md:w-auto flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-secondary/20 transform transition-all hover:-translate-y-0.5" type="submit">
+                        <span>Enviar Intención</span>
+                        <span class="material-symbols-outlined text-[20px]">send</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
 
 </x-layouts.app>
