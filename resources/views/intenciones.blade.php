@@ -75,80 +75,127 @@
 
         {{-- Right Column: Form --}}
         <div class="lg:col-span-7 order-1 lg:order-2">
-            <form class="bg-white rounded-2xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] p-6 md:p-10 border border-gray-100 flex flex-col gap-6">
+
+            {{-- Mensaje de éxito --}}
+            @if(session('success'))
+                <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3 dark:bg-green-900/20 dark:border-green-800">
+                    <span class="material-symbols-outlined text-green-600 dark:text-green-400 mt-0.5">check_circle</span>
+                    <div>
+                        <p class="text-green-800 dark:text-green-300 font-medium text-sm">{{ session('success') }}</p>
+                    </div>
+                </div>
+            @endif
+
+            {{-- Errores de validación --}}
+            @if($errors->any())
+                <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl dark:bg-red-900/20 dark:border-red-800">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-red-600 dark:text-red-400 mt-0.5">error</span>
+                        <div>
+                            <p class="text-red-800 dark:text-red-300 font-medium text-sm mb-2">Por favor corrija los siguientes errores:</p>
+                            <ul class="list-disc list-inside text-sm text-red-700 dark:text-red-400 space-y-1">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            <form action="{{ route('intenciones.store') }}" method="POST" class="bg-white rounded-2xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] p-6 md:p-10 border border-gray-100 flex flex-col gap-6 dark:bg-white/5 dark:border-white/10">
+                @csrf
                 <div>
-                    <h2 class="text-2xl font-bold text-text-dark mb-2">Nueva Petición</h2>
-                    <p class="text-gray-500 text-sm">Complete el formulario a continuación para enviar su intención.</p>
+                    <h2 class="text-2xl font-bold text-text-dark dark:text-white mb-2">Nueva Petición</h2>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Complete el formulario a continuación para enviar su intención.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {{-- Intention Type Selection --}}
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-semibold text-text-dark mb-3">Tipo de Intención</label>
+                        <label class="block text-sm font-semibold text-text-dark dark:text-white mb-3">Tipo de Intención</label>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <label class="cursor-pointer group">
-                                <input checked class="peer sr-only" name="intention_type" type="radio" value="salud" />
-                                <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-gray-200 peer-checked:border-secondary peer-checked:bg-secondary/5 transition-all">
+                                <input {{ old('tipo', 'salud') === 'salud' ? 'checked' : '' }} class="peer sr-only" name="tipo" type="radio" value="salud" />
+                                <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-gray-200 peer-checked:border-secondary peer-checked:bg-secondary/5 transition-all dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
                                     <span class="material-symbols-outlined mb-2 text-gray-400 peer-checked:text-secondary">cardiology</span>
-                                    <span class="text-sm font-medium text-gray-600 peer-checked:text-secondary">Salud</span>
+                                    <span class="text-sm font-medium text-gray-600 peer-checked:text-secondary dark:text-gray-300">Salud</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer group">
-                                <input class="peer sr-only" name="intention_type" type="radio" value="difuntos" />
-                                <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-gray-200 peer-checked:border-text-dark peer-checked:bg-gray-100 transition-all">
-                                    <span class="material-symbols-outlined mb-2 text-gray-400 peer-checked:text-text-dark">filter_vintage</span>
-                                    <span class="text-sm font-medium text-gray-600 peer-checked:text-text-dark">Difuntos</span>
+                                <input {{ old('tipo') === 'difuntos' ? 'checked' : '' }} class="peer sr-only" name="tipo" type="radio" value="difuntos" />
+                                <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-gray-200 peer-checked:border-text-dark peer-checked:bg-gray-100 transition-all dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
+                                    <span class="material-symbols-outlined mb-2 text-gray-400 peer-checked:text-text-dark dark:peer-checked:text-white">filter_vintage</span>
+                                    <span class="text-sm font-medium text-gray-600 peer-checked:text-text-dark dark:text-gray-300 dark:peer-checked:text-white">Difuntos</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer group">
-                                <input class="peer sr-only" name="intention_type" type="radio" value="accion_gracias" />
-                                <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-gray-200 peer-checked:border-primary peer-checked:bg-primary/5 transition-all">
+                                <input {{ old('tipo') === 'accion_gracias' ? 'checked' : '' }} class="peer sr-only" name="tipo" type="radio" value="accion_gracias" />
+                                <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-gray-200 peer-checked:border-primary peer-checked:bg-primary/5 transition-all dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
                                     <span class="material-symbols-outlined mb-2 text-gray-400 peer-checked:text-primary">volunteer_activism</span>
-                                    <span class="text-sm font-medium text-gray-600 peer-checked:text-primary">Acción de Gracias</span>
+                                    <span class="text-sm font-medium text-gray-600 peer-checked:text-primary dark:text-gray-300">Acción de Gracias</span>
                                 </div>
                             </label>
                         </div>
+                        @error('tipo')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     {{-- Personal Details --}}
                     <div class="flex flex-col gap-2">
-                        <label class="text-sm font-semibold text-text-dark">Su Nombre Completo</label>
+                        <label for="nombre_completo" class="text-sm font-semibold text-text-dark dark:text-white">Su Nombre Completo</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                 <span class="material-symbols-outlined text-[20px]">person</span>
                             </div>
-                            <input class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400" placeholder="Ej. María González" type="text" />
+                            <input id="nombre_completo" name="nombre_completo" value="{{ old('nombre_completo') }}" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white @error('nombre_completo') border-red-500 @enderror" placeholder="Ej. María González" type="text" required />
                         </div>
+                        @error('nombre_completo')
+                            <p class="text-red-500 text-xs">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label class="text-sm font-semibold text-text-dark">Teléfono / WhatsApp</label>
+                        <label for="telefono" class="text-sm font-semibold text-text-dark dark:text-white">Teléfono / WhatsApp</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                 <span class="material-symbols-outlined text-[20px]">call</span>
                             </div>
-                            <input class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400" placeholder="+504 9999-9999" type="tel" />
+                            <input id="telefono" name="telefono" value="{{ old('telefono') }}" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="+504 9999-9999" type="tel" />
                         </div>
+                        @error('telefono')
+                            <p class="text-red-500 text-xs">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="flex flex-col gap-2 md:col-span-2">
-                        <label class="text-sm font-semibold text-text-dark">Nombre de la persona o intención</label>
-                        <input class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400" placeholder="Escriba por quién o qué desea pedir..." type="text" />
-                        <p class="text-xs text-gray-500">Si es por difuntos, indique la fecha de aniversario si aplica.</p>
+                        <label for="intencion" class="text-sm font-semibold text-text-dark dark:text-white">Nombre de la persona o intención</label>
+                        <input id="intencion" name="intencion" value="{{ old('intencion') }}" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white @error('intencion') border-red-500 @enderror" placeholder="Escriba por quién o qué desea pedir..." type="text" required />
+                        <p class="text-xs text-gray-500 dark:text-gray-400">Si es por difuntos, indique la fecha de aniversario si aplica.</p>
+                        @error('intencion')
+                            <p class="text-red-500 text-xs">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="flex flex-col gap-2 md:col-span-2">
-                        <label class="text-sm font-semibold text-text-dark">Fecha deseada para la mención</label>
-                        <input class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" type="date" />
+                        <label for="fecha_deseada" class="text-sm font-semibold text-text-dark dark:text-white">Fecha deseada para la mención</label>
+                        <input id="fecha_deseada" name="fecha_deseada" value="{{ old('fecha_deseada') }}" min="{{ date('Y-m-d') }}" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all dark:bg-white/5 dark:border-white/10 dark:text-white @error('fecha_deseada') border-red-500 @enderror" type="date" required />
+                        @error('fecha_deseada')
+                            <p class="text-red-500 text-xs">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="flex flex-col gap-2 md:col-span-2">
-                        <label class="text-sm font-semibold text-text-dark">Mensaje adicional (Opcional)</label>
-                        <textarea class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 resize-none" placeholder="Cualquier detalle extra que el padre deba saber..." rows="3"></textarea>
+                        <label for="mensaje" class="text-sm font-semibold text-text-dark dark:text-white">Mensaje adicional (Opcional)</label>
+                        <textarea id="mensaje" name="mensaje" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 resize-none dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="Cualquier detalle extra que el padre deba saber..." rows="3">{{ old('mensaje') }}</textarea>
+                        @error('mensaje')
+                            <p class="text-red-500 text-xs">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 
-                <div class="pt-4 border-t border-gray-100 flex flex-col md:flex-row gap-4 items-center justify-between">
-                    <p class="text-xs text-gray-500 max-w-xs text-center md:text-left">
+                <div class="pt-4 border-t border-gray-100 dark:border-white/10 flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 max-w-xs text-center md:text-left">
                         Al enviar, usted acepta que la intención sea leída públicamente en la misa.
                     </p>
                     <button class="w-full md:w-auto flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-secondary/20 transform transition-all hover:-translate-y-0.5" type="submit">

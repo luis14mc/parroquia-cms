@@ -7,15 +7,26 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\View\View;
 
 /**
- * Controller for the Pastorales page.
+ * Controller for individual Pastorales views.
  */
 final class PastoralesController extends Controller
 {
+    private const VALID_PASTORALES = [
+        'familiar',
+        'juvenil',
+        'medios',
+        'vocacional',
+        'infantil',
+        'duelo',
+    ];
+
     /**
-     * Display the pastorales page.
+     * Display a specific pastoral.
      */
-    public function __invoke(): View
+    public function show(string $pastoral): View
     {
-        return view('pastorales');
+        abort_unless(in_array($pastoral, self::VALID_PASTORALES, true), 404);
+
+        return view("pastorales.{$pastoral}");
     }
 }

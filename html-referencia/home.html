@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Parroquia Cristo Resucitado - Inicio</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Parroquia Cristo Resucitado - Inicio</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           colors: {
-            "primary": "#e3a822", 
+            "primary": "#e3a822",
             "secondary": "#9e2e21",
             "background-light": "#ffffff",
             "background-dark": "#211c11",
@@ -26,428 +32,537 @@
           fontFamily: {
             "display": ["Inter", "sans-serif"]
           },
-          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
         },
       },
     }
   </script>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-text-dark dark:text-text-light min-h-screen flex flex-col overflow-x-hidden">
-<!-- Top Navigation -->
-<header class="sticky top-0 z-50 w-full bg-white dark:bg-background-dark border-b border-gray-100 dark:border-gray-800">
-<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between h-20">
-<!-- Logo Area -->
-<div class="flex items-center gap-3">
-<div class="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary">
-<span class="material-symbols-outlined text-2xl">church</span>
-</div>
-<div class="flex flex-col">
-<h1 class="text-lg font-bold leading-none tracking-tight text-text-dark dark:text-white">Parroquia Cristo Resucitado</h1>
-<span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Comunidad de Fe y Esperanza</span>
-</div>
-</div>
-<!-- Desktop Navigation -->
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium text-text-dark dark:text-gray-200 hover:text-primary transition-colors" href="#">Inicio</a>
-<a class="text-sm font-medium text-text-dark dark:text-gray-200 hover:text-primary transition-colors" href="#">Horarios de Misa</a>
-<!-- Dropdown: Pastorales -->
-<div class="relative group">
-<button class="flex items-center gap-1 text-sm font-medium text-text-dark dark:text-gray-200 hover:text-primary transition-colors">
+
+<body
+  class="bg-background-light dark:bg-background-dark font-display text-text-dark dark:text-text-light min-h-screen flex flex-col overflow-x-hidden">
+  <!-- Top Navigation -->
+  <header
+    class="sticky top-0 z-50 w-full bg-white dark:bg-background-dark border-b border-gray-100 dark:border-gray-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo Area -->
+        <div class="flex items-center gap-3">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary">
+            <span class="material-symbols-outlined text-2xl">church</span>
+          </div>
+          <div class="flex flex-col">
+            <h1 class="text-lg font-bold leading-none tracking-tight text-text-dark dark:text-white">Parroquia Cristo
+              Resucitado</h1>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Comunidad de Fe y Esperanza</span>
+          </div>
+        </div>
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a class="text-sm font-medium text-text-dark dark:text-gray-200 hover:text-primary transition-colors"
+            href="#">Inicio</a>
+          <a class="text-sm font-medium text-text-dark dark:text-gray-200 hover:text-primary transition-colors"
+            href="#">Horarios de Misa</a>
+          <!-- Dropdown: Pastorales -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-sm font-medium text-text-dark dark:text-gray-200 hover:text-primary transition-colors">
               Pastorales
               <span class="material-symbols-outlined text-sm">expand_more</span>
-</button>
-<div class="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-[#2a2418] shadow-lg rounded-lg border border-gray-100 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left">
-<a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary" href="#">Pastoral Juvenil</a>
-<a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary" href="#">Pastoral Familiar</a>
-<a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary" href="#">Catequesis</a>
-</div>
-</div>
-<!-- Dropdown: Dimensiones -->
-<div class="relative group">
-<button class="flex items-center gap-1 text-sm font-medium text-text-dark dark:text-gray-200 hover:text-primary transition-colors">
+            </button>
+            <div
+              class="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-[#2a2418] shadow-lg rounded-lg border border-gray-100 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left">
+              <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary"
+                href="#">Pastoral Juvenil</a>
+              <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary"
+                href="#">Pastoral Familiar</a>
+              <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary"
+                href="#">Catequesis</a>
+            </div>
+          </div>
+          <!-- Dropdown: Dimensiones -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 text-sm font-medium text-text-dark dark:text-gray-200 hover:text-primary transition-colors">
               Dimensiones
               <span class="material-symbols-outlined text-sm">expand_more</span>
-</button>
-<div class="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-[#2a2418] shadow-lg rounded-lg border border-gray-100 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left">
-<a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary" href="#">Liturgia</a>
-<a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary" href="#">Profética</a>
-<a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary" href="#">Social</a>
-</div>
-</div>
-<a class="text-sm font-medium text-text-dark dark:text-gray-200 hover:text-primary transition-colors" href="#">Contacto</a>
-</nav>
-<!-- Actions -->
-<div class="flex items-center gap-4">
-<button class="hidden lg:flex items-center justify-center w-10 h-10 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
-<span class="material-symbols-outlined">search</span>
-</button>
-<a class="hidden sm:inline-flex items-center justify-center px-5 py-2 text-sm font-bold text-white transition-all bg-primary rounded-lg hover:bg-primary/90 focus:ring-4 focus:ring-primary/20 shadow-md shadow-primary/20" href="#">
+            </button>
+            <div
+              class="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-[#2a2418] shadow-lg rounded-lg border border-gray-100 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left">
+              <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary"
+                href="#">Liturgia</a>
+              <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary"
+                href="#">Profética</a>
+              <a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary"
+                href="#">Social</a>
+            </div>
+          </div>
+          <a class="text-sm font-medium text-text-dark dark:text-gray-200 hover:text-primary transition-colors"
+            href="#">Contacto</a>
+        </nav>
+        <!-- Actions -->
+        <div class="flex items-center gap-4">
+          <button
+            class="hidden lg:flex items-center justify-center w-10 h-10 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
+            <span class="material-symbols-outlined">search</span>
+          </button>
+          <a class="hidden sm:inline-flex items-center justify-center px-5 py-2 text-sm font-bold text-white transition-all bg-primary rounded-lg hover:bg-primary/90 focus:ring-4 focus:ring-primary/20 shadow-md shadow-primary/20"
+            href="#">
             Donar
           </a>
-<!-- Mobile Menu Button -->
-<button class="md:hidden p-2 text-gray-600 dark:text-gray-300">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</div>
-</div>
-</header>
-<main class="flex-grow">
-<!-- Hero Section -->
-<section class="relative w-full h-[600px] flex items-center justify-center overflow-hidden">
-<!-- Background Image with Overlay -->
-<div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" data-alt="Interior of a beautiful church with sunlight streaming through stained glass windows" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1_y1Zjci-f_LoSPXAOc8D3O6RgdZEcIxAda8p5dPn9hZ4P1fxzda_7m4GIpj5UitLi6zW_u3kH1lAGGFKJiMZpAswGHkzT_FcGHlIAt4I_BQhlUBpN22A75BVoVU4hGb9dma74KjS47SGIpXqcUR_Pib3wtmhcZbCFAxHZJdDLkCkYbpoWKh6EenrvBD7AE-qKTeQZInYxV0cm5FbtCtMM6Rt1uGPOEQ9sHn3khs5Hb4XuGSMK4DfGY5rPjjNkUqCN3pFwKmxIMI');">
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"></div>
-</div>
-<div class="relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
-<div class="max-w-2xl">
-<span class="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider text-white uppercase bg-secondary rounded-full">Bienvenidos</span>
-<h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6 tracking-tight drop-shadow-sm">
-            Una comunidad de fe,<br/> esperanza y amor.
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden p-2 text-gray-600 dark:text-gray-300">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="relative w-full h-[600px] flex items-center justify-center overflow-hidden">
+      <!-- Background Image with Overlay -->
+      <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        data-alt="Interior of a beautiful church with sunlight streaming through stained glass windows"
+        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1_y1Zjci-f_LoSPXAOc8D3O6RgdZEcIxAda8p5dPn9hZ4P1fxzda_7m4GIpj5UitLi6zW_u3kH1lAGGFKJiMZpAswGHkzT_FcGHlIAt4I_BQhlUBpN22A75BVoVU4hGb9dma74KjS47SGIpXqcUR_Pib3wtmhcZbCFAxHZJdDLkCkYbpoWKh6EenrvBD7AE-qKTeQZInYxV0cm5FbtCtMM6Rt1uGPOEQ9sHn3khs5Hb4XuGSMK4DfGY5rPjjNkUqCN3pFwKmxIMI');">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"></div>
+      </div>
+      <div class="relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+        <div class="max-w-2xl">
+          <span
+            class="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider text-white uppercase bg-secondary rounded-full">Bienvenidos</span>
+          <h1
+            class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6 tracking-tight drop-shadow-sm">
+            Una comunidad de fe,<br /> esperanza y amor.
           </h1>
-<p class="text-lg sm:text-xl text-gray-200 mb-8 font-light leading-relaxed max-w-lg drop-shadow-sm">
-            Únete a nosotros en la celebración de la Eucaristía y crece espiritualmente en la Parroquia Cristo Resucitado.
+          <p class="text-lg sm:text-xl text-gray-200 mb-8 font-light leading-relaxed max-w-lg drop-shadow-sm">
+            Únete a nosotros en la celebración de la Eucaristía y crece espiritualmente en la Parroquia Cristo
+            Resucitado.
           </p>
-<div class="flex flex-col sm:flex-row gap-4">
-<a class="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-text-dark bg-primary rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/25" href="#">
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a class="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-text-dark bg-primary rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/25"
+              href="#">
               Ver Horarios de Misa
             </a>
-<a class="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg hover:bg-white/20 transition-all" href="#">
+            <a class="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg hover:bg-white/20 transition-all"
+              href="#">
               Conoce Nuestra Historia
             </a>
-</div>
-</div>
-</div>
-</section>
-<!-- Quick Info Bar -->
-<div class="w-full bg-white dark:bg-[#2a2418] border-b border-gray-100 dark:border-gray-800 shadow-sm relative z-20 -mt-8 sm:-mt-12 max-w-[1100px] mx-auto rounded-xl p-6 sm:p-8 flex flex-col md:flex-row gap-8 justify-between items-center text-center md:text-left">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary shrink-0">
-<span class="material-symbols-outlined text-2xl">schedule</span>
-</div>
-<div>
-<h3 class="font-bold text-lg text-text-dark dark:text-white">Próxima Misa</h3>
-<p class="text-gray-500 dark:text-gray-400">Hoy, 6:00 PM</p>
-</div>
-</div>
-<div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined text-2xl">location_on</span>
-</div>
-<div>
-<h3 class="font-bold text-lg text-text-dark dark:text-white">Ubicación</h3>
-<p class="text-gray-500 dark:text-gray-400">Tegucigalpa, Honduras</p>
-</div>
-</div>
-<div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 shrink-0">
-<span class="material-symbols-outlined text-2xl">call</span>
-</div>
-<div>
-<h3 class="font-bold text-lg text-text-dark dark:text-white">Contáctanos</h3>
-<p class="text-gray-500 dark:text-gray-400">+504 2234-5678</p>
-</div>
-</div>
-</div>
-<!-- Message from the Priest -->
-<section class="py-20 bg-background-light dark:bg-background-dark">
-<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col lg:flex-row gap-12 items-center">
-<div class="lg:w-1/2 relative">
-<div class="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-200 relative shadow-2xl">
-<img alt="Portrait of a smiling priest in clerical clothing" class="object-cover w-full h-full" data-alt="Portrait of a friendly priest smiling warmly" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD44FcGRSK4Etf-WyU8wWZDKySfla1n6918dr4T4vSLC6tSxEwj6ZlI5Eima0t6vzhlIUXzUkTiqqVSfjFEVdiDXUzmlk2LeuN1Y-GnPO-S70t2PIvgNOlp5R_LraKN6UXooeZawh1DhSohv9Cs7EQQ7Y5lDpMyXjc9dDHMiJTSpoGvYP3YkVHfOeCWmcRfRRqKYID9ksz1IsBwjr8mopkcS9rniXL-JWkIVLtfqtcCEbatsbfcLfLl9RGPigKaBqhznznhThj9Zas"/>
-</div>
-<div class="absolute -bottom-6 -right-6 bg-white dark:bg-[#2a2418] p-6 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 max-w-xs hidden sm:block">
-<div class="flex items-center gap-3 mb-2">
-<span class="material-symbols-outlined text-primary">format_quote</span>
-</div>
-<p class="text-sm text-gray-600 dark:text-gray-300 italic">
-                 "Que la luz de Cristo Resucitado ilumine siempre sus caminos y fortalezca sus corazones."
-               </p>
-</div>
-</div>
-<div class="lg:w-1/2">
-<span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Mensaje del Párroco</span>
-<h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white mb-6 leading-tight">Paz y Bien a Todos</h2>
-<div class="prose prose-lg text-gray-600 dark:text-gray-300 mb-8">
-<p class="mb-4">
-                Es un honor darles la bienvenida a nuestra comunidad parroquial. En la Parroquia Cristo Resucitado, nos esforzamos por ser un faro de esperanza y un hogar espiritual para todos.
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Quick Info Bar -->
+    <div
+      class="w-full bg-white dark:bg-[#2a2418] border-b border-gray-100 dark:border-gray-800 shadow-sm relative z-20 -mt-8 sm:-mt-12 max-w-[1100px] mx-auto rounded-xl p-6 sm:p-8 flex flex-col md:flex-row gap-8 justify-between items-center text-center md:text-left">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary shrink-0">
+          <span class="material-symbols-outlined text-2xl">schedule</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-text-dark dark:text-white">Próxima Misa</h3>
+          <p class="text-gray-500 dark:text-gray-400">Hoy, 6:00 PM</p>
+        </div>
+      </div>
+      <div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+          <span class="material-symbols-outlined text-2xl">location_on</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-text-dark dark:text-white">Ubicación</h3>
+          <p class="text-gray-500 dark:text-gray-400">Tegucigalpa, Honduras</p>
+        </div>
+      </div>
+      <div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
+      <div class="flex items-center gap-4">
+        <div
+          class="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 shrink-0">
+          <span class="material-symbols-outlined text-2xl">call</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-text-dark dark:text-white">Contáctanos</h3>
+          <p class="text-gray-500 dark:text-gray-400">+504 2234-5678</p>
+        </div>
+      </div>
+    </div>
+    <!-- Message from the Priest -->
+    <section class="py-20 bg-background-light dark:bg-background-dark">
+      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row gap-12 items-center">
+          <div class="lg:w-1/2 relative">
+            <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-200 relative shadow-2xl">
+              <img alt="Portrait of a smiling priest in clerical clothing" class="object-cover w-full h-full"
+                data-alt="Portrait of a friendly priest smiling warmly"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD44FcGRSK4Etf-WyU8wWZDKySfla1n6918dr4T4vSLC6tSxEwj6ZlI5Eima0t6vzhlIUXzUkTiqqVSfjFEVdiDXUzmlk2LeuN1Y-GnPO-S70t2PIvgNOlp5R_LraKN6UXooeZawh1DhSohv9Cs7EQQ7Y5lDpMyXjc9dDHMiJTSpoGvYP3YkVHfOeCWmcRfRRqKYID9ksz1IsBwjr8mopkcS9rniXL-JWkIVLtfqtcCEbatsbfcLfLl9RGPigKaBqhznznhThj9Zas" />
+            </div>
+            <div
+              class="absolute -bottom-6 -right-6 bg-white dark:bg-[#2a2418] p-6 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 max-w-xs hidden sm:block">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="material-symbols-outlined text-primary">format_quote</span>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-300 italic">
+                "Que la luz de Cristo Resucitado ilumine siempre sus caminos y fortalezca sus corazones."
               </p>
-<p>
-                Aquí encontrarán un espacio para crecer en la fe, servir al prójimo y celebrar los sacramentos. Los invito a participar activamente en nuestras pastorales y a formar parte de esta gran familia.
+            </div>
+          </div>
+          <div class="lg:w-1/2">
+            <span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Mensaje del Párroco</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white mb-6 leading-tight">Paz y Bien a
+              Todos</h2>
+            <div class="prose prose-lg text-gray-600 dark:text-gray-300 mb-8">
+              <p class="mb-4">
+                Es un honor darles la bienvenida a nuestra comunidad parroquial. En la Parroquia Cristo Resucitado, nos
+                esforzamos por ser un faro de esperanza y un hogar espiritual para todos.
               </p>
-</div>
-<div class="flex items-center gap-4 mb-8">
-<div class="h-12 w-12 bg-gray-200 rounded-full bg-cover bg-center" data-alt="Small thumbnail of the priest" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBQ7xApshyQ_t3gzd2zG1YhnqXJlDV2859qneva6olq0xBeuVHbUtIM6dk6pUQnf2aZBIYIK5zYkHFWlJyFHphVm8WeTNEHUdqL9N7vX1E8YOsmPtD2PKd1MWdiodQMZnaMk0pjdbU8mn8Q4u7BRbLA-QQbn1NwosLsQHJR3I1biKeQ2JuK23qREt6RuGMdJsUq2T5Ub7PQszkNrl8hDcpVIIhVUnscLnT-97SElPuEZIjK01tOgfzHTlfKC2LyFLHIZ_OkSSqTLow')"></div>
-<div>
-<p class="font-bold text-text-dark dark:text-white">P. Juan Pérez</p>
-<p class="text-sm text-gray-500">Párroco</p>
-</div>
-</div>
-<a class="text-primary font-bold hover:text-secondary transition-colors inline-flex items-center gap-1 group" href="#">
-              Leer mensaje completo 
-              <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</a>
-</div>
-</div>
-</div>
-</section>
-<!-- Latest News Grid -->
-<section class="py-20 bg-gray-50 dark:bg-[#1a160e]">
-<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex justify-between items-end mb-12">
-<div>
-<span class="text-secondary font-bold tracking-wide uppercase text-sm mb-2 block">Actualidad</span>
-<h2 class="text-3xl font-black text-text-dark dark:text-white">Noticias Recientes</h2>
-</div>
-<a class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-text-dark dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-white dark:hover:bg-white/5 transition-all" href="#">
+              <p>
+                Aquí encontrarán un espacio para crecer en la fe, servir al prójimo y celebrar los sacramentos. Los
+                invito a participar activamente en nuestras pastorales y a formar parte de esta gran familia.
+              </p>
+            </div>
+            <div class="flex items-center gap-4 mb-8">
+              <div class="h-12 w-12 bg-gray-200 rounded-full bg-cover bg-center"
+                data-alt="Small thumbnail of the priest"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBQ7xApshyQ_t3gzd2zG1YhnqXJlDV2859qneva6olq0xBeuVHbUtIM6dk6pUQnf2aZBIYIK5zYkHFWlJyFHphVm8WeTNEHUdqL9N7vX1E8YOsmPtD2PKd1MWdiodQMZnaMk0pjdbU8mn8Q4u7BRbLA-QQbn1NwosLsQHJR3I1biKeQ2JuK23qREt6RuGMdJsUq2T5Ub7PQszkNrl8hDcpVIIhVUnscLnT-97SElPuEZIjK01tOgfzHTlfKC2LyFLHIZ_OkSSqTLow')">
+              </div>
+              <div>
+                <p class="font-bold text-text-dark dark:text-white">P. Juan Pérez</p>
+                <p class="text-sm text-gray-500">Párroco</p>
+              </div>
+            </div>
+            <a class="text-primary font-bold hover:text-secondary transition-colors inline-flex items-center gap-1 group"
+              href="#">
+              Leer mensaje completo
+              <span
+                class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Latest News Grid -->
+    <section class="py-20 bg-gray-50 dark:bg-[#1a160e]">
+      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-end mb-12">
+          <div>
+            <span class="text-secondary font-bold tracking-wide uppercase text-sm mb-2 block">Actualidad</span>
+            <h2 class="text-3xl font-black text-text-dark dark:text-white">Noticias Recientes</h2>
+          </div>
+          <a class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-text-dark dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-white dark:hover:bg-white/5 transition-all"
+            href="#">
             Ver todas
           </a>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<!-- News Card 1 -->
-<article class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800 flex flex-col h-full">
-<div class="relative h-48 overflow-hidden">
-<img alt="People gathering for community event" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Community gathering outdoors with smiling people" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyyYMANkdYKyUXZqRuzdHcVD0xNlUkb6EjOmW1t5PbHlDkONRr4lOpRC8KOksorxXXmTEvNJKmmWMpGahxlcppIQ823ZB7R3LMxu3K6M1A1UNA8ilkP8A7KzVfg4Z_W5XksNnOEvotuL2uD1xENoAxHmMCl7ekcbLY01wXq2o8nMI572Wx2SgfNamv2FcUAqPGGBoRyNb_Exzj9ia5Sk7Vb6umWTSifIeel97N98hYW86mII-m4y3GE25_-boMV4yJZIQZMtBR4n8"/>
-<div class="absolute top-4 left-4 bg-white dark:bg-black/80 px-3 py-1 rounded text-xs font-bold text-text-dark dark:text-white shadow-sm">
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- News Card 1 -->
+          <article
+            class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800 flex flex-col h-full">
+            <div class="relative h-48 overflow-hidden">
+              <img alt="People gathering for community event"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="Community gathering outdoors with smiling people"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyyYMANkdYKyUXZqRuzdHcVD0xNlUkb6EjOmW1t5PbHlDkONRr4lOpRC8KOksorxXXmTEvNJKmmWMpGahxlcppIQ823ZB7R3LMxu3K6M1A1UNA8ilkP8A7KzVfg4Z_W5XksNnOEvotuL2uD1xENoAxHmMCl7ekcbLY01wXq2o8nMI572Wx2SgfNamv2FcUAqPGGBoRyNb_Exzj9ia5Sk7Vb6umWTSifIeel97N98hYW86mII-m4y3GE25_-boMV4yJZIQZMtBR4n8" />
+              <div
+                class="absolute top-4 left-4 bg-white dark:bg-black/80 px-3 py-1 rounded text-xs font-bold text-text-dark dark:text-white shadow-sm">
                 15 Oct, 2023
               </div>
-</div>
-<div class="p-6 flex flex-col flex-grow">
-<div class="mb-4">
-<span class="text-xs font-bold text-primary uppercase tracking-wider">Comunidad</span>
-</div>
-<h3 class="text-xl font-bold text-text-dark dark:text-white mb-3 group-hover:text-primary transition-colors">
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="mb-4">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider">Comunidad</span>
+              </div>
+              <h3
+                class="text-xl font-bold text-text-dark dark:text-white mb-3 group-hover:text-primary transition-colors">
                 Jornada Mundial de los Pobres
               </h3>
-<p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
-                Nuestra parroquia se une a la iniciativa del Papa Francisco para tender la mano a los más necesitados de nuestra comunidad con una colecta especial.
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
+                Nuestra parroquia se une a la iniciativa del Papa Francisco para tender la mano a los más necesitados de
+                nuestra comunidad con una colecta especial.
               </p>
-<a class="text-sm font-bold text-text-dark dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all" href="#">
+              <a class="text-sm font-bold text-text-dark dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all"
+                href="#">
                 Leer más <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
-</a>
-</div>
-</article>
-<!-- News Card 2 -->
-<article class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800 flex flex-col h-full">
-<div class="relative h-48 overflow-hidden">
-<img alt="Children receiving first communion catechesis" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Children sitting in a circle learning" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJHpZMSfq3Lvr2Tz30fJHLTNr_cuYR57JlLjrYq4X0PPxcZXGlK8rV7XhQbv23wUHsISB1iVbz6EW7F96m8iCc4DVOBpJV9XndBBodd3D_PbkgwtSxaZ_9IGhJ9xp8EGg6kXYM-X_2_Www77Eh6PqRkcQU6flarGI-0rbw5at6DDXijF56tSYsjpeH7G3mi2O4nbbdz3N-tCdUKjZsibPDsh2bn4MWQwygFfq5rk1NCIICzZzlsPb7kmsrkNMVM34ulLmLUFzAwq8"/>
-<div class="absolute top-4 left-4 bg-white dark:bg-black/80 px-3 py-1 rounded text-xs font-bold text-text-dark dark:text-white shadow-sm">
+              </a>
+            </div>
+          </article>
+          <!-- News Card 2 -->
+          <article
+            class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800 flex flex-col h-full">
+            <div class="relative h-48 overflow-hidden">
+              <img alt="Children receiving first communion catechesis"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="Children sitting in a circle learning"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJHpZMSfq3Lvr2Tz30fJHLTNr_cuYR57JlLjrYq4X0PPxcZXGlK8rV7XhQbv23wUHsISB1iVbz6EW7F96m8iCc4DVOBpJV9XndBBodd3D_PbkgwtSxaZ_9IGhJ9xp8EGg6kXYM-X_2_Www77Eh6PqRkcQU6flarGI-0rbw5at6DDXijF56tSYsjpeH7G3mi2O4nbbdz3N-tCdUKjZsibPDsh2bn4MWQwygFfq5rk1NCIICzZzlsPb7kmsrkNMVM34ulLmLUFzAwq8" />
+              <div
+                class="absolute top-4 left-4 bg-white dark:bg-black/80 px-3 py-1 rounded text-xs font-bold text-text-dark dark:text-white shadow-sm">
                 12 Oct, 2023
               </div>
-</div>
-<div class="p-6 flex flex-col flex-grow">
-<div class="mb-4">
-<span class="text-xs font-bold text-primary uppercase tracking-wider">Catequesis</span>
-</div>
-<h3 class="text-xl font-bold text-text-dark dark:text-white mb-3 group-hover:text-primary transition-colors">
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="mb-4">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider">Catequesis</span>
+              </div>
+              <h3
+                class="text-xl font-bold text-text-dark dark:text-white mb-3 group-hover:text-primary transition-colors">
                 Inscripciones Abiertas para Catequesis
               </h3>
-<p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
-                Ya están abiertas las inscripciones para el nuevo ciclo de catequesis de primera comunión y confirmación. Acércate a la oficina parroquial.
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
+                Ya están abiertas las inscripciones para el nuevo ciclo de catequesis de primera comunión y
+                confirmación. Acércate a la oficina parroquial.
               </p>
-<a class="text-sm font-bold text-text-dark dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all" href="#">
+              <a class="text-sm font-bold text-text-dark dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all"
+                href="#">
                 Leer más <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
-</a>
-</div>
-</article>
-<!-- News Card 3 -->
-<article class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800 flex flex-col h-full">
-<div class="relative h-48 overflow-hidden">
-<img alt="Choir singing during mass" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close up of hymn book and church choir singing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8C8MM8JZtblxXv6r3n4zzYeHctcxxpBpT6MBlAw4uZQgoTVR0FDHmr6EiKmVqQkWcbO54FB-IBzg_GAwR3OxU8zEo0PlMFn6T2aM3R336DhqzfYbDA8Ui4GjIe9O5OdNlEUuerH3k0tLg8xdBEwB8pBIItttOxruNso0swNLPu6Wt6K0AwbdR6xrjdM8xfzV4LutNOdyYkf7nZpnYK9KMeJAdOik2T9vwrlI1DF2pwbqnEJbiSPqCXfKtVV5h12chPlMbPXwjXD4"/>
-<div class="absolute top-4 left-4 bg-white dark:bg-black/80 px-3 py-1 rounded text-xs font-bold text-text-dark dark:text-white shadow-sm">
+              </a>
+            </div>
+          </article>
+          <!-- News Card 3 -->
+          <article
+            class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800 flex flex-col h-full">
+            <div class="relative h-48 overflow-hidden">
+              <img alt="Choir singing during mass"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="Close up of hymn book and church choir singing"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8C8MM8JZtblxXv6r3n4zzYeHctcxxpBpT6MBlAw4uZQgoTVR0FDHmr6EiKmVqQkWcbO54FB-IBzg_GAwR3OxU8zEo0PlMFn6T2aM3R336DhqzfYbDA8Ui4GjIe9O5OdNlEUuerH3k0tLg8xdBEwB8pBIItttOxruNso0swNLPu6Wt6K0AwbdR6xrjdM8xfzV4LutNOdyYkf7nZpnYK9KMeJAdOik2T9vwrlI1DF2pwbqnEJbiSPqCXfKtVV5h12chPlMbPXwjXD4" />
+              <div
+                class="absolute top-4 left-4 bg-white dark:bg-black/80 px-3 py-1 rounded text-xs font-bold text-text-dark dark:text-white shadow-sm">
                 08 Oct, 2023
               </div>
-</div>
-<div class="p-6 flex flex-col flex-grow">
-<div class="mb-4">
-<span class="text-xs font-bold text-primary uppercase tracking-wider">Liturgia</span>
-</div>
-<h3 class="text-xl font-bold text-text-dark dark:text-white mb-3 group-hover:text-primary transition-colors">
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="mb-4">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider">Liturgia</span>
+              </div>
+              <h3
+                class="text-xl font-bold text-text-dark dark:text-white mb-3 group-hover:text-primary transition-colors">
                 Concierto de Coros Parroquiales
               </h3>
-<p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
-                Disfruta de una noche de alabanza y música sacra con la participación de todos los coros de nuestra parroquia este próximo sábado.
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
+                Disfruta de una noche de alabanza y música sacra con la participación de todos los coros de nuestra
+                parroquia este próximo sábado.
               </p>
-<a class="text-sm font-bold text-text-dark dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all" href="#">
+              <a class="text-sm font-bold text-text-dark dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all"
+                href="#">
                 Leer más <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
-</a>
-</div>
-</article>
-</div>
-<div class="mt-8 text-center sm:hidden">
-<a class="inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-text-dark dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-white dark:hover:bg-white/5 transition-all" href="#">
+              </a>
+            </div>
+          </article>
+        </div>
+        <div class="mt-8 text-center sm:hidden">
+          <a class="inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-text-dark dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-white dark:hover:bg-white/5 transition-all"
+            href="#">
             Ver todas las noticias
           </a>
-</div>
-</div>
-</section>
-<!-- Upcoming Events -->
-<section class="py-20 bg-background-light dark:bg-background-dark">
-<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-<div class="text-center mb-16">
-<span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Calendario</span>
-<h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white">Próximos Eventos</h2>
-</div>
-<div class="flex flex-col gap-4">
-<!-- Event Item 1 -->
-<div class="group flex flex-col md:flex-row items-center gap-6 bg-white dark:bg-[#211c11] p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800 transition-all">
-<div class="flex-shrink-0 w-full md:w-24 flex flex-row md:flex-col items-center justify-center gap-2 md:gap-0 bg-gray-50 dark:bg-white/5 rounded-lg p-3 text-center border border-gray-100 dark:border-gray-700">
-<span class="text-secondary font-bold text-sm uppercase">NOV</span>
-<span class="text-3xl font-black text-text-dark dark:text-white">02</span>
-</div>
-<div class="flex-grow text-center md:text-left">
-<h3 class="text-xl font-bold text-text-dark dark:text-white group-hover:text-primary transition-colors">Conmemoración de los Fieles Difuntos</h3>
-<p class="text-gray-500 dark:text-gray-400 mt-1">Santas Misas durante todo el día para orar por nuestros seres queridos.</p>
-</div>
-<div class="flex-shrink-0 flex items-center gap-6 w-full md:w-auto justify-center md:justify-end">
-<div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-<span class="material-symbols-outlined text-lg">schedule</span>
+        </div>
+      </div>
+    </section>
+    <!-- Upcoming Events -->
+    <section class="py-20 bg-background-light dark:bg-background-dark">
+      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Calendario</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white">Próximos Eventos</h2>
+        </div>
+        <div class="flex flex-col gap-4">
+          <!-- Event Item 1 -->
+          <div
+            class="group flex flex-col md:flex-row items-center gap-6 bg-white dark:bg-[#211c11] p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800 transition-all">
+            <div
+              class="flex-shrink-0 w-full md:w-24 flex flex-row md:flex-col items-center justify-center gap-2 md:gap-0 bg-gray-50 dark:bg-white/5 rounded-lg p-3 text-center border border-gray-100 dark:border-gray-700">
+              <span class="text-secondary font-bold text-sm uppercase">NOV</span>
+              <span class="text-3xl font-black text-text-dark dark:text-white">02</span>
+            </div>
+            <div class="flex-grow text-center md:text-left">
+              <h3 class="text-xl font-bold text-text-dark dark:text-white group-hover:text-primary transition-colors">
+                Conmemoración de los Fieles Difuntos</h3>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Santas Misas durante todo el día para orar por nuestros
+                seres queridos.</p>
+            </div>
+            <div class="flex-shrink-0 flex items-center gap-6 w-full md:w-auto justify-center md:justify-end">
+              <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                <span class="material-symbols-outlined text-lg">schedule</span>
                 08:00 AM - 07:00 PM
               </div>
-<a class="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 text-gray-400 hover:text-primary hover:border-primary transition-all" href="#">
-<span class="material-symbols-outlined">chevron_right</span>
-</a>
-</div>
-</div>
-<!-- Event Item 2 -->
-<div class="group flex flex-col md:flex-row items-center gap-6 bg-white dark:bg-[#211c11] p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800 transition-all">
-<div class="flex-shrink-0 w-full md:w-24 flex flex-row md:flex-col items-center justify-center gap-2 md:gap-0 bg-gray-50 dark:bg-white/5 rounded-lg p-3 text-center border border-gray-100 dark:border-gray-700">
-<span class="text-secondary font-bold text-sm uppercase">NOV</span>
-<span class="text-3xl font-black text-text-dark dark:text-white">12</span>
-</div>
-<div class="flex-grow text-center md:text-left">
-<h3 class="text-xl font-bold text-text-dark dark:text-white group-hover:text-primary transition-colors">Retiro Espiritual de Parejas</h3>
-<p class="text-gray-500 dark:text-gray-400 mt-1">Un día para fortalecer el amor y la fe en el matrimonio. Salón Parroquial.</p>
-</div>
-<div class="flex-shrink-0 flex items-center gap-6 w-full md:w-auto justify-center md:justify-end">
-<div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-<span class="material-symbols-outlined text-lg">schedule</span>
+              <a class="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 text-gray-400 hover:text-primary hover:border-primary transition-all"
+                href="#">
+                <span class="material-symbols-outlined">chevron_right</span>
+              </a>
+            </div>
+          </div>
+          <!-- Event Item 2 -->
+          <div
+            class="group flex flex-col md:flex-row items-center gap-6 bg-white dark:bg-[#211c11] p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800 transition-all">
+            <div
+              class="flex-shrink-0 w-full md:w-24 flex flex-row md:flex-col items-center justify-center gap-2 md:gap-0 bg-gray-50 dark:bg-white/5 rounded-lg p-3 text-center border border-gray-100 dark:border-gray-700">
+              <span class="text-secondary font-bold text-sm uppercase">NOV</span>
+              <span class="text-3xl font-black text-text-dark dark:text-white">12</span>
+            </div>
+            <div class="flex-grow text-center md:text-left">
+              <h3 class="text-xl font-bold text-text-dark dark:text-white group-hover:text-primary transition-colors">
+                Retiro Espiritual de Parejas</h3>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Un día para fortalecer el amor y la fe en el matrimonio.
+                Salón Parroquial.</p>
+            </div>
+            <div class="flex-shrink-0 flex items-center gap-6 w-full md:w-auto justify-center md:justify-end">
+              <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                <span class="material-symbols-outlined text-lg">schedule</span>
                 09:00 AM - 04:00 PM
               </div>
-<a class="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 text-gray-400 hover:text-primary hover:border-primary transition-all" href="#">
-<span class="material-symbols-outlined">chevron_right</span>
-</a>
-</div>
-</div>
-<!-- Event Item 3 -->
-<div class="group flex flex-col md:flex-row items-center gap-6 bg-white dark:bg-[#211c11] p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800 transition-all">
-<div class="flex-shrink-0 w-full md:w-24 flex flex-row md:flex-col items-center justify-center gap-2 md:gap-0 bg-gray-50 dark:bg-white/5 rounded-lg p-3 text-center border border-gray-100 dark:border-gray-700">
-<span class="text-secondary font-bold text-sm uppercase">NOV</span>
-<span class="text-3xl font-black text-text-dark dark:text-white">26</span>
-</div>
-<div class="flex-grow text-center md:text-left">
-<h3 class="text-xl font-bold text-text-dark dark:text-white group-hover:text-primary transition-colors">Fiesta de Cristo Rey</h3>
-<p class="text-gray-500 dark:text-gray-400 mt-1">Procesión solemne y Misa Mayor para celebrar a nuestro patrono universal.</p>
-</div>
-<div class="flex-shrink-0 flex items-center gap-6 w-full md:w-auto justify-center md:justify-end">
-<div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-<span class="material-symbols-outlined text-lg">schedule</span>
+              <a class="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 text-gray-400 hover:text-primary hover:border-primary transition-all"
+                href="#">
+                <span class="material-symbols-outlined">chevron_right</span>
+              </a>
+            </div>
+          </div>
+          <!-- Event Item 3 -->
+          <div
+            class="group flex flex-col md:flex-row items-center gap-6 bg-white dark:bg-[#211c11] p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800 transition-all">
+            <div
+              class="flex-shrink-0 w-full md:w-24 flex flex-row md:flex-col items-center justify-center gap-2 md:gap-0 bg-gray-50 dark:bg-white/5 rounded-lg p-3 text-center border border-gray-100 dark:border-gray-700">
+              <span class="text-secondary font-bold text-sm uppercase">NOV</span>
+              <span class="text-3xl font-black text-text-dark dark:text-white">26</span>
+            </div>
+            <div class="flex-grow text-center md:text-left">
+              <h3 class="text-xl font-bold text-text-dark dark:text-white group-hover:text-primary transition-colors">
+                Fiesta de Cristo Rey</h3>
+              <p class="text-gray-500 dark:text-gray-400 mt-1">Procesión solemne y Misa Mayor para celebrar a nuestro
+                patrono universal.</p>
+            </div>
+            <div class="flex-shrink-0 flex items-center gap-6 w-full md:w-auto justify-center md:justify-end">
+              <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                <span class="material-symbols-outlined text-lg">schedule</span>
                 10:00 AM - 12:30 PM
               </div>
-<a class="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 text-gray-400 hover:text-primary hover:border-primary transition-all" href="#">
-<span class="material-symbols-outlined">chevron_right</span>
-</a>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Donation / Call to Action -->
-<section class="py-24 relative overflow-hidden">
-<div class="absolute inset-0 bg-secondary/95 z-0"></div>
-<div class="absolute inset-0 z-0 bg-cover bg-center mix-blend-overlay opacity-20" data-alt="Abstract pattern of church architecture details" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA51yIlr5EyTJaCeOGx4xaN-I17Tj1cYbJrvcEKZAQItQ8jLhFTnwARiFxe08Tjdrv49pPXDjF9lMQ5QQ7oGz2d2GA6jXWjDjNc_pNsKxJIkSQLuhCeYC8K1y2nSOYbb6rX2e61Kys6uH17p5RGuIRNSq5z__HfILoYkCTptSpMAMnti8J8fm5pPwb3n6G_Q4cXILfTDn9uCPDMkx5Af4Oeu8W-Vx4siBsIZtzE-4N-QRirEqP7xxF0IzaQu2JXY6UTDdB3QdOx42A');"></div>
-<div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
-<h2 class="text-3xl sm:text-5xl font-black text-white mb-6 tracking-tight">Apoya nuestra Misión</h2>
-<p class="text-white/90 text-lg sm:text-xl mb-10 leading-relaxed">
-          Tu generosidad nos ayuda a mantener nuestro templo, apoyar a los necesitados y continuar con la evangelización. Cada aporte cuenta.
+              <a class="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 text-gray-400 hover:text-primary hover:border-primary transition-all"
+                href="#">
+                <span class="material-symbols-outlined">chevron_right</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Donation / Call to Action -->
+    <section class="py-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-secondary/95 z-0"></div>
+      <div class="absolute inset-0 z-0 bg-cover bg-center mix-blend-overlay opacity-20"
+        data-alt="Abstract pattern of church architecture details"
+        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA51yIlr5EyTJaCeOGx4xaN-I17Tj1cYbJrvcEKZAQItQ8jLhFTnwARiFxe08Tjdrv49pPXDjF9lMQ5QQ7oGz2d2GA6jXWjDjNc_pNsKxJIkSQLuhCeYC8K1y2nSOYbb6rX2e61Kys6uH17p5RGuIRNSq5z__HfILoYkCTptSpMAMnti8J8fm5pPwb3n6G_Q4cXILfTDn9uCPDMkx5Af4Oeu8W-Vx4siBsIZtzE-4N-QRirEqP7xxF0IzaQu2JXY6UTDdB3QdOx42A');">
+      </div>
+      <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+        <h2 class="text-3xl sm:text-5xl font-black text-white mb-6 tracking-tight">Apoya nuestra Misión</h2>
+        <p class="text-white/90 text-lg sm:text-xl mb-10 leading-relaxed">
+          Tu generosidad nos ayuda a mantener nuestro templo, apoyar a los necesitados y continuar con la
+          evangelización. Cada aporte cuenta.
         </p>
-<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-<button class="w-full sm:w-auto px-8 py-4 bg-primary text-text-dark font-bold rounded-lg hover:bg-white hover:text-secondary transition-colors shadow-lg shadow-black/20">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button
+            class="w-full sm:w-auto px-8 py-4 bg-primary text-text-dark font-bold rounded-lg hover:bg-white hover:text-secondary transition-colors shadow-lg shadow-black/20">
             Hacer una Donación Online
           </button>
-<button class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-colors">
+          <button
+            class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-colors">
             Otras formas de ayudar
           </button>
-</div>
-</div>
-</section>
-</main>
-<footer class="bg-background-dark text-white pt-20 pb-10 border-t border-gray-800">
-<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-<!-- Column 1: Brand -->
-<div>
-<div class="flex items-center gap-3 mb-6">
-<div class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-text-dark">
-<span class="material-symbols-outlined text-2xl">church</span>
-</div>
-<h2 class="text-lg font-bold">Parroquia<br/>Cristo Resucitado</h2>
-</div>
-<p class="text-gray-400 text-sm leading-relaxed mb-6">
-            Llevando la palabra de Dios a cada rincón de nuestra comunidad. Somos una iglesia viva, misionera y solidaria.
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-background-dark text-white pt-20 pb-10 border-t border-gray-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <!-- Column 1: Brand -->
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-text-dark">
+              <span class="material-symbols-outlined text-2xl">church</span>
+            </div>
+            <h2 class="text-lg font-bold">Parroquia<br />Cristo Resucitado</h2>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
+            Llevando la palabra de Dios a cada rincón de nuestra comunidad. Somos una iglesia viva, misionera y
+            solidaria.
           </p>
-<div class="flex gap-4">
-<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-text-dark transition-colors" href="#">
-<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg>
-</a>
-<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-text-dark transition-colors" href="#">
-<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465C9.673 2.013 10.03 2 12.48 2h-.165zm-3.77 14h7.54a3.77 3.77 0 003.77-3.77v-7.54a3.77 3.77 0 00-3.77-3.77h-7.54a3.77 3.77 0 00-3.77 3.77v7.54a3.77 3.77 0 003.77 3.77z" fill-rule="evenodd"></path></svg>
-</a>
-<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-text-dark transition-colors" href="#">
-<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.419-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" fill-rule="evenodd"></path></svg>
-</a>
-</div>
-</div>
-<!-- Column 2: Quick Links -->
-<div>
-<h3 class="text-white font-bold mb-6">Enlaces Rápidos</h3>
-<ul class="space-y-4 text-sm text-gray-400">
-<li><a class="hover:text-primary transition-colors" href="#">Horarios de Misa</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Confesiones</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Solicitar Intenciones</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Bautismos y Bodas</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Boletín Parroquial</a></li>
-</ul>
-</div>
-<!-- Column 3: Contact -->
-<div>
-<h3 class="text-white font-bold mb-6">Contacto</h3>
-<ul class="space-y-4 text-sm text-gray-400">
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary shrink-0">location_on</span>
-<span>Colonia San Francisco, Calle Principal,<br/>Tegucigalpa, Honduras</span>
-</li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary shrink-0">call</span>
-<span>+504 2234-5678</span>
-</li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary shrink-0">mail</span>
-<span>info@parroquiacristoresucitado.hn</span>
-</li>
-</ul>
-</div>
-<!-- Column 4: Newsletter -->
-<div>
-<h3 class="text-white font-bold mb-6">Suscríbete</h3>
-<p class="text-gray-400 text-sm mb-4">Recibe nuestras noticias y horarios semanales en tu correo.</p>
-<form class="flex flex-col gap-3">
-<input class="bg-white/5 border border-white/10 rounded px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-primary text-sm w-full" placeholder="Tu correo electrónico" type="email"/>
-<button class="bg-primary text-text-dark font-bold px-4 py-2 rounded text-sm hover:bg-white hover:text-secondary transition-colors w-full" type="button">Suscribirme</button>
-</form>
-</div>
-</div>
-<div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-<p>© 2023 Parroquia Cristo Resucitado. Todos los derechos reservados.</p>
-<div class="flex gap-6">
-<a class="hover:text-white transition-colors" href="#">Política de Privacidad</a>
-<a class="hover:text-white transition-colors" href="#">Términos de Uso</a>
-</div>
-</div>
-</div>
-</footer>
-</body></html>
+          <div class="flex gap-4">
+            <a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-text-dark transition-colors"
+              href="#">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                <path clip-rule="evenodd"
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                  fill-rule="evenodd"></path>
+              </svg>
+            </a>
+            <a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-text-dark transition-colors"
+              href="#">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                <path clip-rule="evenodd"
+                  d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465C9.673 2.013 10.03 2 12.48 2h-.165zm-3.77 14h7.54a3.77 3.77 0 003.77-3.77v-7.54a3.77 3.77 0 00-3.77-3.77h-7.54a3.77 3.77 0 00-3.77 3.77v7.54a3.77 3.77 0 003.77 3.77z"
+                  fill-rule="evenodd"></path>
+              </svg>
+            </a>
+            <a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-text-dark transition-colors"
+              href="#">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+                <path clip-rule="evenodd"
+                  d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.419-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
+                  fill-rule="evenodd"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <!-- Column 2: Quick Links -->
+        <div>
+          <h3 class="text-white font-bold mb-6">Enlaces Rápidos</h3>
+          <ul class="space-y-4 text-sm text-gray-400">
+            <li><a class="hover:text-primary transition-colors" href="#">Horarios de Misa</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">Confesiones</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">Solicitar Intenciones</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">Bautismos y Bodas</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">Boletín Parroquial</a></li>
+          </ul>
+        </div>
+        <!-- Column 3: Contact -->
+        <div>
+          <h3 class="text-white font-bold mb-6">Contacto</h3>
+          <ul class="space-y-4 text-sm text-gray-400">
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary shrink-0">location_on</span>
+              <span>Colonia San Francisco, Calle Principal,<br />Tegucigalpa, Honduras</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary shrink-0">call</span>
+              <span>+504 2234-5678</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary shrink-0">mail</span>
+              <span>info@parroquiacristoresucitado.hn</span>
+            </li>
+          </ul>
+        </div>
+        <!-- Column 4: Newsletter -->
+        <div>
+          <h3 class="text-white font-bold mb-6">Suscríbete</h3>
+          <p class="text-gray-400 text-sm mb-4">Recibe nuestras noticias y horarios semanales en tu correo.</p>
+          <form class="flex flex-col gap-3">
+            <input
+              class="bg-white/5 border border-white/10 rounded px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-primary text-sm w-full"
+              placeholder="Tu correo electrónico" type="email" />
+            <button
+              class="bg-primary text-text-dark font-bold px-4 py-2 rounded text-sm hover:bg-white hover:text-secondary transition-colors w-full"
+              type="button">Suscribirme</button>
+          </form>
+        </div>
+      </div>
+      <div
+        class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <p>© 2023 Parroquia Cristo Resucitado. Todos los derechos reservados.</p>
+        <div class="flex gap-6">
+          <a class="hover:text-white transition-colors" href="#">Política de Privacidad</a>
+          <a class="hover:text-white transition-colors" href="#">Términos de Uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
