@@ -9,6 +9,7 @@ use App\Models\Contenido;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -67,13 +68,13 @@ class ContenidoResource extends Resource
                     Forms\Components\TextInput::make('valor')
                         ->label('Valor (texto)')
                         ->maxLength(65535)
-                        ->visible(fn (Forms\Get $get): bool => $get('tipo') === 'texto'),
+                        ->visible(fn (Get $get): bool => $get('tipo') === 'texto'),
 
                     // Texto largo
                     Forms\Components\Textarea::make('valor')
                         ->label('Valor (texto largo)')
                         ->rows(5)
-                        ->visible(fn (Forms\Get $get): bool => $get('tipo') === 'textarea'),
+                        ->visible(fn (Get $get): bool => $get('tipo') === 'textarea'),
 
                     // HTML con editor enriquecido
                     Forms\Components\RichEditor::make('valor')
@@ -85,21 +86,21 @@ class ContenidoResource extends Resource
                             'link', 'blockquote',
                             'undo', 'redo',
                         ])
-                        ->visible(fn (Forms\Get $get): bool => $get('tipo') === 'html'),
+                        ->visible(fn (Get $get): bool => $get('tipo') === 'html'),
 
                     // URL de imagen
                     Forms\Components\FileUpload::make('valor')
                         ->label('Imagen')
                         ->image()
                         ->directory('contenidos')
-                        ->visible(fn (Forms\Get $get): bool => $get('tipo') === 'imagen'),
+                        ->visible(fn (Get $get): bool => $get('tipo') === 'imagen'),
 
                     // JSON
                     Forms\Components\Textarea::make('valor')
                         ->label('Valor (JSON)')
                         ->rows(8)
                         ->helperText('Ingresa un JSON válido')
-                        ->visible(fn (Forms\Get $get): bool => $get('tipo') === 'json'),
+                        ->visible(fn (Get $get): bool => $get('tipo') === 'json'),
                 ]),
         ]);
     }

@@ -9,6 +9,7 @@ use App\Models\Noticia;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -40,7 +41,7 @@ class NoticiaResource extends Resource
                         ->required()
                         ->maxLength(255)
                         ->live(onBlur: true)
-                        ->afterStateUpdated(function (string $operation, ?string $state, Forms\Set $set) {
+                        ->afterStateUpdated(function (string $operation, ?string $state, Set $set) {
                             if ($operation === 'create' && $state) {
                                 $set('slug', Str::slug($state));
                             }

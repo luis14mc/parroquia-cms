@@ -9,6 +9,8 @@ use App\Models\Formulario;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -40,7 +42,7 @@ class FormularioResource extends Resource
                         ->required()
                         ->maxLength(255)
                         ->live(onBlur: true)
-                        ->afterStateUpdated(function (string $operation, ?string $state, Forms\Set $set) {
+                        ->afterStateUpdated(function (string $operation, ?string $state, Set $set) {
                             if ($operation === 'create' && $state) {
                                 $set('slug', Str::slug($state));
                             }
@@ -83,7 +85,7 @@ class FormularioResource extends Resource
                             Forms\Components\TextInput::make('opciones')
                                 ->label('Opciones (separadas por coma)')
                                 ->helperText('Solo para tipo "Selección": opcion1, opcion2, opcion3')
-                                ->visible(fn (Forms\Get $get): bool => $get('tipo') === 'select'),
+                                ->visible(fn (Get $get): bool => $get('tipo') === 'select'),
                         ])
                         ->columns(2)
                         ->defaultItems(1)
