@@ -19,32 +19,46 @@ class ContenidoSeeder extends Seeder
 
             // Quick Info Bar
             ['clave' => 'home.info.proxima_misa', 'seccion' => 'home', 'etiqueta' => 'Info — Próxima Misa', 'valor' => 'Hoy, 6:00 PM', 'tipo' => 'texto'],
-            ['clave' => 'home.info.direccion', 'seccion' => 'home', 'etiqueta' => 'Info — Dirección', 'valor' => 'Colonia Loarque, Tegucigalpa', 'tipo' => 'texto'],
+            ['clave' => 'home.info.ubicacion', 'seccion' => 'home', 'etiqueta' => 'Info — Ubicación', 'valor' => 'Colonia Loarque, Tegucigalpa', 'tipo' => 'texto'],
             ['clave' => 'home.info.telefono', 'seccion' => 'home', 'etiqueta' => 'Info — Teléfono', 'valor' => '9430-6883', 'tipo' => 'texto'],
 
             // Mensaje del Párroco
             ['clave' => 'home.parroco.nombre', 'seccion' => 'home', 'etiqueta' => 'Párroco — Nombre', 'valor' => 'P. Javier', 'tipo' => 'texto'],
             ['clave' => 'home.parroco.cita', 'seccion' => 'home', 'etiqueta' => 'Párroco — Cita bíblica', 'valor' => '"Donde dos o tres se reúnen en mi nombre, allí estoy yo en medio de ellos." — Mateo 18:20', 'tipo' => 'texto'],
             ['clave' => 'home.parroco.mensaje', 'seccion' => 'home', 'etiqueta' => 'Párroco — Mensaje', 'valor' => 'Queridos hermanos y hermanas, les doy la más cordial bienvenida a nuestra comunidad parroquial. Cristo Resucitado es más que un templo; es una familia que camina junta en la fe. Aquí encontrarán un espacio para crecer espiritualmente, servir al prójimo y experimentar el amor de Dios. Los invito a participar activamente en nuestras celebraciones, grupos pastorales y actividades comunitarias.', 'tipo' => 'textarea'],
-            ['clave' => 'home.parroco.imagen', 'seccion' => 'home', 'etiqueta' => 'Párroco — Foto', 'valor' => 'https://lh3.googleusercontent.com/pw/AP1GczPVyqXlDFp3x0bN6xqKp-K76HB_fFpDwxvm7oQHuXNDcBawwm0I5HZ0i42y2N4N3F-05h2bR8IabZxhLsjsG0eVXI-4FRDLZgR3kqbYLvjA6SyX=w2400', 'tipo' => 'imagen'],
+            ['clave' => 'home.parroco.foto', 'seccion' => 'home', 'etiqueta' => 'Párroco — Foto', 'valor' => 'https://lh3.googleusercontent.com/pw/AP1GczPVyqXlDFp3x0bN6xqKp-K76HB_fFpDwxvm7oQHuXNDcBawwm0I5HZ0i42y2N4N3F-05h2bR8IabZxhLsjsG0eVXI-4FRDLZgR3kqbYLvjA6SyX=w2400', 'tipo' => 'imagen'],
+            ['clave' => 'home.parroco.cargo', 'seccion' => 'home', 'etiqueta' => 'Párroco — Cargo', 'valor' => 'Párroco', 'tipo' => 'texto'],
 
             // Horarios
             ['clave' => 'home.horarios', 'seccion' => 'home', 'etiqueta' => 'Horarios de Misa (JSON)', 'valor' => json_encode([
-                ['sede' => 'Sede Parroquial', 'horarios' => ['Martes a Sábado: 6:00 PM', 'Domingo: 8:00 AM, 10:00 AM, 5:00 PM']],
-                ['sede' => 'Capilla Yaguacire', 'horarios' => ['Domingo: 9:00 AM']],
-                ['sede' => 'Altos de Loarque', 'horarios' => ['Domingo: 10:30 AM']],
-                ['sede' => 'Las Mercedes', 'horarios' => ['Sábado: 4:00 PM']],
-                ['sede' => 'Camino Neo-catecumenal', 'horarios' => ['Sábado: 8:00 PM']],
+                ['nombre' => 'Sede Parroquial', 'dias' => [
+                    ['dia' => 'Martes a Sábado', 'horas' => ['6:00 PM']],
+                    ['dia' => 'Domingo', 'horas' => ['8:00 AM', '10:00 AM', '5:00 PM']],
+                ]],
+                ['nombre' => 'Capilla Yaguacire', 'dias' => [
+                    ['dia' => 'Domingo', 'horas' => ['9:00 AM']],
+                ]],
+                ['nombre' => 'Altos de Loarque', 'dias' => [
+                    ['dia' => 'Domingo', 'horas' => ['10:30 AM']],
+                ]],
+                ['nombre' => 'Las Mercedes', 'dias' => [
+                    ['dia' => 'Sábado', 'horas' => ['4:00 PM']],
+                ]],
+                ['nombre' => 'Camino Neo-catecumenal', 'dias' => [
+                    ['dia' => 'Sábado', 'horas' => ['8:00 PM']],
+                ]],
             ], JSON_UNESCAPED_UNICODE), 'tipo' => 'json'],
 
             // Sacerdotes
             ['clave' => 'home.sacerdotes', 'seccion' => 'home', 'etiqueta' => 'Sacerdotes (JSON)', 'valor' => json_encode([
-                ['nombre' => 'P. Javier Martínez', 'rol' => 'Párroco', 'bio' => 'Sacerdote con más de 15 años de servicio pastoral. Lidera nuestra comunidad con dedicación y amor desde 2017.', 'imagen' => 'https://lh3.googleusercontent.com/pw/AP1GczPVyqXlDFp3x0bN6xqKp-K76HB_fFpDwxvm7oQHuXNDcBawwm0I5HZ0i42y2N4N3F-05h2bR8IabZxhLsjsG0eVXI-4FRDLZgR3kqbYLvjA6SyX=w2400'],
-                ['nombre' => 'P. Eduardo López', 'rol' => 'Vicario', 'bio' => 'Joven sacerdote comprometido con la formación de jóvenes y el acompañamiento espiritual de las familias.', 'imagen' => 'https://lh3.googleusercontent.com/pw/AP1GczNE0To1d6wLmmvJ1oqBfZrNpftgVUWxBhI9qgM7TE3MHkkcrE2v2qG5K5OcfAiZ57xEWuL4rdT2VKAX3tPPfGqDKA-nMLk9Ygt0XLFxgcKg-Py8=w2400'],
+                ['nombre' => 'P. Javier Martínez', 'cargo' => 'Párroco', 'descripcion' => 'Sacerdote con más de 15 años de servicio pastoral. Lidera nuestra comunidad con dedicación y amor desde 2017.', 'foto' => 'https://lh3.googleusercontent.com/pw/AP1GczPVyqXlDFp3x0bN6xqKp-K76HB_fFpDwxvm7oQHuXNDcBawwm0I5HZ0i42y2N4N3F-05h2bR8IabZxhLsjsG0eVXI-4FRDLZgR3kqbYLvjA6SyX=w2400'],
+                ['nombre' => 'P. Eduardo López', 'cargo' => 'Vicario', 'descripcion' => 'Joven sacerdote comprometido con la formación de jóvenes y el acompañamiento espiritual de las familias.', 'foto' => 'https://lh3.googleusercontent.com/pw/AP1GczNE0To1d6wLmmvJ1oqBfZrNpftgVUWxBhI9qgM7TE3MHkkcrE2v2qG5K5OcfAiZ57xEWuL4rdT2VKAX3tPPfGqDKA-nMLk9Ygt0XLFxgcKg-Py8=w2400'],
             ], JSON_UNESCAPED_UNICODE), 'tipo' => 'json'],
 
             // Intenciones WhatsApp
             ['clave' => 'home.whatsapp', 'seccion' => 'home', 'etiqueta' => 'WhatsApp número', 'valor' => '50494306883', 'tipo' => 'texto'],
+            ['clave' => 'home.whatsapp.mensaje', 'seccion' => 'home', 'etiqueta' => 'WhatsApp — Mensaje predeterminado', 'valor' => 'Hola, me gustaría anotar una intención de misa.', 'tipo' => 'texto'],
+            ['clave' => 'general.whatsapp', 'seccion' => 'general', 'etiqueta' => 'WhatsApp general', 'valor' => '50494306883', 'tipo' => 'texto'],
 
             // CTA
             ['clave' => 'home.cta.titulo', 'seccion' => 'home', 'etiqueta' => 'CTA — Título', 'valor' => 'Apoya nuestra Misión', 'tipo' => 'texto'],
@@ -83,6 +97,11 @@ class ContenidoSeeder extends Seeder
                 'sabado' => '9:00 AM - 12:00 PM',
                 'domingo' => 'Cerrado',
             ], JSON_UNESCAPED_UNICODE), 'tipo' => 'json'],
+            ['clave' => 'contacto.horarios', 'seccion' => 'contacto', 'etiqueta' => 'Horarios de Oficina (footer)', 'valor' => json_encode([
+                'lunes_viernes' => '8:00 AM - 5:00 PM',
+                'sabado' => '9:00 AM - 12:00 PM',
+            ], JSON_UNESCAPED_UNICODE), 'tipo' => 'json'],
+            ['clave' => 'contacto.whatsapp', 'seccion' => 'contacto', 'etiqueta' => 'WhatsApp contacto', 'valor' => '50494306883', 'tipo' => 'texto'],
             ['clave' => 'contacto.mapa_iframe', 'seccion' => 'contacto', 'etiqueta' => 'Mapa Google (iframe src)', 'valor' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3869.123456!2d-87.234567!3d14.065432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sParroquia+Cristo+Resucitado!5e0!3m2!1ses!2shn!4v1234567890', 'tipo' => 'texto'],
 
             // Redes sociales

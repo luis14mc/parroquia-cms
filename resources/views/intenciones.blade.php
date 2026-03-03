@@ -22,6 +22,10 @@
     {{-- Main Content Grid --}}
     <div class="max-w-[1200px] mx-auto px-4 py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
 
+        @php
+            $horariosLectura = json_decode($contenidos['intenciones.horarios_lectura'] ?? '{}', true) ?: [];
+        @endphp
+
         {{-- Left Column: Information --}}
         <div class="lg:col-span-5 flex flex-col gap-8 order-2 lg:order-1">
             <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)]">
@@ -59,15 +63,15 @@
                 <div class="space-y-3">
                     <div class="flex justify-between items-center border-b border-primary/20 pb-2">
                         <span class="text-text-dark font-medium">Lunes a Sábado</span>
-                        <span class="text-gray-600">6:00 PM</span>
+                        <span class="text-gray-600">{{ $horariosLectura['lunes_sabado'] ?? '6:00 PM' }}</span>
                     </div>
                     <div class="flex justify-between items-center border-b border-primary/20 pb-2">
                         <span class="text-text-dark font-medium">Domingos (Mañana)</span>
-                        <span class="text-gray-600">8:00 AM &amp; 10:00 AM</span>
+                        <span class="text-gray-600">{{ $horariosLectura['domingo_manana'] ?? '8:00 AM & 10:00 AM' }}</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-text-dark font-medium">Domingos (Tarde)</span>
-                        <span class="text-gray-600">5:00 PM</span>
+                        <span class="text-gray-600">{{ $horariosLectura['domingo_tarde'] ?? '5:00 PM' }}</span>
                     </div>
                 </div>
             </div>

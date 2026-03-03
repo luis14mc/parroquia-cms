@@ -8,6 +8,15 @@
     <title>{{ $title ?? config('app.name', 'Parroquia Cristo Resucitado') }}</title>
     <meta name="description" content="{{ $description ?? 'Parroquia Cristo Resucitado - Comunidad de Fe y Esperanza en Honduras' }}">
 
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $title ?? config('app.name', 'Parroquia Cristo Resucitado') }}">
+    <meta property="og:description" content="{{ $description ?? 'Parroquia Cristo Resucitado - Comunidad de Fe y Esperanza en Honduras' }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ $ogImage ?? asset('images/Logo_PCR.png') }}">
+    <meta property="og:locale" content="es_HN">
+    <meta name="twitter:card" content="summary_large_image">
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 

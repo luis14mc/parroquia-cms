@@ -4,7 +4,7 @@
          1. HERO
     ═══════════════════════════════════════════════════════ --}}
     <section class="relative w-full h-[420px] sm:h-[480px] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBauEQj5kWjQjEd5mGwsIhVE5oZSrGyN6hQwN76EV0utFsH_uOGcJLrKueh_gMcAX9g4sn5kOOCZ55enTFKo_UuqJ5hQXBferamPurGnlI_rWiUocv8xnE_h8xvYP7zQ3ntYsTC7GxaxOfp3t91pAWAuuAsCyDVy5sBXpKFheokyGCGOny828JU4u_k_EiIBLQb6Jkt6xrEjxs9rViH_QJoZb3aN5ZOQyjNIc0bIN0m3WpW1VxfvcrXHwaadTloP-B7F43OIN1obpM');">
+        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ $contenidos['donaciones.hero.imagen'] ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuBauEQj5kWjQjEd5mGwsIhVE5oZSrGyN6hQwN76EV0utFsH_uOGcJLrKueh_gMcAX9g4sn5kOOCZ55enTFKo_UuqJ5hQXBferamPurGnlI_rWiUocv8xnE_h8xvYP7zQ3ntYsTC7GxaxOfp3t91pAWAuuAsCyDVy5sBXpKFheokyGCGOny828JU4u_k_EiIBLQb6Jkt6xrEjxs9rViH_QJoZb3aN5ZOQyjNIc0bIN0m3WpW1VxfvcrXHwaadTloP-B7F43OIN1obpM' }}');">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30"></div>
         </div>
         <div class="relative z-10 text-center px-4">
@@ -18,7 +18,9 @@
         </div>
     </section>
 
-
+    @php
+        $cuentas = json_decode($contenidos['donaciones.cuentas'] ?? '[]', true) ?: [];
+    @endphp
 
     <div class="flex-grow w-full max-w-[1200px] mx-auto px-4 py-10 md:py-16">
 
@@ -29,8 +31,7 @@
             </h2>
             <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
             <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                Tus oraciones son lo más importante para seguir llevando la Buena Noticia de Salvación a todos los rincones,
-                pero si deseas dar un paso más allá, a continuación puedes ver distintas formas de apoyar a nuestra parroquia:
+                {{ $contenidos['donaciones.intro'] ?? 'Tus oraciones son lo más importante para seguir llevando la Buena Noticia de Salvación a todos los rincones, pero si deseas dar un paso más allá, a continuación puedes ver distintas formas de apoyar a nuestra parroquia:' }}
             </p>
         </div>
 
@@ -84,7 +85,26 @@
                     </p>
 
                     <div class="space-y-8">
-                        {{-- BAC Credomatic --}}
+                        @forelse($cuentas as $cuenta)
+                        <div class="flex items-start gap-4 md:gap-5">
+                            <div class="flex-shrink-0 w-14 h-14 md:w-20 md:h-20 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center">
+                                <span class="material-symbols-outlined text-2xl md:text-3xl text-primary">account_balance</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-text-dark dark:text-text-light">{{ $cuenta['banco'] }}</h3>
+                                <p class="text-gray-500 dark:text-gray-400">Tipo de Cuenta: {{ $cuenta['tipo'] ?? 'Ahorro' }}</p>
+                                <p class="text-gray-500 dark:text-gray-400">Nombre: {{ $general['general.nombre_parroquia'] ?? 'Parroquia Cristo Resucitado' }}</p>
+                                <p class="text-gray-500 dark:text-gray-400">Número: <span class="font-semibold text-text-dark dark:text-text-light">{{ $cuenta['cuenta'] }}</span></p>
+                                <button @click="navigator.clipboard.writeText('{{ preg_replace('/[^0-9]/', '', $cuenta['cuenta']) }}')" class="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium transition-colors">
+                                    <span class="material-symbols-outlined text-sm">content_copy</span> Copiar número
+                                </button>
+                            </div>
+                        </div>
+                        @if(!$loop->last)
+                        <hr class="border-gray-200 dark:border-zinc-700">
+                        @endif
+                        @empty
+                        {{-- Fallback: cuentas hardcodeadas si no hay datos CMS --}}
                         <div class="flex items-start gap-4 md:gap-5">
                             <div class="flex-shrink-0 w-14 h-14 md:w-20 md:h-20 bg-red-50 dark:bg-red-900/20 rounded-xl flex items-center justify-center">
                                 <svg viewBox="0 0 100 100" class="w-10 h-10 md:w-14 md:h-14">
@@ -97,32 +117,9 @@
                                 <p class="text-gray-500 dark:text-gray-400">Tipo de Cuenta: Cuenta de Ahorros</p>
                                 <p class="text-gray-500 dark:text-gray-400">Nombre: Parroquia Cristo Resucitado</p>
                                 <p class="text-gray-500 dark:text-gray-400">Número: <span class="font-semibold text-text-dark dark:text-text-light">743-795-261</span></p>
-                                <button @click="navigator.clipboard.writeText('743795261')" class="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium transition-colors">
-                                    <span class="material-symbols-outlined text-sm">content_copy</span> Copiar número
-                                </button>
                             </div>
                         </div>
-
-                        <hr class="border-gray-200 dark:border-zinc-700">
-
-                        {{-- Banpaís --}}
-                        <div class="flex items-start gap-4 md:gap-5">
-                            <div class="flex-shrink-0 w-14 h-14 md:w-20 md:h-20 bg-blue-50 dark:bg-blue-900/20 rounded-xl flex items-center justify-center">
-                                <svg viewBox="0 0 100 100" class="w-10 h-10 md:w-14 md:h-14">
-                                    <circle cx="50" cy="50" r="40" fill="#003399" stroke="#003399" stroke-width="3"/>
-                                    <text x="50" y="58" text-anchor="middle" fill="white" font-size="28" font-weight="bold" font-family="Arial">bp</text>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-text-dark dark:text-text-light">Banpaís</h3>
-                                <p class="text-gray-500 dark:text-gray-400">Tipo de Cuenta: Cuenta de Cheque</p>
-                                <p class="text-gray-500 dark:text-gray-400">Nombre: Parroquia Cristo Resucitado</p>
-                                <p class="text-gray-500 dark:text-gray-400">Número: <span class="font-semibold text-text-dark dark:text-text-light">013000012507</span></p>
-                                <button @click="navigator.clipboard.writeText('013000012507')" class="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium transition-colors">
-                                    <span class="material-symbols-outlined text-sm">content_copy</span> Copiar número
-                                </button>
-                            </div>
-                        </div>
+                        @endforelse
                     </div>
 
                     <div class="mt-8 pt-6 border-t border-gray-200 dark:border-zinc-700">
@@ -141,9 +138,7 @@
                 <div x-show="activeTab === 'capilla'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-cloak>
                     <h2 class="text-2xl font-bold text-text-dark dark:text-text-light mb-4">Capilla del Santísimo</h2>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                        La construcción de la Capilla del Santísimo es un proyecto especial de nuestra parroquia. Este espacio sagrado
-                        será un lugar de adoración permanente donde los fieles podrán encontrarse con Jesús Eucaristía en un ambiente
-                        de recogimiento y oración.
+                        {{ $contenidos['donaciones.capilla'] ?? 'La construcción de la Capilla del Santísimo es un proyecto especial de nuestra parroquia. Este espacio sagrado será un lugar de adoración permanente donde los fieles podrán encontrarse con Jesús Eucaristía en un ambiente de recogimiento y oración.' }}
                     </p>
                     <div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-xl p-6 mb-6">
                         <h3 class="font-bold text-text-dark dark:text-text-light mb-2 flex items-center gap-2">
@@ -166,9 +161,7 @@
                 <div x-show="activeTab === 'libra'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-cloak>
                     <h2 class="text-2xl font-bold text-text-dark dark:text-text-light mb-4">Libra del Amor</h2>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                        La <strong>Libra del Amor</strong> es una iniciativa solidaria de nuestra parroquia. Consiste en donar una libra de
-                        alimento básico (arroz, frijoles, azúcar, harina, etc.) que se recolecta periódicamente para armar despensas
-                        destinadas a las familias más necesitadas de nuestras comunidades.
+                        {{ $contenidos['donaciones.libra_amor'] ?? 'La Libra del Amor es una iniciativa solidaria de nuestra parroquia. Consiste en donar una libra de alimento básico (arroz, frijoles, azúcar, harina, etc.) que se recolecta periódicamente para armar despensas destinadas a las familias más necesitadas de nuestras comunidades.' }}
                     </p>
                     <div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-xl p-6 mb-6">
                         <h3 class="font-bold text-text-dark dark:text-text-light mb-2 flex items-center gap-2">
@@ -192,8 +185,7 @@
                 <div x-show="activeTab === 'dennys'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-cloak>
                     <h2 class="text-2xl font-bold text-text-dark dark:text-text-light mb-4">Denny's</h2>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                        A través de una alianza con <strong>Denny's</strong>, nuestra parroquia ofrece cupones de descuento que puedes adquirir.
-                        Al comprar estos cupones, una parte del monto se destina directamente a los proyectos y necesidades de la parroquia.
+                        {{ $contenidos['donaciones.dennys'] ?? 'A través de una alianza con Denny\'s, nuestra parroquia ofrece cupones de descuento que puedes adquirir. Al comprar estos cupones, una parte del monto se destina directamente a los proyectos y necesidades de la parroquia.' }}
                     </p>
                     <div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-xl p-6 mb-6">
                         <h3 class="font-bold text-text-dark dark:text-text-light mb-2 flex items-center gap-2">
@@ -220,9 +212,8 @@
         <div class="mt-16 mb-6 text-center max-w-2xl mx-auto">
             <span class="material-symbols-outlined text-4xl text-primary/30 mb-4">format_quote</span>
             <p class="text-xl italic font-medium text-text-dark dark:text-gray-300 mb-4">
-                "Cada uno dé como propuso en su corazón: no con tristeza, ni por necesidad, porque Dios ama al dador alegre."
+                {{ $contenidos['donaciones.cita'] ?? '"Cada uno dé como propuso en su corazón: no con tristeza, ni por necesidad, porque Dios ama al dador alegre." — 2 Corintios 9:7' }}
             </p>
-            <p class="text-sm font-bold text-primary uppercase tracking-widest">2 Corintios 9:7</p>
         </div>
 
     </div>

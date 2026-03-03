@@ -79,12 +79,14 @@ class NoticiaResource extends Resource
 
                     Forms\Components\FileUpload::make('imagen_destacada')
                         ->image()
+                        ->disk('public')
                         ->directory('noticias')
+                        ->maxSize(2048)
                         ->imageResizeMode('cover')
                         ->imageCropAspectRatio('16:9')
                         ->imageResizeTargetWidth('1200')
                         ->imageResizeTargetHeight('675')
-                        ->helperText('Recomendado: 1200×675 px (16:9)')
+                        ->helperText('Recomendado: 1200×675 px (16:9). Máx 2MB.')
                         ->columnSpan(1),
 
                     Schemas\Components\Group::make()
@@ -190,12 +192,12 @@ class NoticiaResource extends Resource
                 Tables\Filters\TernaryFilter::make('destacada'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                \Filament\Actions\EditAction::make(),
+                \Filament\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                \Filament\Actions\BulkActionGroup::make([
+                    \Filament\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

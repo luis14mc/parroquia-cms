@@ -1,5 +1,10 @@
 <x-layouts.app title="Nuestra Parroquia | Cristo Resucitado" description="Conoce la historia, misión y visión de la Parroquia Cristo Resucitado en Tegucigalpa, Honduras.">
 
+    @php
+        $stats  = json_decode($contenidos['nosotros.stats'] ?? '[]', true) ?: [];
+        $valores = json_decode($contenidos['nosotros.valores'] ?? '[]', true) ?: [];
+    @endphp
+
     {{-- ═══════════════════════════════════════════════════════
          1. HERO BANNER
     ═══════════════════════════════════════════════════════ --}}
@@ -43,18 +48,20 @@
                     <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white mb-6 leading-tight">
                         Reseña Histórica
                     </h2>
-                    <div class="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                        <p>
-                            La estructura de la Parroquia Cristo Resucitado fue construida el 28 de junio de 1981, donde se colocó la primera piedra por manos de Monseñor Héctor Enrique Santos, en presencia del Párroco Jorge Mathus Cáceres.
-                        </p>
-                        <p>
-                            En 2015 se nombra como Párroco al P. Ricardo Flores y en septiembre de 2017 se realiza un cambio y se le da la responsabilidad como Párroco al P. Javier Martínez, quien funge como responsable de dicha parroquia en la actualidad.
-                        </p>
-                        <p>
-                            La Parroquia comprende las comunidades de: Río Grande Sur, Río Grande Norte, Loarque Sur III Etapa, Puente de Loarque/Colinas de Loarque, Lomas de Loarque, San José de Loarque, Loarque Sur, Altos de Jardines de Loarque, Zona Puente de Loarque, Vista Hermosa Loarque, Nuevo Loarque, Mirador de Loarque, Aldea Yaguacire, Jardines de Loarque y Altos de Loarque.
-                        </p>
+                    <div class="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed prose dark:prose-invert max-w-none">
+                        {!! $contenidos['nosotros.resena'] ?? '<p>La estructura de la Parroquia Cristo Resucitado fue construida el 28 de junio de 1981, donde se colocó la primera piedra por manos de Monseñor Héctor Enrique Santos, en presencia del Párroco Jorge Mathus Cáceres.</p>' !!}
                     </div>
                     {{-- Datos destacados --}}
+                    @if(count($stats) > 0)
+                    <div class="grid grid-cols-{{ count($stats) }} gap-6 mt-10">
+                        @foreach($stats as $stat)
+                        <div class="text-center">
+                            <span class="text-3xl sm:text-4xl font-black text-primary">{{ $stat['numero'] }}</span>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 font-medium">{{ $stat['etiqueta'] }}</p>
+                        </div>
+                        @endforeach
+                    </div>
+                    @else
                     <div class="grid grid-cols-3 gap-6 mt-10">
                         <div class="text-center">
                             <span class="text-3xl sm:text-4xl font-black text-primary">59</span>
@@ -69,6 +76,7 @@
                             <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 font-medium">Pastorales</p>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -93,7 +101,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-text-dark dark:text-white mb-4">Nuestra Misión</h3>
                     <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                        Siendo sensibles y compasivos como Jesús, identificaremos las necesidades de nuestros hermanos y las atenderemos a través de nuestros ministerios, grupos y movimientos parroquiales.
+                        {{ $contenidos['nosotros.mision'] ?? 'Siendo sensibles y compasivos como Jesús, identificaremos las necesidades de nuestros hermanos y las atenderemos a través de nuestros ministerios, grupos y movimientos parroquiales.' }}
                     </p>
                 </div>
 
@@ -106,7 +114,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-text-dark dark:text-white mb-4">Nuestra Visión</h3>
                     <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                        Ser una casa abierta y escuela de comunión, donde se anuncia y vive el evangelio de la misericordia para reflejar a Cristo Resucitado.
+                        {{ $contenidos['nosotros.vision'] ?? 'Ser una casa abierta y escuela de comunión, donde se anuncia y vive el evangelio de la misericordia para reflejar a Cristo Resucitado.' }}
                     </p>
                 </div>
             </div>
@@ -115,6 +123,14 @@
             <div class="mt-16 max-w-5xl mx-auto">
                 <h3 class="text-xl font-bold text-text-dark dark:text-white text-center mb-10">Nuestros Valores</h3>
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                    @forelse($valores as $valor)
+                    <div class="flex flex-col items-center gap-3 p-4 rounded-xl bg-white dark:bg-[#211c11] border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-colors group">
+                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-xl">{{ $valor['icono'] ?? 'star' }}</span>
+                        </div>
+                        <span class="text-sm font-semibold text-text-dark dark:text-white">{{ $valor['titulo'] ?? $valor['label'] ?? '' }}</span>
+                    </div>
+                    @empty
                     @foreach([
                         ['icon' => 'favorite', 'label' => 'Caridad'],
                         ['icon' => 'church', 'label' => 'Fe'],
@@ -130,6 +146,7 @@
                         <span class="text-sm font-semibold text-text-dark dark:text-white">{{ $valor['label'] }}</span>
                     </div>
                     @endforeach
+                    @endforelse
                 </div>
             </div>
         </div>

@@ -92,7 +92,10 @@ class ContenidoResource extends Resource
                     Forms\Components\FileUpload::make('valor')
                         ->label('Imagen')
                         ->image()
+                        ->disk('public')
                         ->directory('contenidos')
+                        ->maxSize(2048)
+                        ->helperText('Máx 2MB.')
                         ->visible(fn (Get $get): bool => $get('tipo') === 'imagen'),
 
                     // JSON
@@ -156,11 +159,11 @@ class ContenidoResource extends Resource
                     ->options(Contenido::tipos()),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                \Filament\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                \Filament\Actions\BulkActionGroup::make([
+                    \Filament\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

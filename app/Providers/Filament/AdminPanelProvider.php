@@ -46,6 +46,9 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make('Pastoral')
                     ->icon('heroicon-o-heart')
                     ->collapsed(false),
+                NavigationGroup::make('Configuración')
+                    ->icon('heroicon-o-cog-6-tooth')
+                    ->collapsed(true),
             ])
             ->sidebarCollapsibleOnDesktop()
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])

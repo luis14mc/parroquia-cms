@@ -6,6 +6,7 @@ namespace App\Filament\Admin\Widgets;
 
 use App\Filament\Admin\Resources\IntencionResource;
 use App\Models\Intencion;
+use Filament\Actions\Action;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;
@@ -52,7 +53,7 @@ class ActividadReciente extends BaseWidget
                     ->since(),
             ])
             ->actions([
-                Tables\Actions\Action::make('ver')
+                Action::make('ver')
                     ->url(fn (Intencion $record): string =>
                         IntencionResource::getUrl('edit', ['record' => $record]))
                     ->icon('heroicon-m-eye'),
