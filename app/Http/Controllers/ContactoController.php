@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Contenido;
 use App\Models\MensajeContacto;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -15,11 +16,14 @@ use Illuminate\Http\Request;
 final class ContactoController extends Controller
 {
     /**
-     * Display the contacto page.
+     * Display the contacto page with dynamic CMS content.
      */
     public function index(): View
     {
-        return view('contacto');
+        return view('contacto', [
+            'contenidos' => Contenido::seccionArray('contacto'),
+            'general'    => Contenido::seccionArray('general'),
+        ]);
     }
 
     /**

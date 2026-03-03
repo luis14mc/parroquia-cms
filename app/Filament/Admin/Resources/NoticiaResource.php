@@ -7,8 +7,9 @@ namespace App\Filament\Admin\Resources;
 use App\Filament\Admin\Resources\NoticiaResource\Pages;
 use App\Models\Noticia;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
@@ -17,9 +18,9 @@ class NoticiaResource extends Resource
 {
     protected static ?string $model = Noticia::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-newspaper';
 
-    protected static ?string $navigationGroup = 'Contenido';
+    protected static string|\UnitEnum|null $navigationGroup = 'Contenido';
 
     protected static ?string $modelLabel = 'Noticia';
 
@@ -27,11 +28,11 @@ class NoticiaResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->schema([
 
-            Forms\Components\Section::make('Información Principal')
+            Schemas\Components\Section::make('Información Principal')
                 ->columns(2)
                 ->schema([
 
@@ -71,7 +72,7 @@ class NoticiaResource extends Resource
                         ->columnSpanFull(),
                 ]),
 
-            Forms\Components\Section::make('Imagen y Categoría')
+            Schemas\Components\Section::make('Imagen y Categoría')
                 ->columns(2)
                 ->schema([
 
@@ -85,7 +86,7 @@ class NoticiaResource extends Resource
                         ->helperText('Recomendado: 1200×675 px (16:9)')
                         ->columnSpan(1),
 
-                    Forms\Components\Group::make()
+                    Schemas\Components\Group::make()
                         ->schema([
                             Forms\Components\Select::make('categoria')
                                 ->options(Noticia::categorias())
@@ -102,7 +103,7 @@ class NoticiaResource extends Resource
                         ->columnSpan(1),
                 ]),
 
-            Forms\Components\Section::make('Publicación')
+            Schemas\Components\Section::make('Publicación')
                 ->columns(3)
                 ->schema([
 

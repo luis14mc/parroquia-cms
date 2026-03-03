@@ -7,8 +7,9 @@ namespace App\Filament\Admin\Resources;
 use App\Filament\Admin\Resources\ContenidoResource\Pages;
 use App\Models\Contenido;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -16,9 +17,9 @@ class ContenidoResource extends Resource
 {
     protected static ?string $model = Contenido::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-pencil-square';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-pencil-square';
 
-    protected static ?string $navigationGroup = 'Contenido';
+    protected static string|\UnitEnum|null $navigationGroup = 'Contenido';
 
     protected static ?string $modelLabel = 'Contenido';
 
@@ -26,11 +27,11 @@ class ContenidoResource extends Resource
 
     protected static ?int $navigationSort = 3;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->schema([
 
-            Forms\Components\Section::make('Identificación')
+            Schemas\Components\Section::make('Identificación')
                 ->columns(2)
                 ->schema([
 
@@ -59,7 +60,7 @@ class ContenidoResource extends Resource
                         ->default('texto'),
                 ]),
 
-            Forms\Components\Section::make('Valor')
+            Schemas\Components\Section::make('Valor')
                 ->schema([
 
                     // Texto corto

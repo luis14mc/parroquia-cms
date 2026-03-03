@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Intencion extends Model
 {
@@ -22,6 +23,7 @@ class Intencion extends Model
         'fecha_deseada',
         'mensaje',
         'estado',
+        'sector_id',
     ];
 
     protected $casts = [
@@ -39,6 +41,13 @@ class Intencion extends Model
     {
         return $query->where('fecha_deseada', '>=', now()->startOfDay())
                      ->orderBy('fecha_deseada');
+    }
+
+    // ── Relaciones ────────────────────────────────────────
+
+    public function sector(): BelongsTo
+    {
+        return $this->belongsTo(Sector::class);
     }
 
     // ── Helpers ───────────────────────────────────────────

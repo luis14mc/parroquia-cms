@@ -7,8 +7,9 @@ namespace App\Filament\Admin\Resources;
 use App\Filament\Admin\Resources\InscripcionResource\Pages;
 use App\Models\Inscripcion;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -16,9 +17,9 @@ class InscripcionResource extends Resource
 {
     protected static ?string $model = Inscripcion::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-clipboard-document-list';
 
-    protected static ?string $navigationGroup = 'Pastoral';
+    protected static string|\UnitEnum|null $navigationGroup = 'Pastoral';
 
     protected static ?string $modelLabel = 'Inscripción';
 
@@ -45,11 +46,11 @@ class InscripcionResource extends Resource
         return 'Inscripciones pendientes';
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->schema([
 
-            Forms\Components\Section::make('Datos del Solicitante')
+            Schemas\Components\Section::make('Datos del Solicitante')
                 ->columns(2)
                 ->schema([
                     Forms\Components\TextInput::make('nombre_completo')
@@ -75,7 +76,7 @@ class InscripcionResource extends Resource
                         ->columnSpanFull(),
                 ]),
 
-            Forms\Components\Section::make('Programa')
+            Schemas\Components\Section::make('Programa')
                 ->columns(2)
                 ->schema([
                     Forms\Components\Select::make('programa')
@@ -90,7 +91,7 @@ class InscripcionResource extends Resource
                         ->columnSpanFull(),
                 ]),
 
-            Forms\Components\Section::make('Gestión')
+            Schemas\Components\Section::make('Gestión')
                 ->schema([
                     Forms\Components\Select::make('estado')
                         ->options(Inscripcion::estados())

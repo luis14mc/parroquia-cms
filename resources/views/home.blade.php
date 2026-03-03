@@ -4,17 +4,17 @@
          1. HERO SECTION
     ═══════════════════════════════════════════════════════ --}}
     <section class="relative w-full h-[500px] sm:h-[600px] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1_y1Zjci-f_LoSPXAOc8D3O6RgdZEcIxAda8p5dPn9hZ4P1fxzda_7m4GIpj5UitLi6zW_u3kH1lAGGFKJiMZpAswGHkzT_FcGHlIAt4I_BQhlUBpN22A75BVoVU4hGb9dma74KjS47SGIpXqcUR_Pib3wtmhcZbCFAxHZJdDLkCkYbpoWKh6EenrvBD7AE-qKTeQZInYxV0cm5FbtCtMM6Rt1uGPOEQ9sHn3khs5Hb4XuGSMK4DfGY5rPjjNkUqCN3pFwKmxIMI');">
+        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ $contenidos['home.hero.imagen'] ?? '' }}');">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"></div>
         </div>
         <div class="relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
             <div class="max-w-2xl">
                 <span class="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider text-white uppercase bg-secondary rounded-full">Bienvenidos</span>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6 tracking-tight drop-shadow-sm">
-                    Una comunidad de fe,<br/> esperanza y amor.
+                    {{ $contenidos['home.hero.titulo'] ?? 'Una comunidad de fe, esperanza y amor.' }}
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-200 mb-8 font-light leading-relaxed max-w-lg drop-shadow-sm">
-                    Únete a nosotros en la celebración de la Eucaristía y crece espiritualmente en la Parroquia Cristo Resucitado.
+                    {{ $contenidos['home.hero.subtitulo'] ?? 'Únete a nosotros en la celebración de la Eucaristía y crece espiritualmente en la Parroquia Cristo Resucitado.' }}
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a class="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-text-dark bg-primary rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/25" href="#horarios">
@@ -38,7 +38,7 @@
             </div>
             <div>
                 <h3 class="font-bold text-lg text-text-dark dark:text-white">Próxima Misa</h3>
-                <p class="text-gray-500 dark:text-gray-400">Hoy, 6:00 PM</p>
+                <p class="text-gray-500 dark:text-gray-400">{{ $contenidos['home.info.proxima_misa'] ?? 'Hoy, 6:00 PM' }}</p>
             </div>
         </div>
         <div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
@@ -48,7 +48,7 @@
             </div>
             <div>
                 <h3 class="font-bold text-lg text-text-dark dark:text-white">Ubicación</h3>
-                <p class="text-gray-500 dark:text-gray-400">Colonia Loarque, Tegucigalpa</p>
+                <p class="text-gray-500 dark:text-gray-400">{{ $contenidos['home.info.ubicacion'] ?? 'Colonia Loarque, Tegucigalpa' }}</p>
             </div>
         </div>
         <div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
@@ -58,7 +58,7 @@
             </div>
             <div>
                 <h3 class="font-bold text-lg text-text-dark dark:text-white">Contáctanos</h3>
-                <p class="text-gray-500 dark:text-gray-400">9430-6883</p>
+                <p class="text-gray-500 dark:text-gray-400">{{ $contenidos['home.info.telefono'] ?? '9430-6883' }}</p>
             </div>
         </div>
     </div>
@@ -95,6 +95,27 @@
                 </div>
                 @endforeach
             </div>
+
+            {{-- Formularios dinámicos del CMS mostrados en Home --}}
+            @if($formularios->isNotEmpty())
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    @foreach($formularios as $form)
+                        <div class="bg-white dark:bg-[#211c11] rounded-xl p-6 border-2 border-primary/30 shadow-sm hover:shadow-md transition-all group">
+                            <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
+                                <span class="material-symbols-outlined text-2xl">edit_note</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">{{ $form->titulo }}</h3>
+                            @if($form->descripcion)
+                                <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">{{ $form->descripcion }}</p>
+                            @endif
+                            <a href="{{ route('formulario.show', $form->slug) }}" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-secondary transition-colors group-hover:gap-2">
+                                Llenar formulario
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </section>
 
@@ -106,14 +127,14 @@
             <div class="flex flex-col lg:flex-row gap-12 items-center">
                 <div class="lg:w-1/2 relative">
                     <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-200 relative shadow-2xl">
-                        <img alt="Retrato del párroco" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD44FcGRSK4Etf-WyU8wWZDKySfla1n6918dr4T4vSLC6tSxEwj6ZlI5Eima0t6vzhlIUXzUkTiqqVSfjFEVdiDXUzmlk2LeuN1Y-GnPO-S70t2PIvgNOlp5R_LraKN6UXooeZawh1DhSohv9Cs7EQQ7Y5lDpMyXjc9dDHMiJTSpoGvYP3YkVHfOeCWmcRfRRqKYID9ksz1IsBwjr8mopkcS9rniXL-JWkIVLtfqtcCEbatsbfcLfLl9RGPigKaBqhznznhThj9Zas" loading="lazy">
+                        <img alt="Retrato del párroco" class="object-cover w-full h-full" src="{{ $contenidos['home.parroco.foto'] ?? '' }}" loading="lazy">
                     </div>
                     <div class="absolute -bottom-6 -right-6 bg-white dark:bg-[#2a2418] p-6 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 max-w-xs hidden sm:block">
                         <div class="flex items-center gap-3 mb-2">
                             <span class="material-symbols-outlined text-primary">format_quote</span>
                         </div>
                         <p class="text-sm text-gray-600 dark:text-gray-300 italic">
-                            "Que la luz de Cristo Resucitado ilumine siempre sus caminos y fortalezca sus corazones."
+                            "{{ $contenidos['home.parroco.cita'] ?? 'Que la luz de Cristo Resucitado ilumine siempre sus caminos y fortalezca sus corazones.' }}"
                         </p>
                     </div>
                 </div>
@@ -121,18 +142,13 @@
                     <span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Mensaje del Párroco</span>
                     <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white mb-6 leading-tight">Paz y Bien a Todos</h2>
                     <div class="prose prose-lg text-gray-600 dark:text-gray-300 mb-8">
-                        <p class="mb-4">
-                            Es un honor darles la bienvenida a nuestra comunidad parroquial. En la Parroquia Cristo Resucitado, nos esforzamos por ser un faro de esperanza y un hogar espiritual para todos.
-                        </p>
-                        <p>
-                            Aquí encontrarán un espacio para crecer en la fe, servir al prójimo y celebrar los sacramentos. Los invito a participar activamente en nuestras pastorales y a formar parte de esta gran familia.
-                        </p>
+                        {!! $contenidos['home.parroco.mensaje'] ?? '<p>Es un honor darles la bienvenida a nuestra comunidad parroquial.</p>' !!}
                     </div>
                     <div class="flex items-center gap-4 mb-8">
-                        <div class="h-12 w-12 bg-gray-200 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBQ7xApshyQ_t3gzd2zG1YhnqXJlDV2859qneva6olq0xBeuVHbUtIM6dk6pUQnf2aZBIYIK5zYkHFWlJyFHphVm8WeTNEHUdqL9N7vX1E8YOsmPtD2PKd1MWdiodQMZnaMk0pjdbU8mn8Q4u7BRbLA-QQbn1NwosLsQHJR3I1biKeQ2JuK23qREt6RuGMdJsUq2T5Ub7PQszkNrl8hDcpVIIhVUnscLnT-97SElPuEZIjK01tOgfzHTlfKC2LyFLHIZ_OkSSqTLow')"></div>
+                        <div class="h-12 w-12 bg-gray-200 rounded-full bg-cover bg-center" style="background-image: url('{{ $contenidos['home.parroco.foto'] ?? '' }}')"></div>
                         <div>
-                            <p class="font-bold text-text-dark dark:text-white">P. Javier</p>
-                            <p class="text-sm text-gray-500">Párroco</p>
+                            <p class="font-bold text-text-dark dark:text-white">{{ $contenidos['home.parroco.nombre'] ?? 'P. Javier' }}</p>
+                            <p class="text-sm text-gray-500">{{ $contenidos['home.parroco.cargo'] ?? 'Párroco' }}</p>
                         </div>
                     </div>
                     <a class="text-primary font-bold hover:text-secondary transition-colors inline-flex items-center gap-1 group" href="{{ route('contacto') }}">
@@ -147,6 +163,9 @@
     {{-- ═══════════════════════════════════════════════════════
          5. HORARIOS DE MISA
     ═══════════════════════════════════════════════════════ --}}
+    @php
+        $horarios = json_decode($contenidos['home.horarios'] ?? '[]', true) ?: [];
+    @endphp
     <section id="horarios" class="py-20 bg-background-light dark:bg-background-dark">
         <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -154,159 +173,48 @@
                 <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white">Horarios de Misa</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {{-- Sede Parroquial --}}
-                <div class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm md:col-span-2">
-                    <div class="bg-secondary px-6 py-4">
-                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                            <span class="material-symbols-outlined">church</span>
-                            Sede Parroquial
-                        </h3>
-                    </div>
-                    <div class="p-6">
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                            <div>
-                                <h4 class="font-bold text-text-dark dark:text-white mb-3 flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-primary text-lg">calendar_today</span>
-                                    Lunes a Viernes
-                                </h4>
-                                <ul class="space-y-2">
-                                    <li class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
-                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
-                                        7:00 AM
-                                    </li>
-                                    <li class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
-                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
-                                        5:00 PM
-                                    </li>
-                                    <li class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
-                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
-                                        7:00 PM
-                                    </li>
+                @foreach($horarios as $sede)
+                    @php $isPrincipal = ($loop->first); @endphp
+                    <div class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm {{ $isPrincipal ? 'md:col-span-2' : '' }}">
+                        <div class="{{ $isPrincipal ? 'bg-secondary' : 'bg-primary/90' }} px-6 py-4">
+                            <h3 class="{{ $isPrincipal ? 'text-xl text-white' : 'text-lg text-text-dark' }} font-bold flex items-center gap-2">
+                                <span class="material-symbols-outlined">{{ $isPrincipal ? 'church' : 'home' }}</span>
+                                {{ $sede['nombre'] ?? 'Sede' }}
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            @if($isPrincipal && isset($sede['dias']))
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                                    @foreach($sede['dias'] as $dia)
+                                        <div>
+                                            <h4 class="font-bold text-text-dark dark:text-white mb-3 flex items-center gap-2">
+                                                <span class="material-symbols-outlined text-primary text-lg">calendar_today</span>
+                                                {{ $dia['dia'] }}
+                                            </h4>
+                                            <ul class="space-y-2">
+                                                @foreach($dia['horas'] as $hora)
+                                                    <li class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
+                                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
+                                                        {{ $hora }}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @elseif(isset($sede['dias']))
+                                <ul class="space-y-3">
+                                    @foreach($sede['dias'] as $dia)
+                                        <li class="flex items-center justify-between text-sm">
+                                            <span class="font-medium text-text-dark dark:text-white">{{ $dia['dia'] }}</span>
+                                            <span class="text-gray-600 dark:text-gray-400">{{ implode(', ', $dia['horas'] ?? []) }}</span>
+                                        </li>
+                                    @endforeach
                                 </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-text-dark dark:text-white mb-3 flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-primary text-lg">calendar_today</span>
-                                    Sábado
-                                </h4>
-                                <ul class="space-y-2">
-                                    <li class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
-                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
-                                        7:00 AM
-                                    </li>
-                                    <li class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
-                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
-                                        5:30 PM
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-text-dark dark:text-white mb-3 flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-primary text-lg">calendar_today</span>
-                                    Domingo
-                                </h4>
-                                <ul class="space-y-2">
-                                    <li class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
-                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
-                                        9:15 AM
-                                    </li>
-                                    <li class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
-                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
-                                        11:00 AM
-                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-secondary/10 text-secondary rounded-full text-xs font-medium">
-                                            <span class="material-symbols-outlined text-xs">live_tv</span>
-                                            En vivo
-                                        </span>
-                                    </li>
-                                    <li class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
-                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
-                                        5:00 PM
-                                    </li>
-                                    <li class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
-                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
-                                        7:00 PM
-                                    </li>
-                                </ul>
-                            </div>
+                            @endif
                         </div>
                     </div>
-                </div>
-
-                {{-- Capilla Yaguacire --}}
-                <div class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm">
-                    <div class="bg-primary/90 px-6 py-4">
-                        <h3 class="text-lg font-bold text-text-dark flex items-center gap-2">
-                            <span class="material-symbols-outlined">home</span>
-                            Capilla Yaguacire
-                        </h3>
-                    </div>
-                    <div class="p-6">
-                        <ul class="space-y-3">
-                            <li class="flex items-center justify-between text-sm">
-                                <span class="font-medium text-text-dark dark:text-white">Domingo</span>
-                                <span class="text-gray-600 dark:text-gray-400">7:00 AM</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                {{-- Capilla Altos de Loarque --}}
-                <div class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm">
-                    <div class="bg-primary/90 px-6 py-4">
-                        <h3 class="text-lg font-bold text-text-dark flex items-center gap-2">
-                            <span class="material-symbols-outlined">home</span>
-                            Capilla Altos de Loarque
-                        </h3>
-                    </div>
-                    <div class="p-6">
-                        <ul class="space-y-3">
-                            <li class="flex items-center justify-between text-sm">
-                                <span class="font-medium text-text-dark dark:text-white">Miércoles</span>
-                                <span class="text-gray-600 dark:text-gray-400">6:00 PM</span>
-                            </li>
-                            <li class="flex items-center justify-between text-sm">
-                                <span class="font-medium text-text-dark dark:text-white">Domingo</span>
-                                <span class="text-gray-600 dark:text-gray-400">9:00 AM</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                {{-- Las Mercedes --}}
-                <div class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm">
-                    <div class="bg-primary/90 px-6 py-4">
-                        <h3 class="text-lg font-bold text-text-dark flex items-center gap-2">
-                            <span class="material-symbols-outlined">home</span>
-                            Las Mercedes
-                        </h3>
-                    </div>
-                    <div class="p-6">
-                        <ul class="space-y-3">
-                            <li class="flex items-center justify-between text-sm">
-                                <span class="font-medium text-text-dark dark:text-white">Sábado</span>
-                                <span class="text-gray-600 dark:text-gray-400">3:30 PM</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                {{-- Camino Neo-catecumenal --}}
-                <div class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm">
-                    <div class="bg-primary/90 px-6 py-4">
-                        <h3 class="text-lg font-bold text-text-dark flex items-center gap-2">
-                            <span class="material-symbols-outlined">directions_walk</span>
-                            Camino Neo-catecumenal
-                        </h3>
-                    </div>
-                    <div class="p-6">
-                        <ul class="space-y-3">
-                            <li class="flex items-center justify-between text-sm">
-                                <span class="font-medium text-text-dark dark:text-white">Sábado</span>
-                                <span class="text-gray-600 dark:text-gray-400">7:00 PM</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -314,6 +222,7 @@
     {{-- ═══════════════════════════════════════════════════════
          5b. INTENCIONES DE MISA (WHATSAPP)
     ═══════════════════════════════════════════════════════ --}}
+    @php $whatsapp = $contenidos['home.whatsapp.mensaje'] ?? 'Hola, me gustaría anotar una intención de misa.'; @endphp
     <section class="py-16 bg-gray-50 dark:bg-[#1a160e]">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-[#211c11] rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden">
@@ -332,7 +241,7 @@
                         </p>
                     </div>
                     <div class="flex-shrink-0">
-                        <a href="https://wa.me/50494306883?text=Hola%2C%20me%20gustar%C3%ADa%20anotar%20una%20intenci%C3%B3n%20de%20misa." 
+                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $general['general.whatsapp'] ?? '50494306883') }}?text={{ urlencode($whatsapp) }}" 
                            target="_blank" 
                            rel="noopener noreferrer"
                            class="w-full md:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl transition-colors shadow-lg shadow-green-500/25">
@@ -348,6 +257,10 @@
     {{-- ═══════════════════════════════════════════════════════
          6. NUESTROS SACERDOTES
     ═══════════════════════════════════════════════════════ --}}
+    @php
+        $sacerdotes = json_decode($contenidos['home.sacerdotes'] ?? '[]', true) ?: [];
+    @endphp
+    @if(count($sacerdotes) > 0)
     <section class="py-20 bg-gray-50 dark:bg-[#1a160e]">
         <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -355,42 +268,31 @@
                 <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white">Nuestros Sacerdotes</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                {{-- Padre Javier --}}
+                @foreach($sacerdotes as $sacerdote)
                 <div class="bg-white dark:bg-[#211c11] rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-lg transition-shadow text-center p-8">
                     <div class="w-32 h-32 mx-auto rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden mb-6 ring-4 ring-primary/20">
-                        <img alt="Padre Javier" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ7xApshyQ_t3gzd2zG1YhnqXJlDV2859qneva6olq0xBeuVHbUtIM6dk6pUQnf2aZBIYIK5zYkHFWlJyFHphVm8WeTNEHUdqL9N7vX1E8YOsmPtD2PKd1MWdiodQMZnaMk0pjdbU8mn8Q4u7BRbLA-QQbn1NwosLsQHJR3I1biKeQ2JuK23qREt6RuGMdJsUq2T5Ub7PQszkNrl8hDcpVIIhVUnscLnT-97SElPuEZIjK01tOgfzHTlfKC2LyFLHIZ_OkSSqTLow" loading="lazy">
+                        <img alt="{{ $sacerdote['nombre'] ?? '' }}" class="w-full h-full object-cover" src="{{ $sacerdote['foto'] ?? '' }}" loading="lazy">
                     </div>
-                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-1">P. Javier</h3>
-                    <p class="text-primary font-medium text-sm mb-4">Párroco</p>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                        Guiando a nuestra comunidad con amor, dedicación y compromiso con la evangelización.
-                    </p>
+                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-1">{{ $sacerdote['nombre'] ?? '' }}</h3>
+                    <p class="text-primary font-medium text-sm mb-4">{{ $sacerdote['cargo'] ?? '' }}</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{{ $sacerdote['descripcion'] ?? '' }}</p>
                 </div>
-                {{-- Padre Eduardo --}}
-                <div class="bg-white dark:bg-[#211c11] rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-lg transition-shadow text-center p-8">
-                    <div class="w-32 h-32 mx-auto rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden mb-6 ring-4 ring-primary/20">
-                        <img alt="Padre Eduardo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD44FcGRSK4Etf-WyU8wWZDKySfla1n6918dr4T4vSLC6tSxEwj6ZlI5Eima0t6vzhlIUXzUkTiqqVSfjFEVdiDXUzmlk2LeuN1Y-GnPO-S70t2PIvgNOlp5R_LraKN6UXooeZawh1DhSohv9Cs7EQQ7Y5lDpMyXjc9dDHMiJTSpoGvYP3YkVHfOeCWmcRfRRqKYID9ksz1IsBwjr8mopkcS9rniXL-JWkIVLtfqtcCEbatsbfcLfLl9RGPigKaBqhznznhThj9Zas" loading="lazy">
-                    </div>
-                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-1">P. Eduardo</h3>
-                    <p class="text-primary font-medium text-sm mb-4">Vicario Parroquial</p>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                        Acompañando a las familias y jóvenes en su camino de fe y crecimiento espiritual.
-                    </p>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
+    @endif
 
     {{-- ═══════════════════════════════════════════════════════
          7. APOYA NUESTRA MISIÓN (CTA)
     ═══════════════════════════════════════════════════════ --}}
     <section class="py-24 relative overflow-hidden">
         <div class="absolute inset-0 bg-secondary/95 z-0"></div>
-        <div class="absolute inset-0 z-0 bg-cover bg-center mix-blend-overlay opacity-20" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA51yIlr5EyTJaCeOGx4xaN-I17Tj1cYbJrvcEKZAQItQ8jLhFTnwARiFxe08Tjdrv49pPXDjF9lMQ5QQ7oGz2d2GA6jXWjDjNc_pNsKxJIkSQLuhCeYC8K1y2nSOYbb6rX2e61Kys6uH17p5RGuIRNSq5z__HfILoYkCTptSpMAMnti8J8fm5pPwb3n6G_Q4cXILfTDn9uCPDMkx5Af4Oeu8W-Vx4siBsIZtzE-4N-QRirEqP7xxF0IzaQu2JXY6UTDdB3QdOx42A');"></div>
+        <div class="absolute inset-0 z-0 bg-cover bg-center mix-blend-overlay opacity-20" style="background-image: url('{{ $contenidos['home.hero.imagen'] ?? '' }}');"></div>
         <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
-            <h2 class="text-3xl sm:text-5xl font-black text-white mb-6 tracking-tight">Apoya nuestra Misión</h2>
+            <h2 class="text-3xl sm:text-5xl font-black text-white mb-6 tracking-tight">{{ $contenidos['home.cta.titulo'] ?? 'Apoya nuestra Misión' }}</h2>
             <p class="text-white/90 text-lg sm:text-xl mb-10 leading-relaxed">
-                Tu generosidad nos ayuda a mantener nuestro templo, apoyar a los necesitados y continuar con la evangelización. Cada aporte cuenta.
+                {{ $contenidos['home.cta.texto'] ?? 'Tu generosidad nos ayuda a mantener nuestro templo, apoyar a los necesitados y continuar con la evangelización. Cada aporte cuenta.' }}
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="{{ route('donaciones') }}" class="w-full sm:w-auto px-8 py-4 bg-primary text-text-dark font-bold rounded-lg hover:bg-white hover:text-secondary transition-colors shadow-lg shadow-black/20">
@@ -406,6 +308,7 @@
     {{-- ═══════════════════════════════════════════════════════
          8. PRÓXIMOS EVENTOS
     ═══════════════════════════════════════════════════════ --}}
+    @if($eventos->isNotEmpty())
     <section class="py-20 bg-background-light dark:bg-background-dark">
         <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -413,38 +316,41 @@
                 <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white">Próximos Eventos</h2>
             </div>
             <div class="flex flex-col gap-4">
-                @foreach([
-                    ['month' => 'MAR', 'day' => '08', 'title' => 'Conmemoración de los Fieles Difuntos', 'desc' => 'Santas Misas durante todo el día para orar por nuestros seres queridos.', 'time' => '08:00 AM - 07:00 PM'],
-                    ['month' => 'MAR', 'day' => '15', 'title' => 'Retiro Espiritual de Parejas', 'desc' => 'Un día para fortalecer el amor y la fe en el matrimonio. Salón Parroquial.', 'time' => '09:00 AM - 04:00 PM'],
-                    ['month' => 'MAR', 'day' => '22', 'title' => 'Fiesta de Cristo Rey', 'desc' => 'Procesión solemne y Misa Mayor para celebrar a nuestro patrono universal.', 'time' => '10:00 AM - 12:30 PM'],
-                ] as $event)
+                @foreach($eventos as $evento)
                 <div class="group flex flex-col md:flex-row items-center gap-6 bg-white dark:bg-[#211c11] p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800 transition-all">
                     <div class="flex-shrink-0 w-full md:w-24 flex flex-row md:flex-col items-center justify-center gap-2 md:gap-0 bg-gray-50 dark:bg-white/5 rounded-lg p-3 text-center border border-gray-100 dark:border-gray-700">
-                        <span class="text-secondary font-bold text-sm uppercase">{{ $event['month'] }}</span>
-                        <span class="text-3xl font-black text-text-dark dark:text-white">{{ $event['day'] }}</span>
+                        <span class="text-secondary font-bold text-sm uppercase">{{ $evento->fecha?->translatedFormat('M') ?? '' }}</span>
+                        <span class="text-3xl font-black text-text-dark dark:text-white">{{ $evento->fecha?->format('d') ?? '' }}</span>
                     </div>
                     <div class="flex-grow text-center md:text-left">
-                        <h3 class="text-xl font-bold text-text-dark dark:text-white group-hover:text-primary transition-colors">{{ $event['title'] }}</h3>
-                        <p class="text-gray-500 dark:text-gray-400 mt-1">{{ $event['desc'] }}</p>
+                        <h3 class="text-xl font-bold text-text-dark dark:text-white group-hover:text-primary transition-colors">{{ $evento->titulo }}</h3>
+                        @if($evento->descripcion)
+                            <p class="text-gray-500 dark:text-gray-400 mt-1">{{ $evento->descripcion }}</p>
+                        @endif
+                        @if($evento->ubicacion)
+                            <p class="text-gray-400 dark:text-gray-500 text-sm mt-1 flex items-center gap-1 justify-center md:justify-start">
+                                <span class="material-symbols-outlined text-sm">location_on</span>
+                                {{ $evento->ubicacion }}
+                            </p>
+                        @endif
                     </div>
-                    <div class="flex-shrink-0 flex items-center gap-6 w-full md:w-auto justify-center md:justify-end">
-                        <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                            <span class="material-symbols-outlined text-lg">schedule</span>
-                            {{ $event['time'] }}
-                        </div>
-                        <a class="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 text-gray-400 hover:text-primary hover:border-primary transition-all" href="#">
-                            <span class="material-symbols-outlined">chevron_right</span>
-                        </a>
+                    @if($evento->hora)
+                    <div class="flex-shrink-0 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                        <span class="material-symbols-outlined text-lg">schedule</span>
+                        {{ \Carbon\Carbon::parse($evento->hora)->format('h:i A') }}
                     </div>
+                    @endif
                 </div>
                 @endforeach
             </div>
         </div>
     </section>
+    @endif
 
     {{-- ═══════════════════════════════════════════════════════
          9. NOTICIAS RECIENTES
     ═══════════════════════════════════════════════════════ --}}
+    @if($noticias->isNotEmpty())
     <section class="py-20 bg-gray-50 dark:bg-[#1a160e]">
         <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
@@ -452,47 +358,39 @@
                 <h2 class="text-3xl font-black text-text-dark dark:text-white">Noticias Recientes</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {{-- News Card 1 --}}
+                @foreach($noticias->take(3) as $noticia)
                 <article class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800 flex flex-col h-full">
+                    @if($noticia->imagen)
                     <div class="relative h-48 overflow-hidden">
-                        <img alt="Community gathering" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyyYMANkdYKyUXZqRuzdHcVD0xNlUkb6EjOmW1t5PbHlDkONRr4lOpRC8KOksorxXXmTEvNJKmmWMpGahxlcppIQ823ZB7R3LMxu3K6M1A1UNA8ilkP8A7KzVfg4Z_W5XksNnOEvotuL2uD1xENoAxHmMCl7ekcbLY01wXq2o8nMI572Wx2SgfNamv2FcUAqPGGBoRyNb_Exzj9ia5Sk7Vb6umWTSifIeel97N98hYW86mII-m4y3GE25_-boMV4yJZIQZMtBR4n8" loading="lazy">
-                        <div class="absolute top-4 left-4 bg-white dark:bg-black/80 px-3 py-1 rounded text-xs font-bold text-text-dark dark:text-white shadow-sm">15 Oct, 2023</div>
+                        <img alt="{{ $noticia->titulo }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ asset('storage/' . $noticia->imagen) }}" loading="lazy">
+                        <div class="absolute top-4 left-4 bg-white dark:bg-black/80 px-3 py-1 rounded text-xs font-bold text-text-dark dark:text-white shadow-sm">
+                            {{ $noticia->fecha_publicacion?->translatedFormat('d M, Y') }}
+                        </div>
                     </div>
+                    @endif
                     <div class="p-6 flex flex-col flex-grow">
-                        <div class="mb-4"><span class="text-xs font-bold text-primary uppercase tracking-wider">Comunidad</span></div>
-                        <h3 class="text-xl font-bold text-text-dark dark:text-white mb-3 group-hover:text-primary transition-colors">Jornada Mundial de los Pobres</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">Nuestra parroquia se une a la iniciativa del Papa Francisco para tender la mano a los más necesitados de nuestra comunidad con una colecta especial.</p>
-                        <a class="text-sm font-bold text-text-dark dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all" href="#">Leer más <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span></a>
+                        @if($noticia->categoria)
+                        <div class="mb-4">
+                            <span class="text-xs font-bold text-primary uppercase tracking-wider">{{ $noticia->categoria }}</span>
+                        </div>
+                        @endif
+                        <h3 class="text-xl font-bold text-text-dark dark:text-white mb-3 group-hover:text-primary transition-colors">{{ $noticia->titulo }}</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">{{ $noticia->extracto }}</p>
+                        <a class="text-sm font-bold text-text-dark dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all" href="{{ route('noticias.show', $noticia->slug) }}">
+                            Leer más <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
+                        </a>
                     </div>
                 </article>
-                {{-- News Card 2 --}}
-                <article class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800 flex flex-col h-full">
-                    <div class="relative h-48 overflow-hidden">
-                        <img alt="Children in catechesis" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJHpZMSfq3Lvr2Tz30fJHLTNr_cuYR57JlLjrYq4X0PPxcZXGlK8rV7XhQbv23wUHsISB1iVbz6EW7F96m8iCc4DVOBpJV9XndBBodd3D_PbkgwtSxaZ_9IGhJ9xp8EGg6kXYM-X_2_Www77Eh6PqRkcQU6flarGI-0rbw5at6DDXijF56tSYsjpeH7G3mi2O4nbbdz3N-tCdUKjZsibPDsh2bn4MWQwygFfq5rk1NCIICzZzlsPb7kmsrkNMVM34ulLmLUFzAwq8" loading="lazy">
-                        <div class="absolute top-4 left-4 bg-white dark:bg-black/80 px-3 py-1 rounded text-xs font-bold text-text-dark dark:text-white shadow-sm">12 Oct, 2023</div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="mb-4"><span class="text-xs font-bold text-primary uppercase tracking-wider">Catequesis</span></div>
-                        <h3 class="text-xl font-bold text-text-dark dark:text-white mb-3 group-hover:text-primary transition-colors">Inscripciones Abiertas para Catequesis</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">Ya están abiertas las inscripciones para el nuevo ciclo de catequesis de primera comunión y confirmación. Acércate a la oficina parroquial.</p>
-                        <a class="text-sm font-bold text-text-dark dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all" href="#">Leer más <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span></a>
-                    </div>
-                </article>
-                {{-- News Card 3 --}}
-                <article class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800 flex flex-col h-full">
-                    <div class="relative h-48 overflow-hidden">
-                        <img alt="Choir singing during mass" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8C8MM8JZtblxXv6r3n4zzYeHctcxxpBpT6MBlAw4uZQgoTVR0FDHmr6EiKmVqQkWcbO54FB-IBzg_GAwR3OxU8zEo0PlMFn6T2aM3R336DhqzfYbDA8Ui4GjIe9O5OdNlEUuerH3k0tLg8xdBEwB8pBIItttOxruNso0swNLPu6Wt6K0AwbdR6xrjdM8xfzV4LutNOdyYkf7nZpnYK9KMeJAdOik2T9vwrlI1DF2pwbqnEJbiSPqCXfKtVV5h12chPlMbPXwjXD4" loading="lazy">
-                        <div class="absolute top-4 left-4 bg-white dark:bg-black/80 px-3 py-1 rounded text-xs font-bold text-text-dark dark:text-white shadow-sm">08 Oct, 2023</div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="mb-4"><span class="text-xs font-bold text-primary uppercase tracking-wider">Liturgia</span></div>
-                        <h3 class="text-xl font-bold text-text-dark dark:text-white mb-3 group-hover:text-primary transition-colors">Concierto de Coros Parroquiales</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">Disfruta de una noche de alabanza y música sacra con la participación de todos los coros de nuestra parroquia este próximo sábado.</p>
-                        <a class="text-sm font-bold text-text-dark dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all" href="#">Leer más <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span></a>
-                    </div>
-                </article>
+                @endforeach
+            </div>
+            <div class="text-center mt-10">
+                <a href="{{ route('noticias') }}" class="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all">
+                    Ver todas las noticias
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                </a>
             </div>
         </div>
     </section>
+    @endif
 
 </x-layouts.app>

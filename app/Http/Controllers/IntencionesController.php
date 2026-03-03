@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Contenido;
 use App\Models\Intencion;
+use App\Models\Sector;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,11 +14,15 @@ use Illuminate\Http\Request;
 final class IntencionesController extends Controller
 {
     /**
-     * Mostrar el formulario de intenciones.
+     * Mostrar el formulario de intenciones con sectores dinámicos.
      */
     public function index(): View
     {
-        return view('intenciones');
+        return view('intenciones', [
+            'contenidos' => Contenido::seccionArray('intenciones'),
+            'general'    => Contenido::seccionArray('general'),
+            'sectores'   => Sector::activos()->orderBy('nombre')->get(),
+        ]);
     }
 
     /**
@@ -30,6 +36,7 @@ final class IntencionesController extends Controller
             'telefono'        => 'nullable|string|max:30',
             'intencion'       => 'required|string|max:500',
             'fecha_deseada'   => 'required|date|after_or_equal:today',
+            'sector_id'       => 'required|exists:sectores,id',
             'mensaje'         => 'nullable|string|max:2000',
         ]);
 

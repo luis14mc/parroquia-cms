@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Filament\Admin\Resources\SectorResource\Pages;
+
+use App\Filament\Admin\Resources\SectorResource;
+use Filament\Resources\Pages\EditRecord;
+
+class EditSector extends EditRecord
+{
+    protected static string $resource = SectorResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            \Filament\Actions\DeleteAction::make(),
+        ];
+    }
+}

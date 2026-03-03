@@ -7,8 +7,9 @@ namespace App\Filament\Admin\Resources;
 use App\Filament\Admin\Resources\MensajeContactoResource\Pages;
 use App\Models\MensajeContacto;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -16,9 +17,9 @@ class MensajeContactoResource extends Resource
 {
     protected static ?string $model = MensajeContacto::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-envelope';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-envelope';
 
-    protected static ?string $navigationGroup = 'Pastoral';
+    protected static string|\UnitEnum|null $navigationGroup = 'Pastoral';
 
     protected static ?string $modelLabel = 'Mensaje';
 
@@ -50,11 +51,11 @@ class MensajeContactoResource extends Resource
         return false;
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->schema([
 
-            Forms\Components\Section::make('Datos del Remitente')
+            Schemas\Components\Section::make('Datos del Remitente')
                 ->columns(2)
                 ->schema([
                     Forms\Components\TextInput::make('nombre_completo')
@@ -68,7 +69,7 @@ class MensajeContactoResource extends Resource
                         ->disabled(),
                 ]),
 
-            Forms\Components\Section::make('Mensaje')
+            Schemas\Components\Section::make('Mensaje')
                 ->schema([
                     Forms\Components\TextInput::make('asunto')
                         ->disabled(),
@@ -78,7 +79,7 @@ class MensajeContactoResource extends Resource
                         ->rows(6),
                 ]),
 
-            Forms\Components\Section::make('Gestión')
+            Schemas\Components\Section::make('Gestión')
                 ->schema([
                     Forms\Components\Select::make('estado')
                         ->options(MensajeContacto::estados())

@@ -185,6 +185,20 @@
                         @enderror
                     </div>
 
+                    {{-- Sector --}}
+                    <div class="flex flex-col gap-2 md:col-span-2">
+                        <label for="sector_id" class="text-sm font-semibold text-text-dark dark:text-white">Sector / Comunidad</label>
+                        <select id="sector_id" name="sector_id" required class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all dark:bg-white/5 dark:border-white/10 dark:text-white @error('sector_id') border-red-500 @enderror">
+                            <option value="">— Seleccione su sector —</option>
+                            @foreach($sectores as $sector)
+                                <option value="{{ $sector->id }}" {{ old('sector_id') == $sector->id ? 'selected' : '' }}>{{ $sector->nombre }}</option>
+                            @endforeach
+                        </select>
+                        @error('sector_id')
+                            <p class="text-red-500 text-xs">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <div class="flex flex-col gap-2 md:col-span-2">
                         <label for="mensaje" class="text-sm font-semibold text-text-dark dark:text-white">Mensaje adicional (Opcional)</label>
                         <textarea id="mensaje" name="mensaje" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 resize-none dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="Cualquier detalle extra que el padre deba saber..." rows="3">{{ old('mensaje') }}</textarea>

@@ -7,8 +7,9 @@ namespace App\Filament\Admin\Resources;
 use App\Filament\Admin\Resources\IntencionResource\Pages;
 use App\Models\Intencion;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -16,9 +17,9 @@ class IntencionResource extends Resource
 {
     protected static ?string $model = Intencion::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-heart';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-heart';
 
-    protected static ?string $navigationGroup = 'Pastoral';
+    protected static string|\UnitEnum|null $navigationGroup = 'Pastoral';
 
     protected static ?string $modelLabel = 'Intención';
 
@@ -45,11 +46,11 @@ class IntencionResource extends Resource
         return 'Intenciones pendientes';
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->schema([
 
-            Forms\Components\Section::make('Datos del Solicitante')
+            Schemas\Components\Section::make('Datos del Solicitante')
                 ->columns(2)
                 ->schema([
 
@@ -63,13 +64,18 @@ class IntencionResource extends Resource
                         ->disabled(),
                 ]),
 
-            Forms\Components\Section::make('Intención')
+            Schemas\Components\Section::make('Intención')
                 ->columns(2)
                 ->schema([
 
                     Forms\Components\Select::make('tipo')
                         ->options(Intencion::tipos())
                         ->required()
+                        ->disabled(),
+
+                    Forms\Components\Select::make('sector_id')
+                        ->label('Sector')
+                        ->relationship('sector', 'nombre')
                         ->disabled(),
 
                     Forms\Components\DatePicker::make('fecha_deseada')
@@ -88,7 +94,7 @@ class IntencionResource extends Resource
                         ->columnSpanFull(),
                 ]),
 
-            Forms\Components\Section::make('Gestión')
+            Schemas\Components\Section::make('Gestión')
                 ->schema([
                     Forms\Components\Select::make('estado')
                         ->options(Intencion::estados())
@@ -117,6 +123,11 @@ class IntencionResource extends Resource
                     ->label('Solicitante')
                     ->searchable()
                     ->sortable(),
+
+                Tables\Columns\TextColumn::make('sector.nombre')
+                    ->label('Sector')
+                    ->sortable()
+                    ->toggleable(),
 
                 Tables\Columns\TextColumn::make('intencion')
                     ->label('Intención')
@@ -150,6 +161,10 @@ class IntencionResource extends Resource
 
                 Tables\Filters\SelectFilter::make('estado')
                     ->options(Intencion::estados()),
+
+                Tables\Filters\SelectFilter::make('sector_id')
+                    ->label('Sector')
+                    ->relationship('sector', 'nombre'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
