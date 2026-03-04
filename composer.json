@@ -27,9 +27,6 @@
         },
         "exclude-from-classmap": [
             "vendor/laravel/framework/src/Illuminate/Support/Number.php"
-        ],
-        "classmap": [
-            "app/Support/Number.php"
         ]
     },
     "autoload-dev": {
