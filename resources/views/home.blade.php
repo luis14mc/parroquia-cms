@@ -4,7 +4,7 @@
          1. HERO SECTION
     ═══════════════════════════════════════════════════════ --}}
     <section class="relative w-full h-[500px] sm:h-[600px] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/hero-home.jpg') }}');">
+        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/heroes/home-hero.png') }}');">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"></div>
         </div>
         <div class="relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
@@ -31,6 +31,60 @@
     {{-- ═══════════════════════════════════════════════════════
          2. QUICK INFO BAR
     ═══════════════════════════════════════════════════════ --}}
+    @php
+        // Horarios reales de misa (de referencia)
+        $horariosMisas = [
+            // Sede Parroquial
+            ['dia' => 'Lunes', 'horas' => ['7:00', '17:00', '19:00']],
+            ['dia' => 'Martes', 'horas' => ['7:00', '17:00', '19:00']],
+            ['dia' => 'Miércoles', 'horas' => ['7:00', '17:00', '19:00']],
+            ['dia' => 'Jueves', 'horas' => ['7:00', '17:00', '19:00']],
+            ['dia' => 'Viernes', 'horas' => ['7:00', '17:00', '19:00']],
+            ['dia' => 'Sábado', 'horas' => ['15:30', '17:30', '19:00']],
+            ['dia' => 'Domingo', 'horas' => ['7:00', '9:00', '9:15', '11:00', '17:00', '19:00']],
+            // Altos de Loarque
+            ['dia' => 'Miércoles', 'horas' => ['18:00']],
+            ['dia' => 'Domingo', 'horas' => ['9:00']],
+            // Yaguacire
+            ['dia' => 'Domingo', 'horas' => ['7:00']],
+            // Fuerza Aérea
+            ['dia' => 'Domingo', 'horas' => ['8:15']],
+            // Las Mercedes
+            ['dia' => 'Sábado', 'horas' => ['15:30']],
+            // Camino Neocatecumenal
+            ['dia' => 'Sábado', 'horas' => ['19:00']],
+        ];
+        // Calcular próxima misa
+        $now = new DateTime('now', new DateTimeZone('America/Tegucigalpa'));
+        $diasSemana = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+        $hoy = $diasSemana[$now->format('w')];
+        $horaActual = $now->format('H:i');
+        $proximaMisa = null;
+        foreach ($horariosMisas as $hm) {
+            if ($hm['dia'] === $hoy) {
+                foreach ($hm['horas'] as $h) {
+                    $h24 = strlen($h) === 4 ? '0'.$h : $h;
+                    if ($h24.':00' > $horaActual.':00') {
+                        $proximaMisa = $h.' - '.$hm['dia'];
+                        break 2;
+                    }
+                }
+            }
+        }
+        if (!$proximaMisa) {
+            // Buscar la primera misa del siguiente día
+            $idx = array_search($hoy, $diasSemana);
+            for ($i = 1; $i <= 7; $i++) {
+                $diaSig = $diasSemana[($idx + $i) % 7];
+                foreach ($horariosMisas as $hm) {
+                    if ($hm['dia'] === $diaSig) {
+                        $proximaMisa = $hm['horas'][0].' - '.$hm['dia'];
+                        break 2;
+                    }
+                }
+            }
+        }
+    @endphp
     <div class="w-full bg-white dark:bg-[#2a2418] border-b border-gray-100 dark:border-gray-800 shadow-sm relative z-20 -mt-8 sm:-mt-12 max-w-[1100px] mx-auto rounded-xl p-6 sm:p-8 flex flex-col md:flex-row gap-8 justify-between items-center text-center md:text-left">
         <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary shrink-0">
@@ -38,7 +92,7 @@
             </div>
             <div>
                 <h3 class="font-bold text-lg text-text-dark dark:text-white">Próxima Misa</h3>
-                <p class="text-gray-500 dark:text-gray-400">Hoy, 6:00 PM</p>
+                <p class="text-gray-500 dark:text-gray-400">{{ $proximaMisa ?? 'Sin horario disponible' }}</p>
             </div>
         </div>
         <div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
@@ -74,26 +128,42 @@
                 <p class="text-gray-500 dark:text-gray-400 mt-3 max-w-2xl mx-auto">Inscríbete en los distintos sacramentos, actividades y programas de nuestra parroquia.</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach([
-                    ['icon' => 'water_drop', 'key' => 'bautismo', 'title' => 'Bautismo', 'desc' => 'Inscribe a tu hijo(a) para recibir el sacramento del Bautismo.', 'color' => 'primary'],
-                    ['icon' => 'menu_book', 'key' => 'primera_comunion', 'title' => 'Primera Comunión', 'desc' => 'Catequesis de preparación para la Primera Comunión.', 'color' => 'secondary'],
-                    ['icon' => 'local_fire_department', 'key' => 'confirmacion', 'title' => 'Confirmación', 'desc' => 'Programa de formación para recibir el sacramento de la Confirmación.', 'color' => 'primary'],
-                    ['icon' => 'favorite', 'key' => 'matrimonio', 'title' => 'Matrimonio', 'desc' => 'Cursos pre-matrimoniales y preparación sacramental.', 'color' => 'secondary'],
-                    ['icon' => 'groups', 'key' => 'pastoral_juvenil', 'title' => 'Pastoral Juvenil', 'desc' => 'Únete a nuestro grupo juvenil y crece en comunidad.', 'color' => 'primary'],
-                    ['icon' => 'school', 'key' => 'catequesis_infantil', 'title' => 'Catequesis Infantil', 'desc' => 'Formación en la fe para los más pequeños de la casa.', 'color' => 'secondary'],
-                ] as $item)
+                <!-- Card: Confirmación -->
                 <div class="bg-white dark:bg-[#211c11] rounded-xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all group">
-                    <div class="w-14 h-14 rounded-xl bg-{{ $item['color'] }}/10 flex items-center justify-center text-{{ $item['color'] }} mb-5">
-                        <span class="material-symbols-outlined text-2xl">{{ $item['icon'] }}</span>
+                    <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
+                        <span class="material-symbols-outlined text-2xl">local_fire_department</span>
                     </div>
-                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">{{ $item['title'] }}</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">{{ $item['desc'] }}</p>
-                    <a href="{{ route('inscripciones', ['programa' => $item['key']]) }}" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-secondary transition-colors group-hover:gap-2">
+                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">Confirmación</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">Inscripción para Confirma (niños). Inicio: 21 de marzo de 2026, 10:00 am. Modalidad: Presencial.</p>
+                    <a href="https://forms.gle/Gc8yWU1FMNAHTJqj6" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-secondary transition-colors group-hover:gap-2">
                         Inscribirse
                         <span class="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
                 </div>
-                @endforeach
+                <!-- Card: Primera Comunión -->
+                <div class="bg-white dark:bg-[#211c11] rounded-xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all group">
+                    <div class="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary mb-5">
+                        <span class="material-symbols-outlined text-2xl">menu_book</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">Primera Comunión</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">Inscripción para Primera Comunión (niños). Inicio: 21 y 22 de marzo de 2026, 10:00 am. Modalidad: Presencial.</p>
+                    <a href="https://forms.gle/iNXTNbtYUa4RmchL9" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-secondary transition-colors group-hover:gap-2">
+                        Inscribirse
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+                <!-- Card: Sacramento de Adultos -->
+                <div class="bg-white dark:bg-[#211c11] rounded-xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all group">
+                    <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
+                        <span class="material-symbols-outlined text-2xl">school</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">Sacramento de Adultos</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">Inscripción para Primera Comunión y Confirma (adultos). Inicio: 12 de marzo de 2025, 7:00 pm. Modalidad: Virtual.</p>
+                    <a href="https://forms.gle/tuscc6ZoZy5iLqLf8" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-secondary transition-colors group-hover:gap-2">
+                        Inscribirse
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -106,7 +176,7 @@
             <div class="flex flex-col lg:flex-row gap-12 items-center">
                 <div class="lg:w-1/2 relative">
                     <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-200 relative shadow-2xl">
-                        <img alt="Retrato del párroco" class="object-cover w-full h-full" src="{{ asset('images/parroco.jpg') }}" loading="lazy">
+                        <img alt="Retrato del párroco" class="object-cover w-full h-full" src="{{ asset('images/fondos/mensaje.jpg') }}" loading="lazy">
                     </div>
                     <div class="absolute -bottom-6 -right-6 bg-white dark:bg-[#2a2418] p-6 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 max-w-xs hidden sm:block">
                         <div class="flex items-center gap-3 mb-2">
@@ -124,16 +194,13 @@
                         <p>Es un honor darles la bienvenida a nuestra comunidad parroquial. Aquí encontrarás un espacio de fe, esperanza y amor donde juntos caminamos hacia Cristo Resucitado.</p>
                     </div>
                     <div class="flex items-center gap-4 mb-8">
-                        <div class="h-12 w-12 bg-gray-200 rounded-full bg-cover bg-center" style="background-image: url('{{ asset('images/parroco.jpg') }}')"></div>
+                        <div class="h-12 w-12 bg-gray-200 rounded-full bg-cover bg-center" style="background-image: url('{{ asset('images/sacerdotes/padre_javier.jpg') }}')"></div>
                         <div>
                             <p class="font-bold text-text-dark dark:text-white">P. Javier</p>
                             <p class="text-sm text-gray-500">Párroco</p>
                         </div>
                     </div>
-                    <a class="text-primary font-bold hover:text-secondary transition-colors inline-flex items-center gap-1 group" href="{{ route('contacto') }}">
-                        Leer mensaje completo
-                        <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                    </a>
+                    
                 </div>
             </div>
         </div>
@@ -145,17 +212,42 @@
     @php
         $horarios = [
             [
-                'nombre' => 'Parroquia Cristo Resucitado (Sede Principal)',
+                'nombre' => 'Sede Parroquial',
                 'dias' => [
-                    ['dia' => 'Lunes a Viernes', 'horas' => ['6:00 AM', '6:00 PM']],
-                    ['dia' => 'Sábados', 'horas' => ['6:00 AM', '4:00 PM']],
-                    ['dia' => 'Domingos', 'horas' => ['7:00 AM', '9:00 AM', '11:00 AM', '6:00 PM']],
+                    ['dia' => 'Lunes a Viernes', 'horas' => ['7:00 AM', '5:00 PM', '7:00 PM']],
+                    ['dia' => 'Sábados', 'horas' => ['5:30 PM']],
+                    ['dia' => 'Domingos', 'horas' => ['9:15 AM', '11:00 AM', '5:00 PM', '7:00 PM']],
                 ],
             ],
             [
-                'nombre' => 'Capilla San Juan Pablo II',
+                'nombre' => 'Altos de Loarque',
                 'dias' => [
+                    ['dia' => 'Miércoles', 'horas' => ['6:00 PM']],
                     ['dia' => 'Domingos', 'horas' => ['9:00 AM']],
+                ],
+            ],
+            [
+                'nombre' => 'Yaguacire',
+                'dias' => [
+                    ['dia' => 'Domingo', 'horas' => ['7:00 AM']],
+                ],
+            ],
+            [
+                'nombre' => 'Fuerza Aérea',
+                'dias' => [
+                    ['dia' => 'Domingo', 'horas' => ['8:15 AM']],
+                ],
+            ],
+            [
+                'nombre' => 'Las Mercedes',
+                'dias' => [
+                    ['dia' => 'Sábados', 'horas' => ['3:30 PM']],
+                ],
+            ],
+            [
+                'nombre' => 'Camino Neocatecumenal',
+                'dias' => [
+                    ['dia' => 'Sábados', 'horas' => ['7:00 PM']],
                 ],
             ],
         ];
@@ -168,44 +260,22 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 @foreach($horarios as $sede)
-                    @php $isPrincipal = ($loop->first); @endphp
-                    <div class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm {{ $isPrincipal ? 'md:col-span-2' : '' }}">
-                        <div class="{{ $isPrincipal ? 'bg-secondary' : 'bg-primary/90' }} px-6 py-4">
-                            <h3 class="{{ $isPrincipal ? 'text-xl text-white' : 'text-lg text-text-dark' }} font-bold flex items-center gap-2">
-                                <span class="material-symbols-outlined">{{ $isPrincipal ? 'church' : 'home' }}</span>
+                    <div class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm">
+                        <div class="bg-primary/90 px-6 py-4">
+                            <h3 class="text-lg text-text-dark font-bold flex items-center gap-2">
+                                <span class="material-symbols-outlined">church</span>
                                 {{ $sede['nombre'] }}
                             </h3>
                         </div>
                         <div class="p-6">
-                            @if($isPrincipal && isset($sede['dias']))
-                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                                    @foreach($sede['dias'] as $dia)
-                                        <div>
-                                            <h4 class="font-bold text-text-dark dark:text-white mb-3 flex items-center gap-2">
-                                                <span class="material-symbols-outlined text-primary text-lg">calendar_today</span>
-                                                {{ $dia['dia'] }}
-                                            </h4>
-                                            <ul class="space-y-2">
-                                                @foreach($dia['horas'] as $hora)
-                                                    <li class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
-                                                        <span class="material-symbols-outlined text-sm text-primary">schedule</span>
-                                                        {{ $hora }}
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @elseif(isset($sede['dias']))
-                                <ul class="space-y-3">
-                                    @foreach($sede['dias'] as $dia)
-                                        <li class="flex items-center justify-between text-sm">
-                                            <span class="font-medium text-text-dark dark:text-white">{{ $dia['dia'] }}</span>
-                                            <span class="text-gray-600 dark:text-gray-400">{{ implode(', ', $dia['horas'] ?? []) }}</span>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
+                            <ul class="space-y-3">
+                                @foreach($sede['dias'] as $dia)
+                                    <li class="flex items-center justify-between text-sm">
+                                        <span class="font-medium text-text-dark dark:text-white">{{ $dia['dia'] }}</span>
+                                        <span class="text-gray-600 dark:text-gray-400">{{ implode(', ', $dia['horas'] ?? []) }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 @endforeach
@@ -218,7 +288,7 @@
     ═══════════════════════════════════════════════════════ --}}
     <section class="py-16 bg-gray-50 dark:bg-[#1a160e]">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-[#211c11] rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden">
+            <div class="bg-white dark:bg-[#211c11] rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden" >
                 <div class="flex flex-col md:flex-row items-center gap-8 p-8 sm:p-10">
                     <div class="flex-shrink-0">
                         <div class="w-20 h-20 rounded-2xl bg-green-500/10 flex items-center justify-center">
@@ -241,10 +311,6 @@
                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                             Enviar por WhatsApp
                         </a>
-                        <a href="{{ route('intenciones') }}" class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-gray-200 dark:border-gray-700 text-text-dark dark:text-white font-bold rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors mt-3 md:mt-0">
-                            <span class="material-symbols-outlined text-lg">edit_note</span>
-                            Formulario de Intenciones
-                        </a>
                     </div>
                 </div>
             </div>
@@ -256,7 +322,8 @@
     ═══════════════════════════════════════════════════════ --}}
     @php
         $sacerdotes = [
-            ['nombre' => 'P. Javier', 'cargo' => 'Párroco', 'descripcion' => 'Guiando nuestra comunidad con fe y dedicación.', 'foto' => asset('images/parroco.jpg')],
+            ['nombre' => 'P. Javier Martínez', 'cargo' => 'Párroco', 'descripcion' => 'Guiando nuestra comunidad con fe y dedicación.', 'foto' => asset('images/sacerdotes/padre_javier.jpg')],
+            ['nombre' => 'P. Eduar Vargas', 'cargo' => 'Vicario parroquial', 'descripcion' => 'Acompañando y sirviendo a la comunidad.', 'foto' => asset('images/sacerdotes/padre-eduar.png')],
         ];
     @endphp
     <section class="py-20 bg-gray-50 dark:bg-[#1a160e]">
@@ -285,17 +352,17 @@
     ═══════════════════════════════════════════════════════ --}}
     <section class="py-24 relative overflow-hidden">
         <div class="absolute inset-0 bg-secondary/95 z-0"></div>
-        <div class="absolute inset-0 z-0 bg-cover bg-center mix-blend-overlay opacity-20" style="background-image: url('{{ asset('images/hero-home.jpg') }}');"></div>
+        <div class="absolute inset-0 z-0 bg-cover bg-center mix-blend-overlay opacity-20" style="background-image: url('{{ asset('images/heroes/home-hero.png') }}');"></div>
         <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
             <h2 class="text-3xl sm:text-5xl font-black text-white mb-6 tracking-tight">Apoya nuestra Misión</h2>
             <p class="text-white/90 text-lg sm:text-xl mb-10 leading-relaxed">
                 Tu generosidad nos ayuda a mantener nuestro templo, apoyar a los necesitados y continuar con la evangelización. Cada aporte cuenta.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="{{ route('donaciones') }}" class="w-full sm:w-auto px-8 py-4 bg-primary text-text-dark font-bold rounded-lg hover:bg-white hover:text-secondary transition-colors shadow-lg shadow-black/20">
+                <a href="https://ecommerce-credomatic.live.geopagos.com/parroquiacristoresucitadohn"  target="_blank" class="w-full sm:w-auto px-8 py-4 bg-primary text-text-dark font-bold rounded-lg hover:bg-white hover:text-secondary transition-colors shadow-lg shadow-black/20">
                     Hacer una Donación Online
                 </a>
-                <a href="{{ route('contacto') }}" class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-colors">
+                <a href="{{ route('donaciones') }}" class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-colors">
                     Otras formas de ayudar
                 </a>
             </div>

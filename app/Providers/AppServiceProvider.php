@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -28,11 +27,5 @@ final class AppServiceProvider extends ServiceProvider
         if (App::isProduction() || str_starts_with((string) config('app.url'), 'https')) {
             URL::forceScheme('https');
         }
-
-        // Previene lazy loading en desarrollo (detecta N+1)
-        Model::preventLazyLoading(! App::isProduction());
-
-        // Asegura que las relaciones existan antes de accederlas
-        Model::preventAccessingMissingAttributes(! App::isProduction());
     }
 }

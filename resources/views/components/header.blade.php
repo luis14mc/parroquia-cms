@@ -58,22 +58,22 @@
                          x-transition:leave-end="opacity-0 translate-y-1"
                          class="absolute top-full left-1/2 -translate-x-1/2 w-56 bg-white dark:bg-zinc-800 rounded-lg shadow-lg ring-1 ring-black/5 dark:ring-white/10 py-2"
                          x-cloak>
-                        <a href="{{ route('pastorales.show', 'familiar') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
+                        <a href="{{ route('pastorales.show.familiar') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
                             Familiar
                         </a>
-                        <a href="{{ route('pastorales.show', 'juvenil') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
+                        <a href="{{ route('pastorales.show.juvenil') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
                             Juvenil
                         </a>
-                        <a href="{{ route('pastorales.show', 'medios') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
+                        <a href="{{ route('pastorales.show.medios') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
                             Medios
                         </a>
-                        <a href="{{ route('pastorales.show', 'vocacional') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
+                        <a href="{{ route('pastorales.show.vocacional') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
                             Vocacional
                         </a>
-                        <a href="{{ route('pastorales.show', 'infantil') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
+                        <a href="{{ route('pastorales.show.infantil') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
                             Infantil
                         </a>
-                        <a href="{{ route('pastorales.show', 'duelo') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
+                        <a href="{{ route('pastorales.show.duelo') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
                             Duelo
                         </a>
                     </div>
@@ -99,16 +99,16 @@
                          x-transition:leave-end="opacity-0 translate-y-1"
                          class="absolute top-full left-1/2 -translate-x-1/2 w-56 bg-white dark:bg-zinc-800 rounded-lg shadow-lg ring-1 ring-black/5 dark:ring-white/10 py-2"
                          x-cloak>
-                        <a href="{{ route('dimensiones.show', 'samaritana') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
+                        <a href="{{ route('dimensiones.show.samaritana') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
                             Samaritana
                         </a>
-                        <a href="{{ route('dimensiones.show', 'comunidades') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
+                        <a href="{{ route('dimensiones.show.comunidades') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
                             Comunidades
                         </a>
-                        <a href="{{ route('dimensiones.show', 'pascual') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
+                        <a href="{{ route('dimensiones.show.pascual') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
                             Pascual
                         </a>
-                        <a href="{{ route('dimensiones.show', 'misionera') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
+                        <a href="{{ route('dimensiones.show.misionera') }}" class="block px-4 py-2.5 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary transition-colors">
                             Misionera
                         </a>
                     </div>
@@ -182,12 +182,12 @@
                          x-transition:leave-end="opacity-0 -translate-y-1"
                          x-cloak>
                         <div class="ml-4 pl-4 border-l-2 border-primary/20 flex flex-col gap-0.5 py-1">
-                            <a href="{{ route('pastorales.show', 'familiar') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Familiar</a>
-                            <a href="{{ route('pastorales.show', 'juvenil') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Juvenil</a>
-                            <a href="{{ route('pastorales.show', 'medios') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Medios</a>
-                            <a href="{{ route('pastorales.show', 'vocacional') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Vocacional</a>
-                            <a href="{{ route('pastorales.show', 'infantil') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Infantil</a>
-                            <a href="{{ route('pastorales.show', 'duelo') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Duelo</a>
+                            <a href="{{ route('pastorales.show.familiar') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Familiar</a>
+                            <a href="{{ route('pastorales.show.juvenil') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Juvenil</a>
+                            <a href="{{ route('pastorales.show.medios') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Medios</a>
+                            <a href="{{ route('pastorales.show.vocacional') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Vocacional</a>
+                            <a href="{{ route('pastorales.show.infantil') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Infantil</a>
+                            <a href="{{ route('pastorales.show.duelo') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Duelo</a>
                         </div>
                     </div>
                 </div>
@@ -208,10 +208,10 @@
                          x-transition:leave-end="opacity-0 -translate-y-1"
                          x-cloak>
                         <div class="ml-4 pl-4 border-l-2 border-primary/20 flex flex-col gap-0.5 py-1">
-                            <a href="{{ route('dimensiones.show', 'samaritana') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Samaritana</a>
-                            <a href="{{ route('dimensiones.show', 'comunidades') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Comunidades</a>
-                            <a href="{{ route('dimensiones.show', 'pascual') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Pascual</a>
-                            <a href="{{ route('dimensiones.show', 'misionera') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Misionera</a>
+                            <a href="{{ route('dimensiones.show.samaritana') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Samaritana</a>
+                            <a href="{{ route('dimensiones.show.comunidades') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Comunidades</a>
+                            <a href="{{ route('dimensiones.show.pascual') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Pascual</a>
+                            <a href="{{ route('dimensiones.show.misionera') }}" class="px-3 py-2 text-sm text-text-dark dark:text-text-light hover:bg-primary/10 hover:text-primary rounded-md transition-colors">Misionera</a>
                         </div>
                     </div>
                 </div>

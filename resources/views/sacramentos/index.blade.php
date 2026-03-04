@@ -38,7 +38,7 @@
                     ['slug' => 'reconciliacion', 'icon' => 'church', 'title' => 'Reconciliación', 'subtitle' => 'Sacramento de Sanación', 'desc' => 'El perdón de los pecados cometidos después del Bautismo, reconciliándonos con Dios y la Iglesia.', 'color' => 'primary'],
                     ['slug' => 'uncion-de-enfermos', 'icon' => 'healing', 'title' => 'Unción de Enfermos', 'subtitle' => 'Consuelo y Fortaleza', 'desc' => 'Otorga consuelo, paz y ánimo para soportar cristianamente los sufrimientos de la enfermedad.', 'color' => 'secondary'],
                 ] as $sac)
-                <a href="{{ route('sacramentos.show', $sac['slug']) }}" 
+                <a href="{{ route('sacramentos.show.' . $sac['slug']) }}" 
                    class="group bg-white dark:bg-[#211c11] rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full">
                     <div class="h-1.5 bg-gradient-to-r {{ $sac['color'] === 'primary' ? 'from-primary to-primary/60' : 'from-secondary to-secondary/60' }}"></div>
                     <div class="p-8 flex flex-col flex-grow">

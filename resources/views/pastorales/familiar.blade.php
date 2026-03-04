@@ -1,6 +1,6 @@
 <x-pastoral-layout
     title="Pastoral Familiar"
-    heroImage="https://lh3.googleusercontent.com/aida-public/AB6AXuDyyYMANkdYKyUXZqRuzdHcVD0xNlUkb6EjOmW1t5PbHlDkONRr4lOpRC8KOksorxXXmTEvNJKmmWMpGahxlcppIQ823ZB7R3LMxu3K6M1A1UNA8ilkP8A7KzVfg4Z_W5XksNnOEvotuL2uD1xENoAxHmMCl7ekcbLY01wXq2o8nMI572Wx2SgfNamv2FcUAqPGGBoRyNb_Exzj9ia5Sk7Vb6umWTSifIeel97N98hYW86mII-m4y3GE25_-boMV4yJZIQZMtBR4n8"
+    heroImage="{{ asset('images/heroes/heroe_familiar.webp') }}"
     quote="Por eso dejará el hombre a su padre y a su madre, y se unirá a su mujer, y los dos serán una sola carne."
     quoteSource="Ef 5, 31"
     :opciones="[
@@ -9,8 +9,10 @@
         ['icon' => 'child_care', 'title' => 'Familia y Crianza', 'desc' => 'Orientación cristiana para padres en la educación y formación en valores de sus hijos.', 'color' => 'secondary'],
     ]"
 >
+    @section('introImage')
+        <img src="{{ asset('images/fondos/info_familiar.webp') }}" alt="Intro Pastoral Familiar" class="w-full h-full object-cover" loading="lazy" />
+    @endsection
     @slot('introText')
-        <p>La Pastoral Familiar acompaña a los matrimonios y familias de nuestra parroquia para fortalecer los vínculos familiares a la luz del Evangelio. Creemos que la familia es la célula fundamental de la sociedad y la Iglesia doméstica donde se transmite la fe.</p>
-        <p class="mt-4">A través de encuentros, retiros, talleres y acompañamiento personalizado, buscamos que cada familia viva su vocación con alegría, superando los desafíos del mundo actual con la fuerza de la fe y el amor de Cristo.</p>
+        <p>Formar, asistir y acompañar a las familias, "comunidades salvadas y salvadoras", para ayudarlas a cumplir su vocación y su misión en la Iglesia y en el mundo. <br> <br> Dios ama al varón y a la mujer, creados por amor, a realizar su proyecto de amor en fidelidad hasta la muerte (SD n. 217). Tal es la vocación. Pero también les da la misión de formar una comunidad de personas, célula vital de la sociedad, en diálogo permanente con Él, y servidora de la vida humana mediante la procreación y la defensa de la misma en todas sus formas.</p>
     @endslot
 </x-pastoral-layout>
