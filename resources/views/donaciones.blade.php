@@ -4,7 +4,7 @@
          1. HERO
     ═══════════════════════════════════════════════════════ --}}
     <section class="relative w-full h-[420px] sm:h-[480px] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ $contenidos['donaciones.hero.imagen'] ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuBauEQj5kWjQjEd5mGwsIhVE5oZSrGyN6hQwN76EV0utFsH_uOGcJLrKueh_gMcAX9g4sn5kOOCZ55enTFKo_UuqJ5hQXBferamPurGnlI_rWiUocv8xnE_h8xvYP7zQ3ntYsTC7GxaxOfp3t91pAWAuuAsCyDVy5sBXpKFheokyGCGOny828JU4u_k_EiIBLQb6Jkt6xrEjxs9rViH_QJoZb3aN5ZOQyjNIc0bIN0m3WpW1VxfvcrXHwaadTloP-B7F43OIN1obpM' }}');">
+        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/hero-donaciones.jpg') }}');">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30"></div>
         </div>
         <div class="relative z-10 text-center px-4">
@@ -19,7 +19,9 @@
     </section>
 
     @php
-        $cuentas = json_decode($contenidos['donaciones.cuentas'] ?? '[]', true) ?: [];
+        $cuentas = [
+            ['banco' => 'BAC Credomatic', 'tipo' => 'Cuenta de Ahorros', 'cuenta' => '743-795-261'],
+        ];
     @endphp
 
     <div class="flex-grow w-full max-w-[1200px] mx-auto px-4 py-10 md:py-16">
@@ -31,7 +33,7 @@
             </h2>
             <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
             <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                {{ $contenidos['donaciones.intro'] ?? 'Tus oraciones son lo más importante para seguir llevando la Buena Noticia de Salvación a todos los rincones, pero si deseas dar un paso más allá, a continuación puedes ver distintas formas de apoyar a nuestra parroquia:' }}
+                Tus oraciones son lo más importante para seguir llevando la Buena Noticia de Salvación a todos los rincones, pero si deseas dar un paso más allá, a continuación puedes ver distintas formas de apoyar a nuestra parroquia:
             </p>
         </div>
 
@@ -93,7 +95,7 @@
                             <div>
                                 <h3 class="text-lg font-bold text-text-dark dark:text-text-light">{{ $cuenta['banco'] }}</h3>
                                 <p class="text-gray-500 dark:text-gray-400">Tipo de Cuenta: {{ $cuenta['tipo'] ?? 'Ahorro' }}</p>
-                                <p class="text-gray-500 dark:text-gray-400">Nombre: {{ $general['general.nombre_parroquia'] ?? 'Parroquia Cristo Resucitado' }}</p>
+                                <p class="text-gray-500 dark:text-gray-400">Nombre: Parroquia Cristo Resucitado</p>
                                 <p class="text-gray-500 dark:text-gray-400">Número: <span class="font-semibold text-text-dark dark:text-text-light">{{ $cuenta['cuenta'] }}</span></p>
                                 <button @click="navigator.clipboard.writeText('{{ preg_replace('/[^0-9]/', '', $cuenta['cuenta']) }}')" class="mt-2 inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium transition-colors">
                                     <span class="material-symbols-outlined text-sm">content_copy</span> Copiar número
@@ -138,7 +140,7 @@
                 <div x-show="activeTab === 'capilla'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-cloak>
                     <h2 class="text-2xl font-bold text-text-dark dark:text-text-light mb-4">Capilla del Santísimo</h2>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                        {{ $contenidos['donaciones.capilla'] ?? 'La construcción de la Capilla del Santísimo es un proyecto especial de nuestra parroquia. Este espacio sagrado será un lugar de adoración permanente donde los fieles podrán encontrarse con Jesús Eucaristía en un ambiente de recogimiento y oración.' }}
+                        La construcción de la Capilla del Santísimo es un proyecto especial de nuestra parroquia. Este espacio sagrado será un lugar de adoración permanente donde los fieles podrán encontrarse con Jesús Eucaristía en un ambiente de recogimiento y oración.
                     </p>
                     <div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-xl p-6 mb-6">
                         <h3 class="font-bold text-text-dark dark:text-text-light mb-2 flex items-center gap-2">
@@ -161,7 +163,7 @@
                 <div x-show="activeTab === 'libra'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-cloak>
                     <h2 class="text-2xl font-bold text-text-dark dark:text-text-light mb-4">Libra del Amor</h2>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                        {{ $contenidos['donaciones.libra_amor'] ?? 'La Libra del Amor es una iniciativa solidaria de nuestra parroquia. Consiste en donar una libra de alimento básico (arroz, frijoles, azúcar, harina, etc.) que se recolecta periódicamente para armar despensas destinadas a las familias más necesitadas de nuestras comunidades.' }}
+                        La Libra del Amor es una iniciativa solidaria de nuestra parroquia. Consiste en donar una libra de alimento básico (arroz, frijoles, azúcar, harina, etc.) que se recolecta periódicamente para armar despensas destinadas a las familias más necesitadas de nuestras comunidades.
                     </p>
                     <div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-xl p-6 mb-6">
                         <h3 class="font-bold text-text-dark dark:text-text-light mb-2 flex items-center gap-2">
@@ -185,7 +187,7 @@
                 <div x-show="activeTab === 'dennys'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-cloak>
                     <h2 class="text-2xl font-bold text-text-dark dark:text-text-light mb-4">Denny's</h2>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                        {{ $contenidos['donaciones.dennys'] ?? 'A través de una alianza con Denny\'s, nuestra parroquia ofrece cupones de descuento que puedes adquirir. Al comprar estos cupones, una parte del monto se destina directamente a los proyectos y necesidades de la parroquia.' }}
+                        A través de una alianza con Denny's, nuestra parroquia ofrece cupones de descuento que puedes adquirir. Al comprar estos cupones, una parte del monto se destina directamente a los proyectos y necesidades de la parroquia.
                     </p>
                     <div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-xl p-6 mb-6">
                         <h3 class="font-bold text-text-dark dark:text-text-light mb-2 flex items-center gap-2">
@@ -212,7 +214,7 @@
         <div class="mt-16 mb-6 text-center max-w-2xl mx-auto">
             <span class="material-symbols-outlined text-4xl text-primary/30 mb-4">format_quote</span>
             <p class="text-xl italic font-medium text-text-dark dark:text-gray-300 mb-4">
-                {{ $contenidos['donaciones.cita'] ?? '"Cada uno dé como propuso en su corazón: no con tristeza, ni por necesidad, porque Dios ama al dador alegre." — 2 Corintios 9:7' }}
+                "Cada uno dé como propuso en su corazón: no con tristeza, ni por necesidad, porque Dios ama al dador alegre." — 2 Corintios 9:7
             </p>
         </div>
 

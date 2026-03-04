@@ -1,8 +1,17 @@
 <x-layouts.app title="Nuestra Parroquia | Cristo Resucitado" description="Conoce la historia, misión y visión de la Parroquia Cristo Resucitado en Tegucigalpa, Honduras.">
 
     @php
-        $stats  = json_decode($contenidos['nosotros.stats'] ?? '[]', true) ?: [];
-        $valores = json_decode($contenidos['nosotros.valores'] ?? '[]', true) ?: [];
+        $stats = [
+            ['valor' => '40+', 'label' => 'Años de Fe'],
+            ['valor' => '5', 'label' => 'Comunidades'],
+            ['valor' => '1000+', 'label' => 'Familias'],
+        ];
+        $valores = [
+            ['icono' => 'favorite', 'titulo' => 'Amor', 'descripcion' => 'El amor como centro de toda acción pastoral.'],
+            ['icono' => 'groups', 'titulo' => 'Comunidad', 'descripcion' => 'Caminamos juntos como pueblo de Dios.'],
+            ['icono' => 'volunteer_activism', 'titulo' => 'Servicio', 'descripcion' => 'Servir a los más necesitados con generosidad.'],
+            ['icono' => 'auto_stories', 'titulo' => 'Evangelización', 'descripcion' => 'Llevar la Buena Nueva a todos los rincones.'],
+        ];
     @endphp
 
     {{-- ═══════════════════════════════════════════════════════
@@ -49,7 +58,7 @@
                         Reseña Histórica
                     </h2>
                     <div class="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed prose dark:prose-invert max-w-none">
-                        {!! $contenidos['nosotros.resena'] ?? '<p>La estructura de la Parroquia Cristo Resucitado fue construida el 28 de junio de 1981, donde se colocó la primera piedra por manos de Monseñor Héctor Enrique Santos, en presencia del Párroco Jorge Mathus Cáceres.</p>' !!}
+                        <p>La estructura de la Parroquia Cristo Resucitado fue construida el 28 de junio de 1981, donde se colocó la primera piedra por manos de Monseñor Héctor Enrique Santos, en presencia del Párroco Jorge Mathus Cáceres.</p>
                     </div>
                     {{-- Datos destacados --}}
                     @if(count($stats) > 0)
@@ -101,7 +110,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-text-dark dark:text-white mb-4">Nuestra Misión</h3>
                     <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                        {{ $contenidos['nosotros.mision'] ?? 'Siendo sensibles y compasivos como Jesús, identificaremos las necesidades de nuestros hermanos y las atenderemos a través de nuestros ministerios, grupos y movimientos parroquiales.' }}
+                        Siendo sensibles y compasivos como Jesús, identificaremos las necesidades de nuestros hermanos y las atenderemos a través de nuestros ministerios, grupos y movimientos parroquiales.
                     </p>
                 </div>
 
@@ -114,7 +123,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-text-dark dark:text-white mb-4">Nuestra Visión</h3>
                     <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                        {{ $contenidos['nosotros.vision'] ?? 'Ser una casa abierta y escuela de comunión, donde se anuncia y vive el evangelio de la misericordia para reflejar a Cristo Resucitado.' }}
+                        Ser una casa abierta y escuela de comunión, donde se anuncia y vive el evangelio de la misericordia para reflejar a Cristo Resucitado.
                     </p>
                 </div>
             </div>

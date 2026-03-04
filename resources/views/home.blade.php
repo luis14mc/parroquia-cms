@@ -4,17 +4,17 @@
          1. HERO SECTION
     ═══════════════════════════════════════════════════════ --}}
     <section class="relative w-full h-[500px] sm:h-[600px] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ $contenidos['home.hero.imagen'] ?? '' }}');">
+        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/hero-home.jpg') }}');">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"></div>
         </div>
         <div class="relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
             <div class="max-w-2xl">
                 <span class="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-wider text-white uppercase bg-secondary rounded-full">Bienvenidos</span>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6 tracking-tight drop-shadow-sm">
-                    {{ $contenidos['home.hero.titulo'] ?? 'Una comunidad de fe, esperanza y amor.' }}
+                    Una comunidad de fe, esperanza y amor.
                 </h1>
                 <p class="text-lg sm:text-xl text-gray-200 mb-8 font-light leading-relaxed max-w-lg drop-shadow-sm">
-                    {{ $contenidos['home.hero.subtitulo'] ?? 'Únete a nosotros en la celebración de la Eucaristía y crece espiritualmente en la Parroquia Cristo Resucitado.' }}
+                    Únete a nosotros en la celebración de la Eucaristía y crece espiritualmente en la Parroquia Cristo Resucitado.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a class="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-text-dark bg-primary rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/25" href="#horarios">
@@ -38,7 +38,7 @@
             </div>
             <div>
                 <h3 class="font-bold text-lg text-text-dark dark:text-white">Próxima Misa</h3>
-                <p class="text-gray-500 dark:text-gray-400">{{ $contenidos['home.info.proxima_misa'] ?? 'Hoy, 6:00 PM' }}</p>
+                <p class="text-gray-500 dark:text-gray-400">Hoy, 6:00 PM</p>
             </div>
         </div>
         <div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
@@ -48,7 +48,7 @@
             </div>
             <div>
                 <h3 class="font-bold text-lg text-text-dark dark:text-white">Ubicación</h3>
-                <p class="text-gray-500 dark:text-gray-400">{{ $contenidos['home.info.ubicacion'] ?? 'Colonia Loarque, Tegucigalpa' }}</p>
+                <p class="text-gray-500 dark:text-gray-400">Colonia Loarque, Tegucigalpa</p>
             </div>
         </div>
         <div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
@@ -58,13 +58,13 @@
             </div>
             <div>
                 <h3 class="font-bold text-lg text-text-dark dark:text-white">Contáctanos</h3>
-                <p class="text-gray-500 dark:text-gray-400">{{ $contenidos['home.info.telefono'] ?? '9430-6883' }}</p>
+                <p class="text-gray-500 dark:text-gray-400">9430-6883</p>
             </div>
         </div>
     </div>
 
     {{-- ═══════════════════════════════════════════════════════
-         3. INSCRIPCIONES / FORMULARIOS CMS
+         3. INSCRIPCIONES
     ═══════════════════════════════════════════════════════ --}}
     <section class="py-20 bg-background-light dark:bg-background-dark">
         <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,27 +95,6 @@
                 </div>
                 @endforeach
             </div>
-
-            {{-- Formularios dinámicos del CMS mostrados en Home --}}
-            @if($formularios->isNotEmpty())
-                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    @foreach($formularios as $form)
-                        <div class="bg-white dark:bg-[#211c11] rounded-xl p-6 border-2 border-primary/30 shadow-sm hover:shadow-md transition-all group">
-                            <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
-                                <span class="material-symbols-outlined text-2xl">edit_note</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">{{ $form->titulo }}</h3>
-                            @if($form->descripcion)
-                                <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">{{ $form->descripcion }}</p>
-                            @endif
-                            <a href="{{ route('formulario.show', $form->slug) }}" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-secondary transition-colors group-hover:gap-2">
-                                Llenar formulario
-                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
         </div>
     </section>
 
@@ -127,14 +106,14 @@
             <div class="flex flex-col lg:flex-row gap-12 items-center">
                 <div class="lg:w-1/2 relative">
                     <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-200 relative shadow-2xl">
-                        <img alt="Retrato del párroco" class="object-cover w-full h-full" src="{{ $contenidos['home.parroco.foto'] ?? '' }}" loading="lazy">
+                        <img alt="Retrato del párroco" class="object-cover w-full h-full" src="{{ asset('images/parroco.jpg') }}" loading="lazy">
                     </div>
                     <div class="absolute -bottom-6 -right-6 bg-white dark:bg-[#2a2418] p-6 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 max-w-xs hidden sm:block">
                         <div class="flex items-center gap-3 mb-2">
                             <span class="material-symbols-outlined text-primary">format_quote</span>
                         </div>
                         <p class="text-sm text-gray-600 dark:text-gray-300 italic">
-                            "{{ $contenidos['home.parroco.cita'] ?? 'Que la luz de Cristo Resucitado ilumine siempre sus caminos y fortalezca sus corazones.' }}"
+                            "Que la luz de Cristo Resucitado ilumine siempre sus caminos y fortalezca sus corazones."
                         </p>
                     </div>
                 </div>
@@ -142,13 +121,13 @@
                     <span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Mensaje del Párroco</span>
                     <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white mb-6 leading-tight">Paz y Bien a Todos</h2>
                     <div class="prose prose-lg text-gray-600 dark:text-gray-300 mb-8">
-                        {!! $contenidos['home.parroco.mensaje'] ?? '<p>Es un honor darles la bienvenida a nuestra comunidad parroquial.</p>' !!}
+                        <p>Es un honor darles la bienvenida a nuestra comunidad parroquial. Aquí encontrarás un espacio de fe, esperanza y amor donde juntos caminamos hacia Cristo Resucitado.</p>
                     </div>
                     <div class="flex items-center gap-4 mb-8">
-                        <div class="h-12 w-12 bg-gray-200 rounded-full bg-cover bg-center" style="background-image: url('{{ $contenidos['home.parroco.foto'] ?? '' }}')"></div>
+                        <div class="h-12 w-12 bg-gray-200 rounded-full bg-cover bg-center" style="background-image: url('{{ asset('images/parroco.jpg') }}')"></div>
                         <div>
-                            <p class="font-bold text-text-dark dark:text-white">{{ $contenidos['home.parroco.nombre'] ?? 'P. Javier' }}</p>
-                            <p class="text-sm text-gray-500">{{ $contenidos['home.parroco.cargo'] ?? 'Párroco' }}</p>
+                            <p class="font-bold text-text-dark dark:text-white">P. Javier</p>
+                            <p class="text-sm text-gray-500">Párroco</p>
                         </div>
                     </div>
                     <a class="text-primary font-bold hover:text-secondary transition-colors inline-flex items-center gap-1 group" href="{{ route('contacto') }}">
@@ -164,7 +143,22 @@
          5. HORARIOS DE MISA
     ═══════════════════════════════════════════════════════ --}}
     @php
-        $horarios = json_decode($contenidos['home.horarios'] ?? '[]', true) ?: [];
+        $horarios = [
+            [
+                'nombre' => 'Parroquia Cristo Resucitado (Sede Principal)',
+                'dias' => [
+                    ['dia' => 'Lunes a Viernes', 'horas' => ['6:00 AM', '6:00 PM']],
+                    ['dia' => 'Sábados', 'horas' => ['6:00 AM', '4:00 PM']],
+                    ['dia' => 'Domingos', 'horas' => ['7:00 AM', '9:00 AM', '11:00 AM', '6:00 PM']],
+                ],
+            ],
+            [
+                'nombre' => 'Capilla San Juan Pablo II',
+                'dias' => [
+                    ['dia' => 'Domingos', 'horas' => ['9:00 AM']],
+                ],
+            ],
+        ];
     @endphp
     <section id="horarios" class="py-20 bg-background-light dark:bg-background-dark">
         <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -179,7 +173,7 @@
                         <div class="{{ $isPrincipal ? 'bg-secondary' : 'bg-primary/90' }} px-6 py-4">
                             <h3 class="{{ $isPrincipal ? 'text-xl text-white' : 'text-lg text-text-dark' }} font-bold flex items-center gap-2">
                                 <span class="material-symbols-outlined">{{ $isPrincipal ? 'church' : 'home' }}</span>
-                                {{ $sede['nombre'] ?? 'Sede' }}
+                                {{ $sede['nombre'] }}
                             </h3>
                         </div>
                         <div class="p-6">
@@ -222,7 +216,6 @@
     {{-- ═══════════════════════════════════════════════════════
          5b. INTENCIONES DE MISA (WHATSAPP)
     ═══════════════════════════════════════════════════════ --}}
-    @php $whatsapp = $contenidos['home.whatsapp.mensaje'] ?? 'Hola, me gustaría anotar una intención de misa.'; @endphp
     <section class="py-16 bg-gray-50 dark:bg-[#1a160e]">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-[#211c11] rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden">
@@ -241,14 +234,14 @@
                         </p>
                     </div>
                     <div class="flex-shrink-0">
-                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $general['general.whatsapp'] ?? '50494306883') }}?text={{ urlencode($whatsapp) }}" 
-                           target="_blank" 
+                        <a href="https://wa.me/50494306883?text={{ urlencode('Hola, me gustaría anotar una intención de misa.') }}"
+                           target="_blank"
                            rel="noopener noreferrer"
                            class="w-full md:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl transition-colors shadow-lg shadow-green-500/25">
                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                             Enviar por WhatsApp
                         </a>
-                        <a href="{{ route('intenciones') }}" class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-gray-200 dark:border-gray-700 text-text-dark dark:text-white font-bold rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                        <a href="{{ route('intenciones') }}" class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-gray-200 dark:border-gray-700 text-text-dark dark:text-white font-bold rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors mt-3 md:mt-0">
                             <span class="material-symbols-outlined text-lg">edit_note</span>
                             Formulario de Intenciones
                         </a>
@@ -262,9 +255,10 @@
          6. NUESTROS SACERDOTES
     ═══════════════════════════════════════════════════════ --}}
     @php
-        $sacerdotes = json_decode($contenidos['home.sacerdotes'] ?? '[]', true) ?: [];
+        $sacerdotes = [
+            ['nombre' => 'P. Javier', 'cargo' => 'Párroco', 'descripcion' => 'Guiando nuestra comunidad con fe y dedicación.', 'foto' => asset('images/parroco.jpg')],
+        ];
     @endphp
-    @if(count($sacerdotes) > 0)
     <section class="py-20 bg-gray-50 dark:bg-[#1a160e]">
         <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -275,28 +269,27 @@
                 @foreach($sacerdotes as $sacerdote)
                 <div class="bg-white dark:bg-[#211c11] rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-lg transition-shadow text-center p-8">
                     <div class="w-32 h-32 mx-auto rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden mb-6 ring-4 ring-primary/20">
-                        <img alt="{{ $sacerdote['nombre'] ?? '' }}" class="w-full h-full object-cover" src="{{ $sacerdote['foto'] ?? '' }}" loading="lazy">
+                        <img alt="{{ $sacerdote['nombre'] }}" class="w-full h-full object-cover" src="{{ $sacerdote['foto'] }}" loading="lazy">
                     </div>
-                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-1">{{ $sacerdote['nombre'] ?? '' }}</h3>
-                    <p class="text-primary font-medium text-sm mb-4">{{ $sacerdote['cargo'] ?? '' }}</p>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{{ $sacerdote['descripcion'] ?? '' }}</p>
+                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-1">{{ $sacerdote['nombre'] }}</h3>
+                    <p class="text-primary font-medium text-sm mb-4">{{ $sacerdote['cargo'] }}</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{{ $sacerdote['descripcion'] }}</p>
                 </div>
                 @endforeach
             </div>
         </div>
     </section>
-    @endif
 
     {{-- ═══════════════════════════════════════════════════════
          7. APOYA NUESTRA MISIÓN (CTA)
     ═══════════════════════════════════════════════════════ --}}
     <section class="py-24 relative overflow-hidden">
         <div class="absolute inset-0 bg-secondary/95 z-0"></div>
-        <div class="absolute inset-0 z-0 bg-cover bg-center mix-blend-overlay opacity-20" style="background-image: url('{{ $contenidos['home.hero.imagen'] ?? '' }}');"></div>
+        <div class="absolute inset-0 z-0 bg-cover bg-center mix-blend-overlay opacity-20" style="background-image: url('{{ asset('images/hero-home.jpg') }}');"></div>
         <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
-            <h2 class="text-3xl sm:text-5xl font-black text-white mb-6 tracking-tight">{{ $contenidos['home.cta.titulo'] ?? 'Apoya nuestra Misión' }}</h2>
+            <h2 class="text-3xl sm:text-5xl font-black text-white mb-6 tracking-tight">Apoya nuestra Misión</h2>
             <p class="text-white/90 text-lg sm:text-xl mb-10 leading-relaxed">
-                {{ $contenidos['home.cta.texto'] ?? 'Tu generosidad nos ayuda a mantener nuestro templo, apoyar a los necesitados y continuar con la evangelización. Cada aporte cuenta.' }}
+                Tu generosidad nos ayuda a mantener nuestro templo, apoyar a los necesitados y continuar con la evangelización. Cada aporte cuenta.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="{{ route('donaciones') }}" class="w-full sm:w-auto px-8 py-4 bg-primary text-text-dark font-bold rounded-lg hover:bg-white hover:text-secondary transition-colors shadow-lg shadow-black/20">
@@ -308,93 +301,5 @@
             </div>
         </div>
     </section>
-
-    {{-- ═══════════════════════════════════════════════════════
-         8. PRÓXIMOS EVENTOS
-    ═══════════════════════════════════════════════════════ --}}
-    @if($eventos->isNotEmpty())
-    <section class="py-20 bg-background-light dark:bg-background-dark">
-        <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Calendario</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white">Próximos Eventos</h2>
-            </div>
-            <div class="flex flex-col gap-4">
-                @foreach($eventos as $evento)
-                <div class="group flex flex-col md:flex-row items-center gap-6 bg-white dark:bg-[#211c11] p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800 transition-all">
-                    <div class="flex-shrink-0 w-full md:w-24 flex flex-row md:flex-col items-center justify-center gap-2 md:gap-0 bg-gray-50 dark:bg-white/5 rounded-lg p-3 text-center border border-gray-100 dark:border-gray-700">
-                        <span class="text-secondary font-bold text-sm uppercase">{{ $evento->fecha?->translatedFormat('M') ?? '' }}</span>
-                        <span class="text-3xl font-black text-text-dark dark:text-white">{{ $evento->fecha?->format('d') ?? '' }}</span>
-                    </div>
-                    <div class="flex-grow text-center md:text-left">
-                        <h3 class="text-xl font-bold text-text-dark dark:text-white group-hover:text-primary transition-colors">{{ $evento->titulo }}</h3>
-                        @if($evento->descripcion)
-                            <p class="text-gray-500 dark:text-gray-400 mt-1">{{ $evento->descripcion }}</p>
-                        @endif
-                        @if($evento->ubicacion)
-                            <p class="text-gray-400 dark:text-gray-500 text-sm mt-1 flex items-center gap-1 justify-center md:justify-start">
-                                <span class="material-symbols-outlined text-sm">location_on</span>
-                                {{ $evento->ubicacion }}
-                            </p>
-                        @endif
-                    </div>
-                    @if($evento->hora)
-                    <div class="flex-shrink-0 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                        <span class="material-symbols-outlined text-lg">schedule</span>
-                        {{ \Carbon\Carbon::parse($evento->hora)->format('h:i A') }}
-                    </div>
-                    @endif
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    @endif
-
-    {{-- ═══════════════════════════════════════════════════════
-         9. NOTICIAS RECIENTES
-    ═══════════════════════════════════════════════════════ --}}
-    @if($noticias->isNotEmpty())
-    <section class="py-20 bg-gray-50 dark:bg-[#1a160e]">
-        <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="text-secondary font-bold tracking-wide uppercase text-sm mb-2 block">Actualidad</span>
-                <h2 class="text-3xl font-black text-text-dark dark:text-white">Noticias Recientes</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($noticias->take(3) as $noticia)
-                <article class="bg-white dark:bg-[#211c11] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800 flex flex-col h-full">
-                    @if($noticia->imagen_destacada)
-                    <div class="relative h-48 overflow-hidden">
-                        <img alt="{{ $noticia->titulo }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ asset('storage/' . $noticia->imagen_destacada) }}" loading="lazy">
-                        <div class="absolute top-4 left-4 bg-white dark:bg-black/80 px-3 py-1 rounded text-xs font-bold text-text-dark dark:text-white shadow-sm">
-                            {{ $noticia->fecha_publicacion?->translatedFormat('d M, Y') }}
-                        </div>
-                    </div>
-                    @endif
-                    <div class="p-6 flex flex-col flex-grow">
-                        @if($noticia->categoria)
-                        <div class="mb-4">
-                            <span class="text-xs font-bold text-primary uppercase tracking-wider">{{ $noticia->categoria }}</span>
-                        </div>
-                        @endif
-                        <h3 class="text-xl font-bold text-text-dark dark:text-white mb-3 group-hover:text-primary transition-colors">{{ $noticia->titulo }}</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">{{ $noticia->extracto }}</p>
-                        <a class="text-sm font-bold text-text-dark dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all" href="{{ route('noticias.show', $noticia->slug) }}">
-                            Leer más <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
-                        </a>
-                    </div>
-                </article>
-                @endforeach
-            </div>
-            <div class="text-center mt-10">
-                <a href="{{ route('noticias') }}" class="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all">
-                    Ver todas las noticias
-                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
-                </a>
-            </div>
-        </div>
-    </section>
-    @endif
 
 </x-layouts.app>

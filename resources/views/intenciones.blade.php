@@ -23,7 +23,11 @@
     <div class="max-w-[1200px] mx-auto px-4 py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
 
         @php
-            $horariosLectura = json_decode($contenidos['intenciones.horarios_lectura'] ?? '{}', true) ?: [];
+            $horariosLectura = [
+                'lunes_sabado' => '6:00 PM',
+                'domingo_manana' => '8:00 AM & 10:00 AM',
+                'domingo_tarde' => '5:00 PM',
+            ];
         @endphp
 
         {{-- Left Column: Information --}}
@@ -80,35 +84,9 @@
         {{-- Right Column: Form --}}
         <div class="lg:col-span-7 order-1 lg:order-2">
 
-            {{-- Mensaje de éxito --}}
-            @if(session('success'))
-                <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3 dark:bg-green-900/20 dark:border-green-800">
-                    <span class="material-symbols-outlined text-green-600 dark:text-green-400 mt-0.5">check_circle</span>
-                    <div>
-                        <p class="text-green-800 dark:text-green-300 font-medium text-sm">{{ session('success') }}</p>
-                    </div>
-                </div>
-            @endif
-
-            {{-- Errores de validación --}}
-            @if($errors->any())
-                <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl dark:bg-red-900/20 dark:border-red-800">
-                    <div class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-red-600 dark:text-red-400 mt-0.5">error</span>
-                        <div>
-                            <p class="text-red-800 dark:text-red-300 font-medium text-sm mb-2">Por favor corrija los siguientes errores:</p>
-                            <ul class="list-disc list-inside text-sm text-red-700 dark:text-red-400 space-y-1">
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            <form action="{{ route('intenciones.store') }}" method="POST" class="bg-white rounded-2xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] p-6 md:p-10 border border-gray-100 flex flex-col gap-6 dark:bg-white/5 dark:border-white/10">
-                @csrf
+            <form x-data="{ tipo: 'salud', nombre: '', telefono: '', intencion: '', fecha: '', sector: '', mensaje: '' }"
+                  @submit.prevent="window.open('https://wa.me/50494306883?text=' + encodeURIComponent('*Intención de Misa*\n\nTipo: ' + tipo + '\nNombre: ' + nombre + '\nTeléfono: ' + telefono + '\nIntención: ' + intencion + '\nFecha deseada: ' + fecha + '\nSector: ' + sector + (mensaje ? '\nMensaje: ' + mensaje : '')), '_blank')"
+                  class="bg-white rounded-2xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] p-6 md:p-10 border border-gray-100 flex flex-col gap-6 dark:bg-white/5 dark:border-white/10">
                 <div>
                     <h2 class="text-2xl font-bold text-text-dark dark:text-white mb-2">Nueva Petición</h2>
                     <p class="text-gray-500 dark:text-gray-400 text-sm">Complete el formulario a continuación para enviar su intención.</p>
@@ -120,30 +98,27 @@
                         <label class="block text-sm font-semibold text-text-dark dark:text-white mb-3">Tipo de Intención</label>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <label class="cursor-pointer group">
-                                <input {{ old('tipo', 'salud') === 'salud' ? 'checked' : '' }} class="peer sr-only" name="tipo" type="radio" value="salud" />
+                                <input x-model="tipo" class="peer sr-only" name="tipo" type="radio" value="salud" checked />
                                 <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-gray-200 peer-checked:border-secondary peer-checked:bg-secondary/5 transition-all dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
                                     <span class="material-symbols-outlined mb-2 text-gray-400 peer-checked:text-secondary">cardiology</span>
                                     <span class="text-sm font-medium text-gray-600 peer-checked:text-secondary dark:text-gray-300">Salud</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer group">
-                                <input {{ old('tipo') === 'difuntos' ? 'checked' : '' }} class="peer sr-only" name="tipo" type="radio" value="difuntos" />
+                                <input x-model="tipo" class="peer sr-only" name="tipo" type="radio" value="difuntos" />
                                 <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-gray-200 peer-checked:border-text-dark peer-checked:bg-gray-100 transition-all dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
                                     <span class="material-symbols-outlined mb-2 text-gray-400 peer-checked:text-text-dark dark:peer-checked:text-white">filter_vintage</span>
                                     <span class="text-sm font-medium text-gray-600 peer-checked:text-text-dark dark:text-gray-300 dark:peer-checked:text-white">Difuntos</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer group">
-                                <input {{ old('tipo') === 'accion_gracias' ? 'checked' : '' }} class="peer sr-only" name="tipo" type="radio" value="accion_gracias" />
+                                <input x-model="tipo" class="peer sr-only" name="tipo" type="radio" value="accion_gracias" />
                                 <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-gray-200 peer-checked:border-primary peer-checked:bg-primary/5 transition-all dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10">
                                     <span class="material-symbols-outlined mb-2 text-gray-400 peer-checked:text-primary">volunteer_activism</span>
                                     <span class="text-sm font-medium text-gray-600 peer-checked:text-primary dark:text-gray-300">Acción de Gracias</span>
                                 </div>
                             </label>
                         </div>
-                        @error('tipo')
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     {{-- Personal Details --}}
@@ -153,11 +128,8 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                 <span class="material-symbols-outlined text-[20px]">person</span>
                             </div>
-                            <input id="nombre_completo" name="nombre_completo" value="{{ old('nombre_completo') }}" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white @error('nombre_completo') border-red-500 @enderror" placeholder="Ej. María González" type="text" required />
+                            <input id="nombre_completo" x-model="nombre" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="Ej. María González" type="text" required />
                         </div>
-                        @error('nombre_completo')
-                            <p class="text-red-500 text-xs">{{ $message }}</p>
-                        @enderror
                     </div>
                     <div class="flex flex-col gap-2">
                         <label for="telefono" class="text-sm font-semibold text-text-dark dark:text-white">Teléfono / WhatsApp</label>
@@ -165,50 +137,38 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                 <span class="material-symbols-outlined text-[20px]">call</span>
                             </div>
-                            <input id="telefono" name="telefono" value="{{ old('telefono') }}" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="+504 9999-9999" type="tel" />
+                            <input id="telefono" x-model="telefono" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="+504 9999-9999" type="tel" />
                         </div>
-                        @error('telefono')
-                            <p class="text-red-500 text-xs">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     <div class="flex flex-col gap-2 md:col-span-2">
                         <label for="intencion" class="text-sm font-semibold text-text-dark dark:text-white">Nombre de la persona o intención</label>
-                        <input id="intencion" name="intencion" value="{{ old('intencion') }}" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white @error('intencion') border-red-500 @enderror" placeholder="Escriba por quién o qué desea pedir..." type="text" required />
+                        <input id="intencion" x-model="intencion" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="Escriba por quién o qué desea pedir..." type="text" required />
                         <p class="text-xs text-gray-500 dark:text-gray-400">Si es por difuntos, indique la fecha de aniversario si aplica.</p>
-                        @error('intencion')
-                            <p class="text-red-500 text-xs">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     <div class="flex flex-col gap-2 md:col-span-2">
                         <label for="fecha_deseada" class="text-sm font-semibold text-text-dark dark:text-white">Fecha deseada para la mención</label>
-                        <input id="fecha_deseada" name="fecha_deseada" value="{{ old('fecha_deseada') }}" min="{{ date('Y-m-d') }}" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all dark:bg-white/5 dark:border-white/10 dark:text-white @error('fecha_deseada') border-red-500 @enderror" type="date" required />
-                        @error('fecha_deseada')
-                            <p class="text-red-500 text-xs">{{ $message }}</p>
-                        @enderror
+                        <input id="fecha_deseada" x-model="fecha" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all dark:bg-white/5 dark:border-white/10 dark:text-white" type="date" required />
                     </div>
 
                     {{-- Sector --}}
                     <div class="flex flex-col gap-2 md:col-span-2">
                         <label for="sector_id" class="text-sm font-semibold text-text-dark dark:text-white">Sector / Comunidad</label>
-                        <select id="sector_id" name="sector_id" required class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all dark:bg-white/5 dark:border-white/10 dark:text-white @error('sector_id') border-red-500 @enderror">
+                        <select id="sector_id" x-model="sector" required class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all dark:bg-white/5 dark:border-white/10 dark:text-white">
                             <option value="">— Seleccione su sector —</option>
-                            @foreach($sectores as $sector)
-                                <option value="{{ $sector->id }}" {{ old('sector_id') == $sector->id ? 'selected' : '' }}>{{ $sector->nombre }}</option>
-                            @endforeach
+                            <option value="Sector 1 - Centro">Sector 1 - Centro</option>
+                            <option value="Sector 2 - Norte">Sector 2 - Norte</option>
+                            <option value="Sector 3 - Sur">Sector 3 - Sur</option>
+                            <option value="Sector 4 - Este">Sector 4 - Este</option>
+                            <option value="Sector 5 - Oeste">Sector 5 - Oeste</option>
+                            <option value="Visitante">Visitante</option>
                         </select>
-                        @error('sector_id')
-                            <p class="text-red-500 text-xs">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     <div class="flex flex-col gap-2 md:col-span-2">
                         <label for="mensaje" class="text-sm font-semibold text-text-dark dark:text-white">Mensaje adicional (Opcional)</label>
-                        <textarea id="mensaje" name="mensaje" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 resize-none dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="Cualquier detalle extra que el padre deba saber..." rows="3">{{ old('mensaje') }}</textarea>
-                        @error('mensaje')
-                            <p class="text-red-500 text-xs">{{ $message }}</p>
-                        @enderror
+                        <textarea id="mensaje" x-model="mensaje" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-secondary focus:border-transparent transition-all placeholder-gray-400 resize-none dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="Cualquier detalle extra que el padre deba saber..." rows="3"></textarea>
                     </div>
                 </div>
 
@@ -216,9 +176,9 @@
                     <p class="text-xs text-gray-500 dark:text-gray-400 max-w-xs text-center md:text-left">
                         Al enviar, usted acepta que la intención sea leída públicamente en la misa.
                     </p>
-                    <button class="w-full md:w-auto flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-secondary/20 transform transition-all hover:-translate-y-0.5" type="submit">
-                        <span>Enviar Intención</span>
-                        <span class="material-symbols-outlined text-[20px]">send</span>
+                    <button class="w-full md:w-auto flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-green-500/20 transform transition-all hover:-translate-y-0.5" type="submit">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        <span>Enviar por WhatsApp</span>
                     </button>
                 </div>
             </form>

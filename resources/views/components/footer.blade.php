@@ -1,10 +1,17 @@
 {{-- Main Footer --}}
 @php
-    $fc = \App\Models\Contenido::where('clave', 'like', 'contacto.%')
-        ->orWhere('clave', 'like', 'general.%')
-        ->pluck('valor', 'clave')
-        ->toArray();
-    $fcHorarios = json_decode($fc['contacto.horarios'] ?? '{}', true) ?: [];
+    $fc = [
+        'contacto.facebook'  => 'https://www.facebook.com/ParroquiaCristoResucitado',
+        'contacto.instagram' => 'https://www.instagram.com/parroquiacristoresucitado',
+        'contacto.whatsapp'  => '50494306883',
+        'contacto.direccion' => 'Colonia Loarque, calle principal. Tegucigalpa, Honduras',
+        'contacto.telefono'  => '9430-6883',
+        'contacto.email'     => 'cristohnresucitado@gmail.com',
+    ];
+    $fcHorarios = [
+        'lunes_viernes' => '9:00 AM - 5:00 PM',
+        'sabado'        => '8:00 AM - 12:00 MD',
+    ];
 @endphp
 <footer class="bg-[#242323] text-text-light">
     {{-- Main Footer Content --}}

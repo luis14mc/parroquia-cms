@@ -21,14 +21,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Administrador',
                 'password' => bcrypt('PCR2026admin!'),
-                'role' => 'admin',
             ]
         );
-
-        $this->call([
-            ContenidoSeeder::class,
-            SectorSeeder::class,
-            EventoSeeder::class,
-        ]);
     }
 }

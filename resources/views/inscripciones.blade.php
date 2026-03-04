@@ -1,5 +1,41 @@
 <x-layouts.app title="Inscripciones | Parroquia Cristo Resucitado" description="Inscríbete en los sacramentos, catequesis y programas pastorales de nuestra parroquia">
 
+    @php
+        $programas = [
+            'bautismo' => 'Bautismo',
+            'primera_comunion' => 'Primera Comunión',
+            'confirmacion' => 'Confirmación',
+            'matrimonio' => 'Matrimonio',
+            'catequesis_adultos' => 'Catequesis de Adultos',
+            'monaguillos' => 'Monaguillos',
+        ];
+        $colores = [
+            'bautismo' => 'blue-500',
+            'primera_comunion' => 'amber-500',
+            'confirmacion' => 'red-500',
+            'matrimonio' => 'pink-500',
+            'catequesis_adultos' => 'emerald-500',
+            'monaguillos' => 'purple-500',
+        ];
+        $iconos = [
+            'bautismo' => 'water_drop',
+            'primera_comunion' => 'local_dining',
+            'confirmacion' => 'local_fire_department',
+            'matrimonio' => 'favorite',
+            'catequesis_adultos' => 'menu_book',
+            'monaguillos' => 'church',
+        ];
+        $descripciones = [
+            'bautismo' => 'Sacramento de iniciación cristiana',
+            'primera_comunion' => 'Preparación para recibir la Eucaristía',
+            'confirmacion' => 'Fortalecimiento de la fe bautismal',
+            'matrimonio' => 'Sacramento del amor conyugal',
+            'catequesis_adultos' => 'Formación en la fe para adultos',
+            'monaguillos' => 'Servicio al altar y la liturgia',
+        ];
+        $programaActual = request('programa', '');
+    @endphp
+
     {{-- Hero Section --}}
     <div class="relative w-full bg-text-dark text-white overflow-hidden py-16 md:py-24">
         <div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black"></div>
@@ -36,13 +72,13 @@
                     @foreach($programas as $key => $label)
                         <a href="{{ route('inscripciones', ['programa' => $key]) }}"
                            class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 dark:border-white/10 hover:border-primary/30 hover:bg-primary/5 transition-all group
-                                  {{ request('programa') === $key ? 'border-primary bg-primary/5' : '' }}">
-                            <div class="w-10 h-10 rounded-lg bg-{{ $colores[$key] ?? 'primary' }}/10 flex items-center justify-center text-{{ $colores[$key] ?? 'primary' }} shrink-0">
-                                <span class="material-symbols-outlined">{{ $iconos[$key] ?? 'star' }}</span>
+                                  {{ $programaActual === $key ? 'border-primary bg-primary/5' : '' }}">
+                            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                <span class="material-symbols-outlined">{{ $iconos[$key] }}</span>
                             </div>
                             <div class="flex-1 min-w-0">
                                 <h4 class="font-bold text-text-dark dark:text-white text-sm group-hover:text-primary transition-colors">{{ $label }}</h4>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ $descripciones[$key] ?? '' }}</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ $descripciones[$key] }}</p>
                             </div>
                             <span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors text-[18px]">arrow_forward</span>
                         </a>
@@ -65,33 +101,12 @@
         {{-- Right Column: Form --}}
         <div class="lg:col-span-7 order-1 lg:order-2">
 
-            {{-- Mensaje de éxito --}}
-            @if(session('success'))
-                <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3 dark:bg-green-900/20 dark:border-green-800">
-                    <span class="material-symbols-outlined text-green-600 dark:text-green-400 mt-0.5">check_circle</span>
-                    <p class="text-green-800 dark:text-green-300 font-medium text-sm">{{ session('success') }}</p>
-                </div>
-            @endif
-
-            {{-- Errores de validación --}}
-            @if($errors->any())
-                <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl dark:bg-red-900/20 dark:border-red-800">
-                    <div class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-red-600 dark:text-red-400 mt-0.5">error</span>
-                        <div>
-                            <p class="text-red-800 dark:text-red-300 font-medium text-sm mb-2">Por favor corrija los siguientes errores:</p>
-                            <ul class="list-disc list-inside text-sm text-red-700 dark:text-red-400 space-y-1">
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            <form action="{{ route('inscripciones.store') }}" method="POST" class="bg-white dark:bg-white/5 rounded-2xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] p-6 md:p-10 border border-gray-100 dark:border-white/10 flex flex-col gap-6">
-                @csrf
+            <form x-data="{
+                    programa: '{{ $programaActual }}',
+                    nombre: '', telefono: '', email: '', fechaNac: '', padre: '', mensaje: ''
+                  }"
+                  @submit.prevent="window.open('https://wa.me/50494306883?text=' + encodeURIComponent('*Inscripción Parroquial*\n\nPrograma: ' + programa + '\nNombre: ' + nombre + '\nTeléfono: ' + telefono + '\nEmail: ' + email + '\nFecha Nac.: ' + fechaNac + (padre ? '\nPadre/Madre: ' + padre : '') + (mensaje ? '\nNotas: ' + mensaje : '')), '_blank')"
+                  class="bg-white dark:bg-white/5 rounded-2xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] p-6 md:p-10 border border-gray-100 dark:border-white/10 flex flex-col gap-6">
                 <div>
                     <h2 class="text-2xl font-bold text-text-dark dark:text-white mb-2">Formulario de Inscripción</h2>
                     <p class="text-gray-500 dark:text-gray-400 text-sm">Complete sus datos y seleccione el programa de su interés.</p>
@@ -106,16 +121,13 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                 <span class="material-symbols-outlined text-[20px]">school</span>
                             </div>
-                            <select id="programa" name="programa" required class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all dark:bg-white/5 dark:border-white/10 dark:text-white @error('programa') border-red-500 @enderror">
+                            <select id="programa" x-model="programa" required class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all dark:bg-white/5 dark:border-white/10 dark:text-white">
                                 <option value="">Seleccione un programa...</option>
                                 @foreach($programas as $key => $label)
-                                    <option value="{{ $key }}" {{ old('programa', request('programa')) === $key ? 'selected' : '' }}>{{ $label }}</option>
+                                    <option value="{{ $key }}">{{ $label }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        @error('programa')
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     {{-- Nombre Completo --}}
@@ -125,11 +137,8 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                 <span class="material-symbols-outlined text-[20px]">person</span>
                             </div>
-                            <input id="nombre_completo" name="nombre_completo" value="{{ old('nombre_completo') }}" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white @error('nombre_completo') border-red-500 @enderror" placeholder="Ej. María González" type="text" required />
+                            <input id="nombre_completo" x-model="nombre" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="Ej. María González" type="text" required />
                         </div>
-                        @error('nombre_completo')
-                            <p class="text-red-500 text-xs">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     {{-- Teléfono --}}
@@ -139,11 +148,8 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                 <span class="material-symbols-outlined text-[20px]">call</span>
                             </div>
-                            <input id="telefono" name="telefono" value="{{ old('telefono') }}" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="+504 9999-9999" type="tel" />
+                            <input id="telefono" x-model="telefono" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="+504 9999-9999" type="tel" />
                         </div>
-                        @error('telefono')
-                            <p class="text-red-500 text-xs">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     {{-- Email --}}
@@ -153,20 +159,14 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                 <span class="material-symbols-outlined text-[20px]">mail</span>
                             </div>
-                            <input id="email" name="email" value="{{ old('email') }}" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="correo@ejemplo.com" type="email" />
+                            <input id="email" x-model="email" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="correo@ejemplo.com" type="email" />
                         </div>
-                        @error('email')
-                            <p class="text-red-500 text-xs">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     {{-- Fecha de Nacimiento --}}
                     <div class="flex flex-col gap-2">
                         <label for="fecha_nacimiento" class="text-sm font-semibold text-text-dark dark:text-white">Fecha de Nacimiento</label>
-                        <input id="fecha_nacimiento" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}" max="{{ date('Y-m-d') }}" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all dark:bg-white/5 dark:border-white/10 dark:text-white" type="date" />
-                        @error('fecha_nacimiento')
-                            <p class="text-red-500 text-xs">{{ $message }}</p>
-                        @enderror
+                        <input id="fecha_nacimiento" x-model="fechaNac" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all dark:bg-white/5 dark:border-white/10 dark:text-white" type="date" />
                     </div>
 
                     {{-- Padre/Madre (para menores) --}}
@@ -176,20 +176,14 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                 <span class="material-symbols-outlined text-[20px]">family_restroom</span>
                             </div>
-                            <input id="nombre_padre_madre" name="nombre_padre_madre" value="{{ old('nombre_padre_madre') }}" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="Nombre del padre, madre o tutor" type="text" />
+                            <input id="nombre_padre_madre" x-model="padre" class="w-full pl-10 pr-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder-gray-400 dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="Nombre del padre, madre o tutor" type="text" />
                         </div>
-                        @error('nombre_padre_madre')
-                            <p class="text-red-500 text-xs">{{ $message }}</p>
-                        @enderror
                     </div>
 
                     {{-- Mensaje --}}
                     <div class="flex flex-col gap-2 md:col-span-2">
                         <label for="mensaje" class="text-sm font-semibold text-text-dark dark:text-white">Notas adicionales <span class="font-normal text-gray-400">(Opcional)</span></label>
-                        <textarea id="mensaje" name="mensaje" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder-gray-400 resize-none dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="¿Algún detalle que debamos saber?" rows="3">{{ old('mensaje') }}</textarea>
-                        @error('mensaje')
-                            <p class="text-red-500 text-xs">{{ $message }}</p>
-                        @enderror
+                        <textarea id="mensaje" x-model="mensaje" class="w-full px-4 py-3 rounded-lg border-gray-200 bg-gray-50 text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder-gray-400 resize-none dark:bg-white/5 dark:border-white/10 dark:text-white" placeholder="¿Algún detalle que debamos saber?" rows="3"></textarea>
                     </div>
                 </div>
 
@@ -197,9 +191,9 @@
                     <p class="text-xs text-gray-500 dark:text-gray-400 max-w-xs text-center md:text-left">
                         Le contactaremos para confirmar los requisitos y coordinar los siguientes pasos.
                     </p>
-                    <button class="w-full md:w-auto flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-primary/20 transform transition-all hover:-translate-y-0.5" type="submit">
-                        <span>Enviar Inscripción</span>
-                        <span class="material-symbols-outlined text-[20px]">how_to_reg</span>
+                    <button class="w-full md:w-auto flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-green-500/20 transform transition-all hover:-translate-y-0.5" type="submit">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        <span>Enviar por WhatsApp</span>
                     </button>
                 </div>
             </form>
