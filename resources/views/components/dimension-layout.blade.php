@@ -32,9 +32,14 @@
                 {{-- Imagen --}}
                 <div class="lg:w-5/12 relative">
                     <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5">
-                        <img alt="{{ $title }}" class="w-full h-full object-cover" src="{{ $heroImage }}" loading="lazy">
+                        @hasSection('introImage')
+                            @yield('introImage')
+                        @else
+                            <img src="{{ asset('images/heroes/heroe_familiar.webp') }}" alt="Hero Pastoral" class="w-full h-full object-cover" loading="lazy">
+                        @endif
                     </div>
-                    <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-primary/20 rounded-2xl -z-10 hidden sm:block"></div>
+                    <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-secondary/20 rounded-2xl -z-10 hidden sm:block"></div>
+                    <div class="absolute -top-4 -right-4 w-16 h-16 bg-primary/20 rounded-full -z-10 hidden sm:block"></div>
                 </div>
 
                 {{-- Cita Bíblica --}}
@@ -76,7 +81,7 @@
         <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Áreas de Acción</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white">Opciones Fundamentales</h2>
+                <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white">Aspéctos Fundamentales</h2>
             </div>
             {{-- grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-{{ min(count($opciones), 4) }} gap-8">
