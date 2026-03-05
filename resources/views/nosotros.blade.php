@@ -163,7 +163,7 @@
     ═══════════════════════════════════════════════════════ --}}
     <section class="py-24 relative overflow-hidden">
         <div class="absolute inset-0 bg-secondary/95 z-0"></div>
-        <div class="absolute inset-0 z-0 bg-cover bg-center mix-blend-overlay opacity-20" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA51yIlr5EyTJaCeOGx4xaN-I17Tj1cYbJrvcEKZAQItQ8jLhFTnwARiFxe08Tjdrv49pPXDjF9lMQ5QQ7oGz2d2GA6jXWjDjNc_pNsKxJIkSQLuhCeYC8K1y2nSOYbb6rX2e61Kys6uH17p5RGuIRNSq5z__HfILoYkCTptSpMAMnti8J8fm5pPwb3n6G_Q4cXILfTDn9uCPDMkx5Af4Oeu8W-Vx4siBsIZtzE-4N-QRirEqP7xxF0IzaQu2JXY6UTDdB3QdOx42A');"></div>
+        <div class="absolute inset-0 z-0 bg-cover bg-center mix-blend-overlay opacity-20" style="background-image: url('{{ asset('images/heroes/hero_sacramentos.webp') }}');"></div>
         <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
             <h2 class="text-3xl sm:text-5xl font-black text-white mb-6 tracking-tight">Forma parte de nuestra familia</h2>
             <p class="text-white/90 text-lg sm:text-xl mb-10 leading-relaxed">

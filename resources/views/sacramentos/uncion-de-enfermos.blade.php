@@ -3,6 +3,7 @@
     subtitle="Consuelo y fortaleza en la enfermedad"
     icon="healing"
     color="secondary"
+    :heroImage="asset('images/heroes/hero_uncion.webp')"
     :requisitos="[
         ['icon' => 'call', 'title' => 'Solicitar Visita', 'desc' => 'Contactar la oficina parroquial o directamente a un sacerdote para programar la visita.'],
         ['icon' => 'health_and_safety', 'title' => 'Condición del Enfermo', 'desc' => 'Pueden recibir este sacramento los fieles que comienzan a estar en peligro por enfermedad o vejez.'],

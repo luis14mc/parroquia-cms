@@ -2,7 +2,7 @@
     Vista individual de sacramento — layout reutilizable
     Props: $title, $subtitle, $description, $icon, $requisitos (array), $color 
 --}}
-@props(['title', 'subtitle', 'description', 'icon', 'requisitos' => [], 'color' => 'primary'])
+@props(['title', 'subtitle', 'description', 'icon', 'requisitos' => [], 'color' => 'primary', 'heroImage' => null])
 
 <x-layouts.app title="{{ $title }} | Sacramentos | Parroquia Cristo Resucitado" description="{{ Str::limit(strip_tags($description), 160) }}">
 
@@ -10,7 +10,8 @@
          HERO
     ═══════════════════════════════════════════════════════ --}}
     <section class="relative w-full h-[380px] sm:h-[420px] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJHpZMSfq3Lvr2Tz30fJHLTNr_cuYR57JlLjrYq4X0PPxcZXGlK8rV7XhQbv23wUHsISB1iVbz6EW7F96m8iCc4DVOBpJV9XndBBodd3D_PbkgwtSxaZ_9IGhJ9xp8EGg6kXYM-X_2_Www77Eh6PqRkcQU6flarGI-0rbw5at6DDXijF56tSYsjpeH7G3mi2O4nbbdz3N-tCdUKjZsibPDsh2bn4MWQwygFfq5rk1NCIICzZzlsPb7kmsrkNMVM34ulLmLUFzAwq8');">
+        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 hover:scale-105" 
+             style="background-image: url('{{ $heroImage ?? asset('images/heroes/hero_sacramentos.webp') }}');">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30"></div>
         </div>
         <div class="relative z-10 text-center px-4">
@@ -66,7 +67,7 @@
             {{ $slot }}
 
             {{-- CTA WhatsApp --}}
-            <div class="bg-white dark:bg-[#211c11] rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden">
+            <div class="mt-20 bg-white dark:bg-[#211c11] rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden">
                 <div class="flex flex-col sm:flex-row items-center gap-6 p-8">
                     <div class="flex-shrink-0">
                         <div class="w-16 h-16 rounded-2xl bg-green-500/10 flex items-center justify-center">

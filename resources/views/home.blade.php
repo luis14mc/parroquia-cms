@@ -32,87 +32,94 @@
          2. QUICK INFO BAR
     ═══════════════════════════════════════════════════════ --}}
     @php
-        // Horarios reales de misa (de referencia)
-        $horariosMisas = [
-            // Sede Parroquial
-            ['dia' => 'Lunes', 'horas' => ['7:00', '17:00', '19:00']],
-            ['dia' => 'Martes', 'horas' => ['7:00', '17:00', '19:00']],
-            ['dia' => 'Miércoles', 'horas' => ['7:00', '17:00', '19:00']],
-            ['dia' => 'Jueves', 'horas' => ['7:00', '17:00', '19:00']],
-            ['dia' => 'Viernes', 'horas' => ['7:00', '17:00', '19:00']],
-            ['dia' => 'Sábado', 'horas' => ['15:30', '17:30', '19:00']],
-            ['dia' => 'Domingo', 'horas' => ['7:00', '9:00', '9:15', '11:00', '17:00', '19:00']],
-            // Altos de Loarque
-            ['dia' => 'Miércoles', 'horas' => ['18:00']],
-            ['dia' => 'Domingo', 'horas' => ['9:00']],
-            // Yaguacire
-            ['dia' => 'Domingo', 'horas' => ['7:00']],
-            // Fuerza Aérea
-            ['dia' => 'Domingo', 'horas' => ['8:15']],
-            // Las Mercedes
-            ['dia' => 'Sábado', 'horas' => ['15:30']],
-            // Camino Neocatecumenal
-            ['dia' => 'Sábado', 'horas' => ['19:00']],
+        // Horarios reales de misa SOLAMENTE de la Sede Parroquial (según sección inferior)
+        $horariosSede = [
+            'Lunes' => ['07:00', '17:00', '19:00'],
+            'Martes' => ['07:00', '17:00', '19:00'],
+            'Miércoles' => ['07:00', '17:00', '19:00'],
+            'Jueves' => ['07:00', '17:00', '19:00'],
+            'Viernes' => ['07:00', '17:00', '19:00'],
+            'Sábado' => ['17:30'],
+            'Domingo' => ['09:15', '11:00', '17:00', '19:00'],
         ];
-        // Calcular próxima misa
+
         $now = new DateTime('now', new DateTimeZone('America/Tegucigalpa'));
-        $diasSemana = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-        $hoy = $diasSemana[$now->format('w')];
+        $diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        $hoyNombre = $diasSemana[$now->format('w')];
         $horaActual = $now->format('H:i');
+        
         $proximaMisa = null;
-        foreach ($horariosMisas as $hm) {
-            if ($hm['dia'] === $hoy) {
-                foreach ($hm['horas'] as $h) {
-                    $h24 = strlen($h) === 4 ? '0'.$h : $h;
-                    if ($h24.':00' > $horaActual.':00') {
-                        $proximaMisa = $h.' - '.$hm['dia'];
-                        break 2;
-                    }
+        $diaMisa = '';
+
+        // 1. Buscar hoy
+        if (isset($horariosSede[$hoyNombre])) {
+            foreach ($horariosSede[$hoyNombre] as $hora) {
+                if ($hora > $horaActual) {
+                    $proximaMisa = $hora;
+                    $diaMisa = 'Hoy';
+                    break;
                 }
             }
         }
+
+        // 2. Si no hay más hoy, buscar en los días siguientes
         if (!$proximaMisa) {
-            // Buscar la primera misa del siguiente día
-            $idx = array_search($hoy, $diasSemana);
+            $idxHoy = (int)$now->format('w');
             for ($i = 1; $i <= 7; $i++) {
-                $diaSig = $diasSemana[($idx + $i) % 7];
-                foreach ($horariosMisas as $hm) {
-                    if ($hm['dia'] === $diaSig) {
-                        $proximaMisa = $hm['horas'][0].' - '.$hm['dia'];
-                        break 2;
-                    }
+                $nextIdx = ($idxHoy + $i) % 7;
+                $nextDiaNombre = $diasSemana[$nextIdx];
+                if (isset($horariosSede[$nextDiaNombre])) {
+                    $proximaMisa = $horariosSede[$nextDiaNombre][0];
+                    $diaMisa = ($i === 1) ? 'Mañana' : $nextDiaNombre;
+                    break;
                 }
             }
+        }
+
+        // Formatear hora a 12h
+        if ($proximaMisa) {
+            $time = DateTime::createFromFormat('H:i', $proximaMisa);
+            $proximaMisaFormateada = $time->format('g:i A');
         }
     @endphp
-    <div class="w-full bg-white dark:bg-[#2a2418] border-b border-gray-100 dark:border-gray-800 shadow-sm relative z-20 -mt-8 sm:-mt-12 max-w-[1100px] mx-auto rounded-xl p-6 sm:p-8 flex flex-col md:flex-row gap-8 justify-between items-center text-center md:text-left">
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary shrink-0">
-                <span class="material-symbols-outlined text-2xl">schedule</span>
+
+    <div class="w-full bg-white dark:bg-[#2a2418] border-b border-gray-100 dark:border-gray-800 shadow-lg relative z-20 -mt-10 sm:-mt-16 max-w-[1100px] mx-auto rounded-2xl p-6 sm:p-10 flex flex-col md:flex-row gap-8 md:gap-4 justify-between items-center">
+        {{-- Próxima Misa --}}
+        <div class="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+            <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center text-secondary shrink-0">
+                <span class="material-symbols-outlined text-3xl">schedule</span>
             </div>
-            <div>
-                <h3 class="font-bold text-lg text-text-dark dark:text-white">Próxima Misa</h3>
-                <p class="text-gray-500 dark:text-gray-400">{{ $proximaMisa ?? 'Sin horario disponible' }}</p>
-            </div>
-        </div>
-        <div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                <span class="material-symbols-outlined text-2xl">location_on</span>
-            </div>
-            <div>
-                <h3 class="font-bold text-lg text-text-dark dark:text-white">Ubicación</h3>
-                <p class="text-gray-500 dark:text-gray-400">Colonia Loarque, Tegucigalpa</p>
+            <div class="text-center sm:text-left">
+                <h3 class="font-bold text-lg text-text-dark dark:text-white leading-tight">Próxima Misa</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">
+                    {{ $diaMisa }}, {{ $proximaMisaFormateada ?? 'Consultar' }}
+                </p>
             </div>
         </div>
-        <div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 shrink-0">
-                <span class="material-symbols-outlined text-2xl">call</span>
+
+        <div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700/50"></div>
+
+        {{-- Ubicación --}}
+        <div class="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+            <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <span class="material-symbols-outlined text-3xl">location_on</span>
             </div>
-            <div>
-                <h3 class="font-bold text-lg text-text-dark dark:text-white">Contáctanos</h3>
-                <p class="text-gray-500 dark:text-gray-400">9430-6883</p>
+            <div class="text-center sm:text-left">
+                <h3 class="font-bold text-lg text-text-dark dark:text-white leading-tight">Ubicación</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">Colonia Loarque, Tegucigalpa</p>
+            </div>
+        </div>
+
+        <div class="hidden md:block w-px h-12 bg-gray-200 dark:bg-gray-700/50"></div>
+
+        {{-- Contacto --}}
+        <div class="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+            <div class="w-14 h-14 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 shrink-0">
+                <span class="material-symbols-outlined text-3xl">call</span>
+            </div>
+            <div class="text-center sm:text-left">
+                <h3 class="font-bold text-lg text-text-dark dark:text-white leading-tight">Contáctanos</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">9430-6883</p>
             </div>
         </div>
     </div>

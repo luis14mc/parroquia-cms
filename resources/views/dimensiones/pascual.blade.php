@@ -1,17 +1,17 @@
 <x-dimension-layout
     title="Dimensión Pascual"
-    heroImage="https://lh3.googleusercontent.com/aida-public/AB6AXuD1_y1Zjci-f_LoSPXAOc8D3O6RgdZEcIxAda8p5dPn9hZ4P1fxzda_7m4GIpj5UitLi6zW_u3kH1lAGGFKJiMZpAswGHkzT_FcGHlIAt4I_BQhlUBpN22A75BVoVU4hGb9dma74KjS47SGIpXqcUR_Pib3wtmhcZbCFAxHZJdDLkCkYbpoWKh6EenrvBD7AE-qKTeQZInYxV0cm5FbtCtMM6Rt1uGPOEQ9sHn3khs5Hb4XuGSMK4DfGY5rPjjNkUqCN3pFwKmxIMI"
-    quote="Hagan esto en conmemoración mía."
-    quoteSource="Lc 22, 19"
+    heroImage="{{ asset('images/heroes/hero_pascual.webp') }}"
+    quote="Se reunían frecuentemente para escuchar la enseñanza de los apóstoles, y participar en la vida común, en la fracción del pan y en las oraciones."
+    quoteSource="Hch. 2, 42"
     :opciones="[
-        ['icon' => 'church', 'title' => 'Liturgia', 'desc' => 'Cuidado y preparación de las celebraciones litúrgicas para una vivencia profunda de la fe.', 'color' => 'primary'],
-        ['icon' => 'music_note', 'title' => 'Ministerio de Música', 'desc' => 'Animación musical de las celebraciones para elevar los corazones hacia Dios a través del canto.', 'color' => 'secondary'],
-        ['icon' => 'menu_book', 'title' => 'Ministros de la Palabra', 'desc' => 'Proclamación digna de la Palabra de Dios durante las celebraciones eucarísticas.', 'color' => 'primary'],
-        ['icon' => 'emoji_food_beverage', 'title' => 'Ministros de la Eucaristía', 'desc' => 'Servicio de distribución del Cuerpo de Cristo y atención a enfermos e impedidos.', 'color' => 'secondary'],
+        ['icon' => 'church', 'title' => 'Pastoral Litúrgica', 'desc' => 'La liturgia permite al pueblo de Dios celebrar su fe, al participar de la mesa de la Palabra y el banquete eucarístico, obtener la gracia santificante en la recepción de los sacramentos, orar en comunidad y por la comunidad en la Liturgia de las Horas y realizar la meditación orante de la Palabra en la “Lectio Divina”.', 'color' => 'primary'],
     ]"
 >
+    @section('introImage')
+        <img src="{{ asset('images/fondos/info_pascual.webp') }}" alt="Intro Dimensión Pascual" class="w-full h-full object-cover" loading="lazy" />
+    @endsection
     @slot('introText')
-        <p>La Dimensión Pascual es el corazón orante de nuestra parroquia. Centrada en la celebración de la fe, la liturgia y los sacramentos, es el espacio privilegiado donde nos encontramos con Cristo vivo en su Misterio Pascual de muerte y resurrección.</p>
-        <p class="mt-4">Cuidamos con esmero cada celebración litúrgica para que sea una experiencia auténtica de encuentro con Dios, alimentando la vida espiritual de toda la comunidad parroquial.</p>
+        <p>La Iglesia evangeliza y se evangeliza a sí misma con la belleza de la liturgia, la cual también es celebración de la actividad evangelizadora y fuente de un renovado impulso donativo.</p>
+        <p class="mt-4">Se busca fortalecer la celebración de la fe del pueblo de Dios, tanto en forma comunitaria, mediante la acción litúrgica y la piedad popular, como de manera individual, mediante la oración personal y el encuentro con el Señor Jesús.</p>
     @endslot
 </x-dimension-layout>

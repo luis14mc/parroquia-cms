@@ -13,7 +13,7 @@
     ]"
 >
     @section('introImage')
-        <img src="{{ asset('images/fondos/info_samaritana.webp') }}" alt="Intro Pastoral Vocacional" class="w-full h-full object-cover" loading="lazy" />
+        <img src="{{ asset('images/fondos/info_samaritana.webp') }}" alt="Intro Dimension samaritana" class="w-full h-full object-cover" loading="lazy" />
     @endsection
     @slot('introText')
         <p>Fundamentados en los principios de la Doctrina Social de la Iglesia (DSI), tenemos el fin de contribuir al bien común de las personas y las poblaciones más vulnerables de nuestra realidad Diocesana, enfocados en los siguientes aspectos:</p>

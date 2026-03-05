@@ -4,7 +4,7 @@
          HERO
     ═══════════════════════════════════════════════════════ --}}
     <section class="relative w-full h-[420px] sm:h-[480px] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJHpZMSfq3Lvr2Tz30fJHLTNr_cuYR57JlLjrYq4X0PPxcZXGlK8rV7XhQbv23wUHsISB1iVbz6EW7F96m8iCc4DVOBpJV9XndBBodd3D_PbkgwtSxaZ_9IGhJ9xp8EGg6kXYM-X_2_Www77Eh6PqRkcQU6flarGI-0rbw5at6DDXijF56tSYsjpeH7G3mi2O4nbbdz3N-tCdUKjZsibPDsh2bn4MWQwygFfq5rk1NCIICzZzlsPb7kmsrkNMVM34ulLmLUFzAwq8');">
+        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/heroes/hero_sacramentos.webp') }}');">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30"></div>
         </div>
         <div class="relative z-10 text-center px-4">
@@ -66,7 +66,7 @@
     ═══════════════════════════════════════════════════════ --}}
     <section class="py-24 relative overflow-hidden">
         <div class="absolute inset-0 bg-secondary/95 z-0"></div>
-        <div class="absolute inset-0 z-0 bg-cover bg-center mix-blend-overlay opacity-20" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA51yIlr5EyTJaCeOGx4xaN-I17Tj1cYbJrvcEKZAQItQ8jLhFTnwARiFxe08Tjdrv49pPXDjF9lMQ5QQ7oGz2d2GA6jXWjDjNc_pNsKxJIkSQLuhCeYC8K1y2nSOYbb6rX2e61Kys6uH17p5RGuIRNSq5z__HfILoYkCTptSpMAMnti8J8fm5pPwb3n6G_Q4cXILfTDn9uCPDMkx5Af4Oeu8W-Vx4siBsIZtzE-4N-QRirEqP7xxF0IzaQu2JXY6UTDdB3QdOx42A');"></div>
+        <div class="absolute inset-0 z-0 bg-cover bg-center mix-blend-overlay opacity-20" style="background-image: url('{{ asset('images/heroes/hero_sacramentos.webp') }}');"></div>
         <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
             <h2 class="text-3xl sm:text-5xl font-black text-white mb-6 tracking-tight">¿Tienes dudas sobre algún sacramento?</h2>
             <p class="text-white/90 text-lg sm:text-xl mb-10 leading-relaxed">
