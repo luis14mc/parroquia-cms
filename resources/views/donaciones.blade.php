@@ -19,12 +19,12 @@
     </section>
 
     <div class="bg-background-light dark:bg-background-dark">
-        <div class="max-w-[1200px] mx-auto px-4 py-24 sm:py-32">
+        <div class="max-w-[1200px] mx-auto px-4 py-12 sm:py-20">
             
             {{-- ═══════════════════════════════════════════════════════
                  2. DONACIÓN SEGURA (BAC CREDOMATIC) - DESTACADO
             ═══════════════════════════════════════════════════════ --}}
-            <section class="relative z-20 -mt-40 mb-32 sm:mb-48">
+            <section class="relative z-20 -mt-32 mb-24 sm:mb-32">
                 <div class="bg-white dark:bg-[#211c11] rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden">
                     <div class="grid grid-cols-1 lg:grid-cols-12">
                         {{-- Imagen/Decoración --}}
@@ -63,8 +63,8 @@
             {{-- ═══════════════════════════════════════════════════════
                  3. CUENTAS BANCARIAS
             ═══════════════════════════════════════════════════════ --}}
-            <section id="cuentas" class="mb-32 sm:mb-48">
-                <div class="text-center max-w-3xl mx-auto mb-20 ">
+            <section id="cuentas" class="mb-24 sm:mb-32">
+                <div class="text-center max-w-3xl mx-auto mb-16">
                     <span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Transferencia Directa</span>
                     <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white mb-4">Cuentas Bancarias</h2>
                     <p class="text-gray-500 dark:text-gray-400 leading-relaxed">
@@ -118,8 +118,8 @@
             {{-- ═══════════════════════════════════════════════════════
                  4. OTRAS FORMAS DE COLABORAR (CARDS)
             ═══════════════════════════════════════════════════════ --}}
-            <section class="mb-32 sm:mb-48">
-                <div class="text-center max-w-3xl mx-auto mb-20 ">
+            <section class="mb-24 sm:mb-32">
+                <div class="text-center max-w-3xl mx-auto mb-16">
                     <span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Iniciativas Comunitarias</span>
                     <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white mb-4">Otras formas de apoyar</h2>
                     <p class="text-gray-500 dark:text-gray-400 leading-relaxed">
@@ -162,7 +162,7 @@
             </section>
 
             {{-- Quote Final --}}
-            <div class="mt-32 sm:mt-48 pb-24 text-center max-w-3xl mx-auto">
+            <div class="mt-24 sm:mt-32 pb-16 text-center max-w-3xl mx-auto">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-8">
                     <span class="material-symbols-outlined text-3xl">format_quote</span>
                 </div>
