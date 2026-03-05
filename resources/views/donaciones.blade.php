@@ -64,7 +64,7 @@
                  3. CUENTAS BANCARIAS
             ═══════════════════════════════════════════════════════ --}}
             <section id="cuentas" class="mb-32 sm:mb-48">
-                <div class="text-center max-w-3xl mx-auto mb-20  py-10">
+                <div class="text-center max-w-3xl mx-auto mb-20 ">
                     <span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Transferencia Directa</span>
                     <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white mb-4">Cuentas Bancarias</h2>
                     <p class="text-gray-500 dark:text-gray-400 leading-relaxed">
@@ -72,7 +72,7 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="max-w-2xl mx-auto">
                     {{-- BAC Credomatic --}}
                     <div class="bg-white dark:bg-[#211c11] rounded-3xl p-8 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all group relative overflow-hidden">
                         <div class="flex items-center justify-between mb-8">
@@ -105,39 +105,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- Banpaís --}}
-                    <div class="bg-white dark:bg-[#211c11] rounded-3xl p-8 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all group relative overflow-hidden">
-                        <div class="flex items-center justify-between mb-8">
-                            <img src="{{ asset('images/donaciones/logo_banpais.png') }}" alt="Banpaís" class="h-10 object-contain">
-                            <div class="w-10 h-10 rounded-full bg-green-50 dark:bg-green-900/20 flex items-center justify-center text-green-600">
-                                <span class="material-symbols-outlined">account_balance</span>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mb-1">Número de Cuenta</p>
-                                <div class="flex items-center gap-4">
-                                    <span class="text-2xl font-black text-text-dark dark:text-white tracking-tighter">21-001-234567-8</span>
-                                    <button @click="navigator.clipboard.writeText('210012345678'); $dispatch('notify', { message: 'Copiado al portapapeles' })" 
-                                            class="p-2 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-sm hover:text-primary transition-colors" title="Copiar número">
-                                        <span class="material-symbols-outlined text-sm">content_copy</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest">Tipo</p>
-                                    <p class="font-bold text-text-dark dark:text-white text-sm">Cuenta de Cheques</p>
-                                </div>
-                                <div>
-                                    <p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest">Nombre</p>
-                                    <p class="font-bold text-text-dark dark:text-white text-sm">Parroquia Cristo Resucitado</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="mt-8 flex items-center justify-center gap-4 p-4 bg-green-50 dark:bg-green-900/10 rounded-2xl border border-green-100 dark:border-green-900/20 max-w-2xl mx-auto">
@@ -152,7 +119,7 @@
                  4. OTRAS FORMAS DE COLABORAR (CARDS)
             ═══════════════════════════════════════════════════════ --}}
             <section class="mb-32 sm:mb-48">
-                <div class="text-center max-w-3xl mx-auto mb-20 py-10">
+                <div class="text-center max-w-3xl mx-auto mb-20 ">
                     <span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Iniciativas Comunitarias</span>
                     <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white mb-4">Otras formas de apoyar</h2>
                     <p class="text-gray-500 dark:text-gray-400 leading-relaxed">
