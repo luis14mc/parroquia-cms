@@ -72,9 +72,9 @@
                     </p>
                 </div>
 
-                <div class="max-w-2xl mx-auto">
+                <div class="flex justify-center max-w-5xl mx-auto">
                     {{-- BAC Credomatic --}}
-                    <div class="bg-white dark:bg-[#211c11] rounded-3xl p-8 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all group relative overflow-hidden">
+                    <div class="max-w-2xl w-full bg-white dark:bg-[#211c11] rounded-3xl p-8 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all group relative overflow-hidden">
                         <div class="flex items-center justify-between mb-8">
                             <img src="{{ asset('images/donaciones/logo_bac.png') }}" alt="BAC Credomatic" class="h-10 object-contain">
                             <div class="w-10 h-10 rounded-full bg-red-50 dark:bg-red-900/20 flex items-center justify-center text-red-600">
