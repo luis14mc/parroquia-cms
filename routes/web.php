@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 // ── Campaña de Duelo (Privada) ─────────────────────────────
 Route::get('/congreso', [DueloRegistroController::class, 'index'])->name('campaña-duelo.index');
 Route::post('/congreso', [DueloRegistroController::class, 'store'])->name('campaña-duelo.store');
+Route::get('/congreso/gracias', fn () => view('campaña-duelo.gracias'))->name('campaña-duelo.gracias');
 
 // ── Páginas principales ──────────────────────────────────
 Route::view('/', 'home')->name('home');

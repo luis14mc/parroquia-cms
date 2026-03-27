@@ -496,13 +496,6 @@
                     </div>
                 </div>
 
-                @if(session('success'))
-                    <div class="success-msg">
-                        <span class="material-symbols-outlined" style="color: #2E7D54; flex-shrink: 0;">verified</span>
-                        <span>{{ session('success') }}</span>
-                    </div>
-                @endif
-
                 <form action="{{ route('campaña-duelo.store') }}" method="POST">
                     @csrf
 
