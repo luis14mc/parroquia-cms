@@ -1,8 +1,8 @@
-# Railway Nixpacks configuration for Laravel 12 (static site, no DB)
+# Railway Nixpacks configuration for Laravel 12
 # https://nixpacks.com/docs/providers/php
 
 [phases.setup]
-nixPkgs = ["php83", "php83Extensions.mbstring", "php83Extensions.tokenizer", "php83Extensions.xml", "php83Extensions.ctype", "php83Extensions.fileinfo", "php83Extensions.openssl", "nodejs_20"]
+nixPkgs = ["php83", "php83Extensions.mbstring", "php83Extensions.tokenizer", "php83Extensions.xml", "php83Extensions.ctype", "php83Extensions.fileinfo", "php83Extensions.openssl", "php83Extensions.pdo", "php83Extensions.pdo_mysql", "nodejs_20"]
 
 [phases.install]
 cmds = ["composer install --no-dev --optimize-autoloader", "npm ci"]
@@ -17,4 +17,4 @@ cmds = [
 ]
 
 [start]
-cmd = "rm -f public/hot && php artisan optimize && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
+cmd = "rm -f public/hot && php artisan migrate --force && php artisan optimize && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
