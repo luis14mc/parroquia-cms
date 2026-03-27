@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/congreso', [DueloRegistroController::class, 'index'])->name('campaña-duelo.index');
 Route::post('/congreso', [DueloRegistroController::class, 'store'])->name('campaña-duelo.store');
 Route::get('/congreso/gracias', fn () => view('campaña-duelo.gracias'))->name('campaña-duelo.gracias');
+Route::get('/congreso/registros', [DueloRegistroController::class, 'registros'])->name('campaña-duelo.registros');
+Route::get('/congreso/db-info', [DueloRegistroController::class, 'dbInfo'])->name('campaña-duelo.db-info');
 
 // ── Páginas principales ──────────────────────────────────
 Route::view('/', 'home')->name('home');
