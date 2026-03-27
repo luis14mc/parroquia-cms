@@ -105,7 +105,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                 </div>
 
                 <div class="mt-8 flex items-center justify-center gap-4 p-4 bg-green-50 dark:bg-green-900/10 rounded-2xl border border-green-100 dark:border-green-900/20 max-w-2xl mx-auto">
                     <span class="material-symbols-outlined text-green-600">info</span>

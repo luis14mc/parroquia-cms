@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\DueloRegistroController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 | Solo Route::view(), sin controladores ni base de datos.
 |
 */
+
+// ── Campaña de Duelo (Privada) ─────────────────────────────
+Route::get('/congreso', [DueloRegistroController::class, 'index'])->name('campaña-duelo.index');
+Route::post('/congreso', [DueloRegistroController::class, 'store'])->name('campaña-duelo.store');
 
 // ── Páginas principales ──────────────────────────────────
 Route::view('/', 'home')->name('home');
