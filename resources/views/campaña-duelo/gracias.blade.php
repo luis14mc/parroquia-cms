@@ -297,6 +297,10 @@
                 </div>
                 @endif
                 <div class="registro-dato">
+                    <span class="material-symbols-outlined">location_on</span>
+                    <span>Universidad Católica · Campus Casa Mata</span>
+                </div>
+                <div class="registro-dato">
                     <span class="material-symbols-outlined">schedule</span>
                     <span>8:00 a.m. – 4:00 p.m.</span>
                 </div>

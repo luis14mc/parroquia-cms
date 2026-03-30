@@ -478,6 +478,9 @@
             font-weight: 600;
             color: var(--text);
         }
+        .congreso-info-full {
+            grid-column: 1 / -1;
+        }
 
         /* Checkboxes de días */
         .check-grid {
@@ -663,6 +666,13 @@
                             <div>
                                 <p class="info-label">Horario</p>
                                 <p class="info-value">8:00 a.m. – 4:00 p.m.</p>
+                            </div>
+                        </div>
+                        <div class="congreso-info-item congreso-info-full">
+                            <span class="material-symbols-outlined">location_on</span>
+                            <div>
+                                <p class="info-label">Sede</p>
+                                <p class="info-value">Universidad Católica · Campus Casa Mata</p>
                             </div>
                         </div>
                     </div>
