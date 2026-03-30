@@ -443,6 +443,118 @@
             color: #b0acbd;
         }
 
+        /* Info del congreso */
+        .congreso-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .congreso-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            background: var(--purple-lt);
+            border: 1px solid #ddd4f0;
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+        }
+        .congreso-info-item .material-symbols-outlined {
+            font-size: 20px;
+            color: var(--purple);
+            margin-top: 1px;
+            flex-shrink: 0;
+        }
+        .info-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--purple);
+            margin-bottom: 2px;
+        }
+        .info-value {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Checkboxes de días */
+        .check-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .check-option {
+            cursor: pointer;
+            display: block;
+        }
+        .check-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .check-tile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.9rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--white);
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+        .check-option input:checked ~ .check-tile,
+        .check-option.checked .check-tile {
+            border-color: var(--purple);
+            background: var(--purple-lt);
+            box-shadow: 0 0 0 3px rgba(107,63,160,0.12);
+        }
+        .check-box {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            border: 2px solid var(--border);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .check-option input:checked ~ .check-tile .check-box,
+        .check-option.checked .check-box {
+            border-color: var(--purple);
+            background: var(--purple);
+        }
+        .check-icon {
+            font-size: 14px;
+            color: white;
+            opacity: 0;
+            font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24;
+            transition: opacity 0.15s;
+        }
+        .check-option input:checked ~ .check-tile .check-icon,
+        .check-option.checked .check-icon {
+            opacity: 1;
+        }
+        .check-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+        .check-day {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .check-date {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
         /* Responsive móvil */
         @media (max-width: 580px) {
             body { padding: 1.5rem 1rem; }
@@ -452,6 +564,8 @@
             .form-inner { padding: 1.75rem 1.5rem 1.5rem; }
             .grid-2 { grid-template-columns: 1fr; gap: 1.25rem; }
             .biblica { margin: 1.5rem 1.5rem; }
+            .congreso-info { grid-template-columns: 1fr; }
+            .check-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -535,26 +649,56 @@
                         </div>
                     </div>
 
-                    {{-- Confirmar Asistencia --}}
-                    <div class="field-group" style="margin-top: 1.5rem;">
-                        <span class="radio-group-label">¿Confirma su asistencia al evento?</span>
-                        <div class="radio-grid">
-                            <label class="radio-option">
-                                <input type="radio" name="confirmar_asistencia" value="1" checked>
-                                <div class="radio-tile">
-                                    <div class="radio-dot"></div>
-                                    <span class="radio-label-text">Sí, asistiré</span>
+                    {{-- Info del Congreso --}}
+                    <div class="congreso-info">
+                        <div class="congreso-info-item">
+                            <span class="material-symbols-outlined">calendar_month</span>
+                            <div>
+                                <p class="info-label">Fechas</p>
+                                <p class="info-value">18 y 19 de abril de 2026</p>
+                            </div>
+                        </div>
+                        <div class="congreso-info-item">
+                            <span class="material-symbols-outlined">schedule</span>
+                            <div>
+                                <p class="info-label">Horario</p>
+                                <p class="info-value">8:00 a.m. – 4:00 p.m.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Días de asistencia --}}
+                    <div class="field-group" style="margin-top: 1.25rem;">
+                        <span class="radio-group-label">¿Qué día(s) participará? <span style="color:var(--wine);font-size:0.75rem;">(seleccione al menos uno)</span></span>
+                        <div class="check-grid">
+                            <label class="check-option {{ in_array('sabado', old('dias_asistencia', [])) ? 'checked' : '' }}">
+                                <input type="checkbox" name="dias_asistencia[]" value="sabado"
+                                    {{ in_array('sabado', old('dias_asistencia', [])) ? 'checked' : '' }}>
+                                <div class="check-tile">
+                                    <div class="check-box">
+                                        <span class="material-symbols-outlined check-icon">check</span>
+                                    </div>
+                                    <div class="check-text">
+                                        <span class="check-day">Sábado</span>
+                                        <span class="check-date">18 de abril</span>
+                                    </div>
                                 </div>
                             </label>
-                            <label class="radio-option">
-                                <input type="radio" name="confirmar_asistencia" value="0">
-                                <div class="radio-tile">
-                                    <div class="radio-dot"></div>
-                                    <span class="radio-label-text">No podré asistir</span>
+                            <label class="check-option {{ in_array('domingo', old('dias_asistencia', [])) ? 'checked' : '' }}">
+                                <input type="checkbox" name="dias_asistencia[]" value="domingo"
+                                    {{ in_array('domingo', old('dias_asistencia', [])) ? 'checked' : '' }}>
+                                <div class="check-tile">
+                                    <div class="check-box">
+                                        <span class="material-symbols-outlined check-icon">check</span>
+                                    </div>
+                                    <div class="check-text">
+                                        <span class="check-day">Domingo</span>
+                                        <span class="check-date">19 de abril</span>
+                                    </div>
                                 </div>
                             </label>
                         </div>
-                        @error('confirmar_asistencia') <p class="field-error">{{ $message }}</p> @enderror
+                        @error('dias_asistencia') <p class="field-error">{{ $message }}</p> @enderror
                     </div>
 
                     <div class="divider"></div>

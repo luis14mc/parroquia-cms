@@ -12,10 +12,10 @@ class DueloRegistro extends Model
         'nombre_completo',
         'telefono',
         'email',
-        'confirmar_asistencia',
+        'dias_asistencia',
     ];
 
     protected $casts = [
-        'confirmar_asistencia' => 'boolean',
+        'dias_asistencia' => 'array',
     ];
 }

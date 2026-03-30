@@ -286,12 +286,20 @@
                     <span class="material-symbols-outlined">call</span>
                     <span>{{ session('telefono') }}</span>
                 </div>
-                @if(session('asistencia'))
+                @if(session('dias'))
                 <div class="registro-dato">
-                    <span class="material-symbols-outlined">event_available</span>
-                    <span>Confirmó asistencia al evento</span>
+                    <span class="material-symbols-outlined">calendar_month</span>
+                    <span>
+                        @foreach(session('dias') as $dia)
+                            {{ $dia === 'sabado' ? 'Sábado 18 de abril' : 'Domingo 19 de abril' }}{{ !$loop->last ? ' · ' : '' }}
+                        @endforeach
+                    </span>
                 </div>
                 @endif
+                <div class="registro-dato">
+                    <span class="material-symbols-outlined">schedule</span>
+                    <span>8:00 a.m. – 4:00 p.m.</span>
+                </div>
             </div>
             @endif
 
