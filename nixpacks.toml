@@ -17,5 +17,5 @@ cmds = [
 ]
 
 [start]
-# migrate debe completarse antes de servir; si falla, el deploy en Railway mostrará error (mejor que app sin tablas actualizadas)
-cmd = "rm -f public/hot && php artisan migrate --force && php artisan optimize && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
+# config:clear evita caché vieja de BD; luego migrate y optimize con variables ya inyectadas por Railway
+cmd = "rm -f public/hot && php artisan config:clear && php artisan migrate --force && php artisan optimize && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"

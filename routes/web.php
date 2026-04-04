@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// ── Campaña de Duelo (Privada) ─────────────────────────────
-Route::get('/congreso', [DueloRegistroController::class, 'index'])->name('campaña-duelo.index');
-Route::post('/congreso', [DueloRegistroController::class, 'store'])->name('campaña-duelo.store');
-Route::get('/congreso/gracias', fn () => view('campaña-duelo.gracias'))->name('campaña-duelo.gracias');
-Route::get('/congreso/registros', [DueloRegistroController::class, 'registros'])->name('campaña-duelo.registros');
-Route::get('/congreso/db-info', [DueloRegistroController::class, 'dbInfo'])->name('campaña-duelo.db-info');
+// ── Campaña de Duelo (Privada). Nombres de ruta solo ASCII (evita fallos con route:cache / prod).
+Route::get('/congreso', [DueloRegistroController::class, 'index'])->name('congreso.index');
+Route::post('/congreso', [DueloRegistroController::class, 'store'])->name('congreso.store');
+Route::get('/congreso/gracias', fn () => view('campaña-duelo.gracias'))->name('congreso.gracias');
+Route::get('/congreso/registros', [DueloRegistroController::class, 'registros'])->name('congreso.registros');
+Route::get('/congreso/db-info', [DueloRegistroController::class, 'dbInfo'])->name('congreso.db-info');
 
 // ── Páginas principales ──────────────────────────────────
 Route::view('/', 'home')->name('home');

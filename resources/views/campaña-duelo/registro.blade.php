@@ -614,7 +614,7 @@
                     <p class="field-error" style="margin-bottom:1rem;padding:0.75rem 1rem;background:rgba(229,62,62,0.08);border-radius:0.5rem;border:1px solid rgba(229,62,62,0.25);">{{ $message }}</p>
                 @enderror
 
-                <form action="{{ route('campaña-duelo.store') }}" method="POST">
+                <form action="{{ url('/congreso') }}" method="POST">
                     @csrf
 
                     {{-- Nombre Completo --}}

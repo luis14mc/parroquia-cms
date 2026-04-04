@@ -18,7 +18,11 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'database'),
+    /*
+    | Por defecto "file": no requiere tabla `sessions`. Si usas "database",
+    | ejecuta: php artisan session:table && php artisan migrate
+    */
+    'driver' => env('SESSION_DRIVER', 'file'),
 
     /*
     |--------------------------------------------------------------------------
