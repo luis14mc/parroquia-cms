@@ -30,7 +30,7 @@ final class AppServiceProvider extends ServiceProvider
 
         if (App::environment('production') && config('database.default') === 'sqlite') {
             throw new \RuntimeException(
-                'En producción no se usa SQLite. En Railway: DB_CONNECTION=mysql y variables MYSQL_URL o MYSQL* del servicio MySQL.'
+                'Este proyecto solo usa MySQL/PostgreSQL. Quita DB_CONNECTION=sqlite y configura MYSQL_URL o DATABASE_URL en Railway.'
             );
         }
     }

@@ -17,10 +17,8 @@ return [
     */
 
     /*
-    | Por defecto "mysql". Railway suele inyectar:
-    | - MySQL: MYSQL_URL (+ MYSQLHOST, MYSQLPORT, …) o una URL en DATABASE_URL
-    | - Postgres: DATABASE_URL (+ PGHOST, PGPORT, …)
-    | En local sin MySQL: DB_CONNECTION=sqlite. Tests: phpunit.xml fuerza sqlite.
+    | Por defecto "mysql". Railway: MYSQL_URL / DATABASE_URL / MYSQL* o PG* (pgsql).
+    | Tests (phpunit.xml): MySQL en 127.0.0.1, base "testing" — ver .env.example.
     */
     'default' => env('DB_CONNECTION', 'mysql'),
 
@@ -36,18 +34,6 @@ return [
     */
 
     'connections' => [
-
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'url' => env('DB_URL'),
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix' => '',
-            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-            'busy_timeout' => null,
-            'journal_mode' => null,
-            'synchronous' => null,
-            'transaction_mode' => 'DEFERRED',
-        ],
 
         'mysql' => [
             'driver' => 'mysql',
