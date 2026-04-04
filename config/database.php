@@ -16,9 +16,12 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', (
-        env('MYSQL_URL') || env('MYSQLHOST') || env('MYSQLDATABASE')
-    ) ? 'mysql' : 'sqlite'),
+    /*
+    | Por defecto "mysql" para producción (Railway: MYSQL_URL / MYSQL* en .env.example).
+    | En local sin servidor MySQL: pon DB_CONNECTION=sqlite en tu .env.
+    | Los tests fuerzan sqlite en phpunit.xml.
+    */
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
