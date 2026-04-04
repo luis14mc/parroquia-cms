@@ -6,6 +6,8 @@ use App\Models\DueloRegistro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\ValidationException;
 
 class DueloRegistroController extends Controller
 {
@@ -16,28 +18,43 @@ class DueloRegistroController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nombre_completo' => 'required|string|max:255',
-            'telefono'        => 'required|string|max:20',
-            'email'           => 'nullable|email|max:255',
-            'dias_asistencia' => 'required|array|min:1',
-            'dias_asistencia.*' => 'in:sabado,domingo',
-        ]);
+        try {
+            $validated = $request->validate([
+                'nombre_completo' => 'required|string|max:255',
+                'telefono'        => 'required|string|max:20',
+                'email'           => 'nullable|email|max:255',
+                'dias_asistencia' => 'required|array|min:1',
+                'dias_asistencia.*' => 'in:sabado,domingo',
+            ]);
 
-        $registro = DueloRegistro::create([
-            'nombre_completo' => $validated['nombre_completo'],
-            'telefono'        => $validated['telefono'],
-            'email'           => $validated['email'] ?? null,
-            'dias_asistencia' => $validated['dias_asistencia'],
-        ]);
+            $registro = DueloRegistro::create([
+                'nombre_completo' => $validated['nombre_completo'],
+                'telefono'        => $validated['telefono'],
+                'email'           => $validated['email'] ?? null,
+                'dias_asistencia' => $validated['dias_asistencia'],
+            ]);
 
-        Log::info('Nuevo registro congreso', ['id' => $registro->id, 'nombre' => $registro->nombre_completo]);
+            Log::info('Nuevo registro congreso', ['id' => $registro->id, 'nombre' => $registro->nombre_completo]);
 
-        return redirect()->route('campaña-duelo.gracias')->with([
-            'nombre'   => $registro->nombre_completo,
-            'telefono' => $registro->telefono,
-            'dias'     => $registro->dias_asistencia,
-        ]);
+            return redirect()->route('campaña-duelo.gracias')->with([
+                'nombre'   => $registro->nombre_completo,
+                'telefono' => $registro->telefono,
+                'dias'     => $registro->dias_asistencia,
+            ]);
+        } catch (ValidationException $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            Log::error('congreso registro: error al guardar', [
+                'message' => $e->getMessage(),
+                'file'    => $e->getFile() . ':' . $e->getLine(),
+            ]);
+
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'db' => 'No se pudo guardar el registro. Intente de nuevo o contacte a la parroquia. Si el problema continúa, el administrador del sitio debe verificar las migraciones de la base de datos.',
+                ]);
+        }
     }
 
     public function registros()
@@ -69,6 +86,13 @@ class DueloRegistroController extends Controller
             $dbName    = $e->getMessage();
         }
 
+        $columns = [];
+        $hasDias = false;
+        if ($connected && Schema::hasTable('duelo_registros')) {
+            $columns = Schema::getColumnListing('duelo_registros');
+            $hasDias = Schema::hasColumn('duelo_registros', 'dias_asistencia');
+        }
+
         return response()->json([
             'db_connection'  => config('database.default'),
             'db_host'        => env('DB_HOST', env('MYSQLHOST', 'no-host-var')),
@@ -78,6 +102,11 @@ class DueloRegistroController extends Controller
             'mysql_url_set'  => !empty(env('MYSQL_URL')),
             'connected'      => $connected,
             'database_name'  => $dbName,
+            'duelo_registros_columns' => $columns,
+            'has_dias_asistencia_column' => $hasDias,
+            'registros_count' => $connected && Schema::hasTable('duelo_registros')
+                ? DueloRegistro::count()
+                : null,
         ], 200, [], JSON_PRETTY_PRINT);
     }
 }
