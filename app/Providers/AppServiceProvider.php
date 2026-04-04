@@ -27,5 +27,11 @@ final class AppServiceProvider extends ServiceProvider
         if (App::isProduction() || str_starts_with((string) config('app.url'), 'https')) {
             URL::forceScheme('https');
         }
+
+        if (App::environment('production') && config('database.default') === 'sqlite') {
+            throw new \RuntimeException(
+                'En producción no se usa SQLite. En Railway: DB_CONNECTION=mysql y variables MYSQL_URL o MYSQL* del servicio MySQL.'
+            );
+        }
     }
 }
