@@ -16,7 +16,9 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', env('MYSQL_URL') ? 'mysql' : 'sqlite'),
+    'default' => env('DB_CONNECTION', (
+        env('MYSQL_URL') || env('MYSQLHOST') || env('MYSQLDATABASE')
+    ) ? 'mysql' : 'sqlite'),
 
     /*
     |--------------------------------------------------------------------------
@@ -50,11 +52,11 @@ return [
             | están en el mismo proyecto. Debe prevalecer sobre DB_URL / DB_HOST manual.
             */
             'url' => env('MYSQL_URL') ?: env('DB_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'laravel'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_HOST', env('MYSQLHOST', '127.0.0.1')),
+            'port' => env('DB_PORT', env('MYSQLPORT', '3306')),
+            'database' => env('DB_DATABASE', env('MYSQLDATABASE', 'laravel')),
+            'username' => env('DB_USERNAME', env('MYSQLUSER', 'root')),
+            'password' => env('DB_PASSWORD', env('MYSQLPASSWORD', '')),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => env('DB_CHARSET', 'utf8mb4'),
             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
