@@ -9,7 +9,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -26,17 +26,19 @@
             padding: 2rem 1rem;
         }
 
-        /* Paleta formal: institucional, neutra */
+        /* Paleta Pastoral del Duelo (logo): burdeos, pizarra, negro */
         :root {
-            --accent:       #1e3a5f;
-            --accent-hover: #152d47;
-            --accent-muted: #eef1f5;
+            --accent:       #8B1538;
+            --accent-hover: #6d102c;
+            --accent-muted: rgba(139, 21, 56, 0.14);
+            --slate:        #6A7B88;
             --white:        #ffffff;
-            --bg:           #fafaf9;
-            --card:         #ffffff;
-            --border:       #e7e5e4;
-            --text:         #1c1917;
-            --muted:        #78716c;
+            --bg:           #0a0a0a;
+            --card:         #111111;
+            --surface:      #161616;
+            --border:       #2a2a2a;
+            --text:         #f5f5f4;
+            --muted:        #7E7E7E;
         }
 
         .material-symbols-outlined {
@@ -57,7 +59,7 @@
             left: -10%;
             width: 55%;
             aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(30,58,95,0.04) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139, 21, 56, 0.07) 0%, transparent 68%);
             border-radius: 50%;
         }
         .page-bg::after {
@@ -67,7 +69,7 @@
             right: -10%;
             width: 55%;
             aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(28,25,23,0.03) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(106, 123, 136, 0.06) 0%, transparent 68%);
             border-radius: 50%;
         }
 
@@ -85,10 +87,10 @@
             align-items: center;
             justify-content: center;
             gap: 2rem;
-            background: var(--white);
+            background: var(--card);
             border-radius: 1.5rem;
             padding: 1.5rem 2rem;
-            box-shadow: 0 4px 24px rgba(28,25,23,0.06);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.45);
             border: 1px solid var(--border);
             margin-bottom: 1.5rem;
             flex-wrap: wrap;
@@ -116,28 +118,29 @@
             display: inline-block;
             padding: 0.35rem 1rem;
             background: var(--accent-muted);
-            color: var(--accent);
+            color: #e8b4c4;
             font-size: 0.65rem;
             font-weight: 700;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             border-radius: 99px;
             margin-bottom: 1rem;
-            border: 1px solid rgba(30,58,95,0.15);
+            border: 1px solid rgba(139, 21, 56, 0.35);
         }
         .event-title {
-            font-size: clamp(1.6rem, 4vw, 2.25rem);
-            font-weight: 800;
-            line-height: 1.2;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.5rem, 4vw, 2.1rem);
+            font-weight: 600;
+            line-height: 1.25;
             color: var(--text);
             margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
+            letter-spacing: 0.01em;
         }
         .event-slogan {
             font-size: 0.95rem;
             font-style: italic;
             font-weight: 500;
-            color: var(--muted);
+            color: var(--slate);
             margin-top: 0.75rem;
         }
 
@@ -146,7 +149,7 @@
             background: var(--card);
             border-radius: 2rem;
             border: 1px solid var(--border);
-            box-shadow: 0 12px 40px rgba(28,25,23,0.07), 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.5);
             overflow: hidden;
         }
 
@@ -178,8 +181,9 @@
             flex-shrink: 0;
         }
         .form-heading h2 {
-            font-size: 1.2rem;
-            font-weight: 800;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.15rem;
+            font-weight: 600;
             color: var(--text);
         }
         .form-heading p {
@@ -227,21 +231,21 @@
         .field-input {
             width: 100%;
             padding: 0.9rem 1rem 0.9rem 3.25rem;
-            background: #fafaf9;
+            background: var(--surface);
             border: 1.5px solid var(--border);
             border-radius: 0.875rem;
             font-family: 'Inter', sans-serif;
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 500;
             color: var(--text);
             transition: border-color 0.2s, box-shadow 0.2s;
             outline: none;
         }
-        .field-input::placeholder { color: #b0acbd; font-weight: 400; }
+        .field-input::placeholder { color: #57534e; font-weight: 400; }
         .field-input:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(30,58,95,0.12);
-            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(139, 21, 56, 0.2);
+            background: #1a1a1a;
         }
         .field-error {
             font-size: 0.7rem;
@@ -289,7 +293,7 @@
             align-items: center;
             gap: 0.75rem;
             padding: 1rem 1.25rem;
-            background: #fafaf9;
+            background: var(--surface);
             border: 1.5px solid var(--border);
             border-radius: 0.875rem;
             transition: all 0.2s;
@@ -306,7 +310,7 @@
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            border: 2px solid #c5bfda;
+            border: 2px solid rgba(106, 123, 136, 0.45);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -368,17 +372,17 @@
             color: var(--white);
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
+            font-weight: 600;
+            letter-spacing: 0.04em;
             border: none;
             border-radius: 0.875rem;
             cursor: pointer;
-            box-shadow: 0 4px 14px rgba(30,58,95,0.25);
+            box-shadow: 0 4px 20px rgba(139, 21, 56, 0.35);
             transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
         }
         .btn-submit:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(30,58,95,0.3);
+            box-shadow: 0 6px 24px rgba(139, 21, 56, 0.45);
             background: var(--accent-hover);
         }
         .btn-submit:active { transform: scale(0.98); }
@@ -389,20 +393,20 @@
             align-items: flex-start;
             gap: 0.875rem;
             background: var(--accent-muted);
-            border: 1px solid rgba(30,58,95,0.12);
+            border: 1px solid rgba(139, 21, 56, 0.25);
             border-radius: 1rem;
             padding: 1rem 1.25rem;
             margin-bottom: 1.75rem;
             font-size: 0.875rem;
             font-weight: 600;
-            color: var(--accent);
+            color: #e8b4c4;
         }
 
         /* Cita bíblica */
         .biblica {
             margin: 2rem 2.5rem;
             padding: 1.5rem;
-            background: #f5f5f4;
+            background: var(--surface);
             border-left: 3px solid var(--accent);
             border-radius: 0 0.75rem 0.75rem 0;
             text-align: left;
@@ -411,7 +415,7 @@
             font-size: 0.875rem;
             font-style: italic;
             font-weight: 500;
-            color: var(--muted);
+            color: var(--slate);
             line-height: 1.7;
         }
         .biblica cite {
@@ -433,7 +437,7 @@
             font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: #a8a29e;
+            color: var(--muted);
         }
 
         /* Info del congreso */
@@ -447,14 +451,14 @@
             display: flex;
             align-items: flex-start;
             gap: 0.6rem;
-            background: #f5f5f4;
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 10px;
             padding: 0.85rem 1rem;
         }
         .congreso-info-item .material-symbols-outlined {
             font-size: 20px;
-            color: var(--accent);
+            color: var(--slate);
             margin-top: 1px;
             flex-shrink: 0;
         }
@@ -499,21 +503,21 @@
             padding: 0.9rem 1rem;
             border: 2px solid var(--border);
             border-radius: 12px;
-            background: var(--white);
+            background: var(--surface);
             transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
         }
         .check-option input:checked ~ .check-tile,
         .check-option.checked .check-tile {
             border-color: var(--accent);
             background: var(--accent-muted);
-            box-shadow: 0 0 0 2px rgba(30,58,95,0.1);
+            box-shadow: 0 0 0 2px rgba(139, 21, 56, 0.15);
         }
         .check-box {
             width: 22px;
             height: 22px;
             border-radius: 6px;
             border: 2px solid var(--border);
-            background: var(--white);
+            background: var(--surface);
             display: flex;
             align-items: center;
             justify-content: center;

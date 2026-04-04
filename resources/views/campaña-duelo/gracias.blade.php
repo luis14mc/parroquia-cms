@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -16,15 +16,17 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --accent:       #1e3a5f;
-            --accent-hover: #152d47;
-            --accent-muted: #eef1f5;
+            --accent:       #8B1538;
+            --accent-hover: #6d102c;
+            --accent-muted: rgba(139, 21, 56, 0.14);
+            --slate:        #6A7B88;
             --white:        #ffffff;
-            --bg:           #fafaf9;
-            --card:         #ffffff;
-            --border:       #e7e5e4;
-            --text:         #1c1917;
-            --muted:        #78716c;
+            --bg:           #0a0a0a;
+            --card:         #111111;
+            --surface:      #161616;
+            --border:       #2a2a2a;
+            --text:         #f5f5f4;
+            --muted:        #7E7E7E;
         }
 
         .material-symbols-outlined {
@@ -56,7 +58,7 @@
             left: -10%;
             width: 55%;
             aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(30,58,95,0.04) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139, 21, 56, 0.07) 0%, transparent 68%);
             border-radius: 50%;
         }
         .page-bg::after {
@@ -66,7 +68,7 @@
             right: -10%;
             width: 55%;
             aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(28,25,23,0.03) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(106, 123, 136, 0.06) 0%, transparent 68%);
             border-radius: 50%;
         }
 
@@ -88,6 +90,11 @@
             justify-content: center;
             gap: 2.5rem;
             flex-wrap: wrap;
+            background: var(--card);
+            border-radius: 1.5rem;
+            padding: 1.5rem 2rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.45);
         }
         .logos img {
             height: 110px;
@@ -105,7 +112,7 @@
             background: var(--card);
             border-radius: 20px;
             border: 1px solid var(--border);
-            box-shadow: 0 8px 40px rgba(28, 25, 23, 0.07);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
             width: 100%;
             padding: 3rem 2.5rem;
             display: flex;
@@ -128,25 +135,26 @@
         }
         .success-icon .material-symbols-outlined {
             font-size: 42px;
-            color: var(--accent);
+            color: #c97a8f;
             font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
         /* Título */
         .card-title {
+            font-family: 'Playfair Display', Georgia, serif;
             font-size: 1.75rem;
-            font-weight: 800;
+            font-weight: 600;
             color: var(--text);
             line-height: 1.2;
         }
         .card-title span {
-            color: var(--accent);
+            color: #e8b4c4;
         }
 
         /* Mensaje */
         .card-message {
             font-size: 1rem;
-            color: var(--muted);
+            color: var(--slate);
             line-height: 1.7;
             max-width: 440px;
         }
@@ -154,7 +162,7 @@
         /* Datos del registrado */
         .registro-datos {
             width: 100%;
-            background: #f5f5f4;
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 1.25rem 1.5rem;
@@ -180,7 +188,7 @@
         }
         .registro-dato .material-symbols-outlined {
             font-size: 18px;
-            color: var(--accent);
+            color: var(--slate);
             flex-shrink: 0;
             margin-top: 2px;
         }
@@ -196,7 +204,7 @@
         .slogan {
             font-size: 0.85rem;
             font-style: italic;
-            color: var(--muted);
+            color: var(--slate);
             font-weight: 500;
             letter-spacing: 0.02em;
         }
@@ -210,7 +218,7 @@
         .biblica p {
             font-size: 0.85rem;
             font-style: italic;
-            color: var(--muted);
+            color: var(--slate);
             line-height: 1.6;
         }
         .biblica cite {
@@ -218,7 +226,7 @@
             margin-top: 0.5rem;
             font-size: 0.8rem;
             font-weight: 700;
-            color: var(--accent);
+            color: #e8b4c4;
             font-style: normal;
             letter-spacing: 0.05em;
             text-transform: uppercase;
