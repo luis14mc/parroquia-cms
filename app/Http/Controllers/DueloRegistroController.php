@@ -18,6 +18,11 @@ class DueloRegistroController extends Controller
 
     public function store(Request $request)
     {
+        Log::info('congreso.store: petición recibida', [
+            'session_driver' => config('session.driver'),
+            'has_dias'       => $request->filled('dias_asistencia'),
+        ]);
+
         try {
             $validated = $request->validate([
                 'nombre_completo' => 'required|string|max:255',
@@ -93,13 +98,22 @@ class DueloRegistroController extends Controller
             $hasDias = Schema::hasColumn('duelo_registros', 'dias_asistencia');
         }
 
+        $mysqlCfg = config('database.connections.mysql');
+        try {
+            $liveCfg = DB::connection()->getConfig();
+        } catch (\Throwable) {
+            $liveCfg = [];
+        }
+
         return response()->json([
             'db_connection'  => config('database.default'),
-            'db_host'        => env('DB_HOST', env('MYSQLHOST', 'no-host-var')),
-            'db_port'        => env('DB_PORT', env('MYSQLPORT', 'no-port-var')),
-            'db_database'    => env('DB_DATABASE', env('MYSQLDATABASE', 'no-db-var')),
-            'db_username'    => env('DB_USERNAME', env('MYSQLUSER', 'no-user-var')),
-            'mysql_url_set'  => !empty(env('MYSQL_URL')),
+            'mysql_url_in_env' => ! empty(env('MYSQL_URL')),
+            'resolved_host'  => $liveCfg['host'] ?? ($mysqlCfg['host'] ?? null),
+            'resolved_port'  => $liveCfg['port'] ?? ($mysqlCfg['port'] ?? null),
+            'db_host_env'    => env('DB_HOST', env('MYSQLHOST')),
+            'db_port_env'    => env('DB_PORT', env('MYSQLPORT')),
+            'db_database'    => env('DB_DATABASE', env('MYSQLDATABASE')),
+            'db_username'    => env('DB_USERNAME', env('MYSQLUSER')),
             'connected'      => $connected,
             'database_name'  => $dbName,
             'duelo_registros_columns' => $columns,

@@ -45,7 +45,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DB_URL', env('MYSQL_URL')),
+            /*
+            | Railway inyecta MYSQL_URL (mysql.railway.internal) cuando app y MySQL
+            | están en el mismo proyecto. Debe prevalecer sobre DB_URL / DB_HOST manual.
+            */
+            'url' => env('MYSQL_URL') ?: env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'laravel'),
