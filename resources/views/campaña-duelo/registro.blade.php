@@ -18,7 +18,7 @@
         body {
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
-            background: #f5f4f8;
+            background: var(--bg);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -26,22 +26,17 @@
             padding: 2rem 1rem;
         }
 
-        /* Paleta extraída directamente de los logos */
+        /* Paleta formal: institucional, neutra */
         :root {
-            --purple:    #6B3FA0; /* Bioética - logo congreso */
-            --purple-dk: #4e2d78;
-            --purple-lt: #f0ebf9;
-            --green:     #2E7D54; /* Cuidados Paliativos - logo congreso */
-            --green-lt:  #eaf4ef;
-            --wine:      #8C1F52; /* Pastoral del Duelo - logo duelo */
-            --wine-lt:   #f8eef3;
-            --steel:     #607B8B; /* Piedad - logo duelo */
-            --white:     #ffffff;
-            --bg:        #f5f4f8;
-            --card:      #ffffff;
-            --border:    #e8e4f0;
-            --text:      #1e1b2e;
-            --muted:     #7a7591;
+            --accent:       #1e3a5f;
+            --accent-hover: #152d47;
+            --accent-muted: #eef1f5;
+            --white:        #ffffff;
+            --bg:           #fafaf9;
+            --card:         #ffffff;
+            --border:       #e7e5e4;
+            --text:         #1c1917;
+            --muted:        #78716c;
         }
 
         .material-symbols-outlined {
@@ -62,7 +57,7 @@
             left: -10%;
             width: 55%;
             aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(107,63,160,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(30,58,95,0.04) 0%, transparent 70%);
             border-radius: 50%;
         }
         .page-bg::after {
@@ -72,7 +67,7 @@
             right: -10%;
             width: 55%;
             aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(140,31,82,0.07) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(28,25,23,0.03) 0%, transparent 70%);
             border-radius: 50%;
         }
 
@@ -93,7 +88,7 @@
             background: var(--white);
             border-radius: 1.5rem;
             padding: 1.5rem 2rem;
-            box-shadow: 0 4px 24px rgba(107,63,160,0.08);
+            box-shadow: 0 4px 24px rgba(28,25,23,0.06);
             border: 1px solid var(--border);
             margin-bottom: 1.5rem;
             flex-wrap: wrap;
@@ -120,31 +115,29 @@
         .event-badge {
             display: inline-block;
             padding: 0.35rem 1rem;
-            background: var(--purple-lt);
-            color: var(--purple);
+            background: var(--accent-muted);
+            color: var(--accent);
             font-size: 0.65rem;
-            font-weight: 800;
-            letter-spacing: 0.15em;
+            font-weight: 700;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             border-radius: 99px;
             margin-bottom: 1rem;
-            border: 1px solid rgba(107,63,160,0.2);
+            border: 1px solid rgba(30,58,95,0.15);
         }
         .event-title {
             font-size: clamp(1.6rem, 4vw, 2.25rem);
-            font-weight: 900;
-            line-height: 1.15;
+            font-weight: 800;
+            line-height: 1.2;
             color: var(--text);
             margin-bottom: 0.5rem;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.02em;
         }
-        .event-title .highlight-purple { color: var(--purple); }
-        .event-title .highlight-green  { color: var(--green); }
         .event-slogan {
             font-size: 0.95rem;
             font-style: italic;
             font-weight: 500;
-            color: var(--wine);
+            color: var(--muted);
             margin-top: 0.75rem;
         }
 
@@ -153,14 +146,14 @@
             background: var(--card);
             border-radius: 2rem;
             border: 1px solid var(--border);
-            box-shadow: 0 12px 48px rgba(107,63,160,0.1), 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 12px 40px rgba(28,25,23,0.07), 0 2px 8px rgba(0,0,0,0.04);
             overflow: hidden;
         }
 
         /* Barra superior de acento */
         .accent-bar {
-            height: 5px;
-            background: linear-gradient(90deg, var(--purple) 0%, var(--green) 50%, var(--wine) 100%);
+            height: 3px;
+            background: var(--accent);
         }
 
         .form-inner {
@@ -177,11 +170,11 @@
             width: 44px;
             height: 44px;
             border-radius: 12px;
-            background: var(--purple-lt);
+            background: var(--accent-muted);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--purple);
+            color: var(--accent);
             flex-shrink: 0;
         }
         .form-heading h2 {
@@ -229,12 +222,12 @@
             pointer-events: none;
         }
         .field-input-wrap:focus-within .field-icon {
-            color: var(--purple);
+            color: var(--accent);
         }
         .field-input {
             width: 100%;
             padding: 0.9rem 1rem 0.9rem 3.25rem;
-            background: #faf9fc;
+            background: #fafaf9;
             border: 1.5px solid var(--border);
             border-radius: 0.875rem;
             font-family: 'Inter', sans-serif;
@@ -246,8 +239,8 @@
         }
         .field-input::placeholder { color: #b0acbd; font-weight: 400; }
         .field-input:focus {
-            border-color: var(--purple);
-            box-shadow: 0 0 0 4px rgba(107,63,160,0.08);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(30,58,95,0.12);
             background: var(--white);
         }
         .field-error {
@@ -296,18 +289,18 @@
             align-items: center;
             gap: 0.75rem;
             padding: 1rem 1.25rem;
-            background: #faf9fc;
+            background: #fafaf9;
             border: 1.5px solid var(--border);
             border-radius: 0.875rem;
             transition: all 0.2s;
         }
         .radio-option input:checked ~ .radio-tile {
-            border-color: var(--purple);
-            background: var(--purple-lt);
+            border-color: var(--accent);
+            background: var(--accent-muted);
         }
         .radio-option:nth-child(2) input:checked ~ .radio-tile {
-            border-color: var(--wine);
-            background: var(--wine-lt);
+            border-color: var(--accent);
+            background: var(--accent-muted);
         }
         .radio-dot {
             width: 18px;
@@ -321,23 +314,23 @@
             transition: all 0.2s;
         }
         .radio-option input:checked ~ .radio-tile .radio-dot {
-            border-color: var(--purple);
+            border-color: var(--accent);
         }
         .radio-option:nth-child(2) input:checked ~ .radio-tile .radio-dot {
-            border-color: var(--wine);
+            border-color: var(--accent);
         }
         .radio-dot::after {
             content: '';
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--purple);
+            background: var(--accent);
             opacity: 0;
             transition: opacity 0.2s, transform 0.2s;
             transform: scale(0.5);
         }
         .radio-option:nth-child(2) .radio-dot::after {
-            background: var(--wine);
+            background: var(--accent);
         }
         .radio-option input:checked ~ .radio-tile .radio-dot::after {
             opacity: 1;
@@ -350,10 +343,10 @@
             transition: color 0.2s;
         }
         .radio-option input:checked ~ .radio-tile .radio-label-text {
-            color: var(--purple);
+            color: var(--accent);
         }
         .radio-option:nth-child(2) input:checked ~ .radio-tile .radio-label-text {
-            color: var(--wine);
+            color: var(--accent);
         }
 
         /* Divider */
@@ -371,22 +364,22 @@
             justify-content: center;
             gap: 0.75rem;
             padding: 1rem 1.5rem;
-            background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dk) 100%);
+            background: var(--accent);
             color: var(--white);
             font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            font-weight: 800;
-            letter-spacing: -0.01em;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
             border: none;
             border-radius: 0.875rem;
             cursor: pointer;
-            box-shadow: 0 8px 24px rgba(107,63,160,0.3);
-            transition: all 0.2s;
+            box-shadow: 0 4px 14px rgba(30,58,95,0.25);
+            transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
         }
         .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(107,63,160,0.4);
-            background: linear-gradient(135deg, var(--purple-dk) 0%, #3b1f5a 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(30,58,95,0.3);
+            background: var(--accent-hover);
         }
         .btn-submit:active { transform: scale(0.98); }
 
@@ -395,40 +388,40 @@
             display: flex;
             align-items: flex-start;
             gap: 0.875rem;
-            background: var(--green-lt);
-            border: 1.5px solid rgba(46,125,84,0.2);
+            background: var(--accent-muted);
+            border: 1px solid rgba(30,58,95,0.12);
             border-radius: 1rem;
             padding: 1rem 1.25rem;
             margin-bottom: 1.75rem;
             font-size: 0.875rem;
             font-weight: 600;
-            color: var(--green);
+            color: var(--accent);
         }
 
         /* Cita bíblica */
         .biblica {
             margin: 2rem 2.5rem;
             padding: 1.5rem;
-            background: linear-gradient(135deg, var(--purple-lt) 0%, var(--wine-lt) 100%);
-            border-left: 4px solid var(--purple);
-            border-radius: 0 1rem 1rem 0;
+            background: #f5f5f4;
+            border-left: 3px solid var(--accent);
+            border-radius: 0 0.75rem 0.75rem 0;
             text-align: left;
         }
         .biblica p {
             font-size: 0.875rem;
             font-style: italic;
             font-weight: 500;
-            color: #4a3f6a;
+            color: var(--muted);
             line-height: 1.7;
         }
         .biblica cite {
             display: block;
             margin-top: 0.875rem;
             font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--purple);
+            color: var(--accent);
             font-style: normal;
         }
 
@@ -440,7 +433,7 @@
             font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: #b0acbd;
+            color: #a8a29e;
         }
 
         /* Info del congreso */
@@ -454,14 +447,14 @@
             display: flex;
             align-items: flex-start;
             gap: 0.6rem;
-            background: var(--purple-lt);
-            border: 1px solid #ddd4f0;
+            background: #f5f5f4;
+            border: 1px solid var(--border);
             border-radius: 10px;
             padding: 0.85rem 1rem;
         }
         .congreso-info-item .material-symbols-outlined {
             font-size: 20px;
-            color: var(--purple);
+            color: var(--accent);
             margin-top: 1px;
             flex-shrink: 0;
         }
@@ -470,7 +463,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: var(--purple);
+            color: var(--accent);
             margin-bottom: 2px;
         }
         .info-value {
@@ -511,9 +504,9 @@
         }
         .check-option input:checked ~ .check-tile,
         .check-option.checked .check-tile {
-            border-color: var(--purple);
-            background: var(--purple-lt);
-            box-shadow: 0 0 0 3px rgba(107,63,160,0.12);
+            border-color: var(--accent);
+            background: var(--accent-muted);
+            box-shadow: 0 0 0 2px rgba(30,58,95,0.1);
         }
         .check-box {
             width: 22px;
@@ -529,8 +522,8 @@
         }
         .check-option input:checked ~ .check-tile .check-box,
         .check-option.checked .check-box {
-            border-color: var(--purple);
-            background: var(--purple);
+            border-color: var(--accent);
+            background: var(--accent);
         }
         .check-icon {
             font-size: 14px;
@@ -590,8 +583,8 @@
         <div class="event-header">
             <span class="event-badge">Inscripciones Abiertas</span>
             <h1 class="event-title">
-                <span class="highlight-purple">II Congreso de Bioética,</span><br>
-                <span class="highlight-green">Cuidados Paliativos</span><br>
+                II Congreso de Bioética,<br>
+                Cuidados Paliativos<br>
                 y Pastoral del Duelo
             </h1>
             <p class="event-slogan">"Cuando no se puede curar, siempre se puede cuidar"</p>
@@ -672,14 +665,14 @@
                             <span class="material-symbols-outlined">location_on</span>
                             <div>
                                 <p class="info-label">Sede</p>
-                                <p class="info-value">Universidad Católica · Campus Casa Mata</p>
+                                <p class="info-value">Casa Sacerdotal - Tegucigalpa. Honduras.</p>
                             </div>
                         </div>
                     </div>
 
                     {{-- Días de asistencia --}}
                     <div class="field-group" style="margin-top: 1.25rem;">
-                        <span class="radio-group-label">¿Qué día(s) participará? <span style="color:var(--wine);font-size:0.75rem;">(seleccione al menos uno)</span></span>
+                        <span class="radio-group-label">¿Qué día(s) participará? <span style="color:var(--muted);font-size:0.75rem;font-weight:600;">(seleccione al menos uno)</span></span>
                         <div class="check-grid">
                             <label class="check-option {{ in_array('sabado', old('dias_asistencia', [])) ? 'checked' : '' }}">
                                 <input type="checkbox" name="dias_asistencia[]" value="sabado"

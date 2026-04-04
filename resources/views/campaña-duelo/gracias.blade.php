@@ -16,20 +16,15 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --purple:    #6B3FA0;
-            --purple-dk: #4e2d78;
-            --purple-lt: #f0ebf9;
-            --green:     #2E7D54;
-            --green-lt:  #eaf4ef;
-            --wine:      #8C1F52;
-            --wine-lt:   #f8eef3;
-            --steel:     #607B8B;
-            --white:     #ffffff;
-            --bg:        #f5f4f8;
-            --card:      #ffffff;
-            --border:    #e8e4f0;
-            --text:      #1e1b2e;
-            --muted:     #7a7591;
+            --accent:       #1e3a5f;
+            --accent-hover: #152d47;
+            --accent-muted: #eef1f5;
+            --white:        #ffffff;
+            --bg:           #fafaf9;
+            --card:         #ffffff;
+            --border:       #e7e5e4;
+            --text:         #1c1917;
+            --muted:        #78716c;
         }
 
         .material-symbols-outlined {
@@ -61,7 +56,7 @@
             left: -10%;
             width: 55%;
             aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(107,63,160,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(30,58,95,0.04) 0%, transparent 70%);
             border-radius: 50%;
         }
         .page-bg::after {
@@ -71,7 +66,7 @@
             right: -10%;
             width: 55%;
             aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(140,31,82,0.07) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(28,25,23,0.03) 0%, transparent 70%);
             border-radius: 50%;
         }
 
@@ -110,7 +105,7 @@
             background: var(--card);
             border-radius: 20px;
             border: 1px solid var(--border);
-            box-shadow: 0 8px 40px rgba(107, 63, 160, 0.10);
+            box-shadow: 0 8px 40px rgba(28, 25, 23, 0.07);
             width: 100%;
             padding: 3rem 2.5rem;
             display: flex;
@@ -125,7 +120,7 @@
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: var(--green-lt);
+            background: var(--accent-muted);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -133,7 +128,7 @@
         }
         .success-icon .material-symbols-outlined {
             font-size: 42px;
-            color: var(--green);
+            color: var(--accent);
             font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
@@ -145,7 +140,7 @@
             line-height: 1.2;
         }
         .card-title span {
-            color: var(--purple);
+            color: var(--accent);
         }
 
         /* Mensaje */
@@ -159,7 +154,8 @@
         /* Datos del registrado */
         .registro-datos {
             width: 100%;
-            background: var(--purple-lt);
+            background: #f5f5f4;
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 1.25rem 1.5rem;
             display: flex;
@@ -172,20 +168,21 @@
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--purple);
+            color: var(--accent);
             margin-bottom: 0.25rem;
         }
         .registro-dato {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.6rem;
             font-size: 0.9rem;
             color: var(--text);
         }
         .registro-dato .material-symbols-outlined {
             font-size: 18px;
-            color: var(--purple);
+            color: var(--accent);
             flex-shrink: 0;
+            margin-top: 2px;
         }
 
         /* Divider */
@@ -199,7 +196,7 @@
         .slogan {
             font-size: 0.85rem;
             font-style: italic;
-            color: var(--wine);
+            color: var(--muted);
             font-weight: 500;
             letter-spacing: 0.02em;
         }
@@ -221,7 +218,7 @@
             margin-top: 0.5rem;
             font-size: 0.8rem;
             font-weight: 700;
-            color: var(--wine);
+            color: var(--accent);
             font-style: normal;
             letter-spacing: 0.05em;
             text-transform: uppercase;
@@ -298,7 +295,7 @@
                 @endif
                 <div class="registro-dato">
                     <span class="material-symbols-outlined">location_on</span>
-                    <span>Universidad Católica · Campus Casa Mata</span>
+                    <span>Casa Sacerdotal - Tegucigalpa. Honduras.</span>
                 </div>
                 <div class="registro-dato">
                     <span class="material-symbols-outlined">schedule</span>
