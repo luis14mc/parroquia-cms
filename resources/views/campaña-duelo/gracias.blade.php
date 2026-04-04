@@ -18,14 +18,14 @@
         :root {
             --accent:       #8B1538;
             --accent-hover: #6d102c;
-            --accent-muted: rgba(139, 21, 56, 0.14);
+            --accent-muted: rgba(139, 21, 56, 0.09);
             --slate:        #6A7B88;
             --white:        #ffffff;
-            --bg:           #0a0a0a;
-            --card:         #111111;
-            --surface:      #161616;
-            --border:       #2a2a2a;
-            --text:         #f5f5f4;
+            --bg:           #fafaf9;
+            --card:         #ffffff;
+            --surface:      #f5f5f4;
+            --border:       #e7e5e4;
+            --text:         #1c1917;
             --muted:        #7E7E7E;
         }
 
@@ -58,7 +58,7 @@
             left: -10%;
             width: 55%;
             aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(139, 21, 56, 0.07) 0%, transparent 68%);
+            background: radial-gradient(circle, rgba(139, 21, 56, 0.05) 0%, transparent 68%);
             border-radius: 50%;
         }
         .page-bg::after {
@@ -68,7 +68,7 @@
             right: -10%;
             width: 55%;
             aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(106, 123, 136, 0.06) 0%, transparent 68%);
+            background: radial-gradient(circle, rgba(106, 123, 136, 0.04) 0%, transparent 68%);
             border-radius: 50%;
         }
 
@@ -94,7 +94,7 @@
             border-radius: 1.5rem;
             padding: 1.5rem 2rem;
             border: 1px solid var(--border);
-            box-shadow: 0 4px 32px rgba(0,0,0,0.45);
+            box-shadow: 0 4px 24px rgba(28, 25, 23, 0.06);
         }
         .logos img {
             height: 110px;
@@ -112,7 +112,7 @@
             background: var(--card);
             border-radius: 20px;
             border: 1px solid var(--border);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 12px 40px rgba(28, 25, 23, 0.08);
             width: 100%;
             padding: 3rem 2.5rem;
             display: flex;
@@ -135,7 +135,7 @@
         }
         .success-icon .material-symbols-outlined {
             font-size: 42px;
-            color: #c97a8f;
+            color: var(--accent);
             font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
@@ -148,7 +148,7 @@
             line-height: 1.2;
         }
         .card-title span {
-            color: #e8b4c4;
+            color: var(--accent);
         }
 
         /* Mensaje */
@@ -226,7 +226,7 @@
             margin-top: 0.5rem;
             font-size: 0.8rem;
             font-weight: 700;
-            color: #e8b4c4;
+            color: var(--accent);
             font-style: normal;
             letter-spacing: 0.05em;
             text-transform: uppercase;

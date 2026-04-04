@@ -26,18 +26,18 @@
             padding: 2rem 1rem;
         }
 
-        /* Paleta Pastoral del Duelo (logo): burdeos, pizarra, negro */
+        /* Paleta Pastoral del Duelo (logo) — tema claro */
         :root {
             --accent:       #8B1538;
             --accent-hover: #6d102c;
-            --accent-muted: rgba(139, 21, 56, 0.14);
+            --accent-muted: rgba(139, 21, 56, 0.09);
             --slate:        #6A7B88;
             --white:        #ffffff;
-            --bg:           #0a0a0a;
-            --card:         #111111;
-            --surface:      #161616;
-            --border:       #2a2a2a;
-            --text:         #f5f5f4;
+            --bg:           #fafaf9;
+            --card:         #ffffff;
+            --surface:      #f5f5f4;
+            --border:       #e7e5e4;
+            --text:         #1c1917;
             --muted:        #7E7E7E;
         }
 
@@ -59,7 +59,7 @@
             left: -10%;
             width: 55%;
             aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(139, 21, 56, 0.07) 0%, transparent 68%);
+            background: radial-gradient(circle, rgba(139, 21, 56, 0.05) 0%, transparent 68%);
             border-radius: 50%;
         }
         .page-bg::after {
@@ -69,7 +69,7 @@
             right: -10%;
             width: 55%;
             aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(106, 123, 136, 0.06) 0%, transparent 68%);
+            background: radial-gradient(circle, rgba(106, 123, 136, 0.04) 0%, transparent 68%);
             border-radius: 50%;
         }
 
@@ -90,7 +90,7 @@
             background: var(--card);
             border-radius: 1.5rem;
             padding: 1.5rem 2rem;
-            box-shadow: 0 4px 32px rgba(0,0,0,0.45);
+            box-shadow: 0 4px 24px rgba(28, 25, 23, 0.06);
             border: 1px solid var(--border);
             margin-bottom: 1.5rem;
             flex-wrap: wrap;
@@ -118,14 +118,14 @@
             display: inline-block;
             padding: 0.35rem 1rem;
             background: var(--accent-muted);
-            color: #e8b4c4;
+            color: var(--accent);
             font-size: 0.65rem;
             font-weight: 700;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             border-radius: 99px;
             margin-bottom: 1rem;
-            border: 1px solid rgba(139, 21, 56, 0.35);
+            border: 1px solid rgba(139, 21, 56, 0.2);
         }
         .event-title {
             font-family: 'Playfair Display', Georgia, serif;
@@ -149,7 +149,7 @@
             background: var(--card);
             border-radius: 2rem;
             border: 1px solid var(--border);
-            box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+            box-shadow: 0 12px 40px rgba(28, 25, 23, 0.08), 0 2px 8px rgba(0,0,0,0.04);
             overflow: hidden;
         }
 
@@ -241,11 +241,11 @@
             transition: border-color 0.2s, box-shadow 0.2s;
             outline: none;
         }
-        .field-input::placeholder { color: #57534e; font-weight: 400; }
+        .field-input::placeholder { color: #a8a29e; font-weight: 400; }
         .field-input:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(139, 21, 56, 0.2);
-            background: #1a1a1a;
+            box-shadow: 0 0 0 3px rgba(139, 21, 56, 0.12);
+            background: var(--white);
         }
         .field-error {
             font-size: 0.7rem;
@@ -399,7 +399,7 @@
             margin-bottom: 1.75rem;
             font-size: 0.875rem;
             font-weight: 600;
-            color: #e8b4c4;
+            color: var(--accent);
         }
 
         /* Cita bíblica */
