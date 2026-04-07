@@ -26,6 +26,14 @@ class DueloRegistroController extends Controller
         ]);
 
         try {
+            if (config('database.default') === 'mysql' && ! extension_loaded('pdo_mysql')) {
+                return back()
+                    ->withInput()
+                    ->withErrors([
+                        'db' => $this->messageMissingPdoMysql(),
+                    ]);
+            }
+
             $validated = $request->validate([
                 'nombre_completo' => 'required|string|max:255',
                 'telefono' => 'required|string|max:20',
@@ -92,7 +100,7 @@ class DueloRegistroController extends Controller
                 'bindings' => $e->getBindings(),
             ]);
 
-            $msg = $this->userMessageForQueryException($e);
+            $msg = $this->friendlyDatabaseErrorMessage($e) ?? $this->userMessageForQueryException($e);
 
             return back()->withInput()->withErrors(['db' => $msg]);
         } catch (\Throwable $e) {
@@ -101,6 +109,10 @@ class DueloRegistroController extends Controller
                 'file' => $e->getFile().':'.$e->getLine(),
                 'exception' => $e::class,
             ]);
+
+            if ($hint = $this->friendlyDatabaseErrorMessage($e)) {
+                return back()->withInput()->withErrors(['db' => $hint]);
+            }
 
             $msg = 'No se pudo guardar el registro. Intente de nuevo o contacte a la parroquia.';
             if (config('app.debug')) {
@@ -141,10 +153,34 @@ class DueloRegistroController extends Controller
         ]);
     }
 
+    private function messageMissingPdoMysql(): string
+    {
+        $php = PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;
+
+        return 'PHP no tiene la extensión pdo_mysql (necesaria para MySQL). En WSL/Ubuntu: sudo apt install php'.$php.'-mysql && reinicia el servidor. Comprueba con: php -m | grep pdo_mysql. En Railway (Nixpacks) ya está incluida; este fallo suele ser en tu PC.';
+    }
+
+    /**
+     * Errores de entorno (p. ej. sin extensión PDO MySQL) que no deben mostrar el dump técnico al usuario.
+     */
+    private function friendlyDatabaseErrorMessage(\Throwable $e): ?string
+    {
+        $m = $e->getMessage();
+        if (str_contains($m, 'could not find driver')) {
+            return $this->messageMissingPdoMysql();
+        }
+
+        return null;
+    }
+
     private function userMessageForQueryException(QueryException $e): string
     {
         $m = $e->getMessage();
         $base = 'No se pudo guardar en la base de datos. ';
+
+        if ($friendly = $this->friendlyDatabaseErrorMessage($e)) {
+            return $friendly;
+        }
 
         if (str_contains($m, 'Unknown column') || str_contains($m, '1054')) {
             return $base.'Falta una columna nueva: el administrador debe ejecutar en el servidor: php artisan migrate --force';
