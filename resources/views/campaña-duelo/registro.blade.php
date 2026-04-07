@@ -748,7 +748,12 @@
             });
 
             @if ($errors->any())
-                console.warn(TAG, 'Respuesta con errores (revisa mensajes abajo)', @json($errors->messages()));
+                console.warn(
+                    TAG,
+                    'Errores mostrados (pueden ser de un envío ANTERIOR guardados en sesión). Si ya arreglaste la BD, recarga en ventana privada o borra cookies de este sitio y vuelve a /congreso.'
+                );
+                console.warn(TAG, 'Lista de mensajes:', @json($errors->all()));
+                console.warn(TAG, 'Por campo:', @json($errors->messages()));
             @endif
 
             var form = document.getElementById('congreso-registro-form');
