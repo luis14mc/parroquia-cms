@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    /*
+    | Lista de inscritos al congreso (/congreso/registros). En producción obligatorio.
+    */
+    'congreso' => [
+        'admin_token' => env('CONGRESO_ADMIN_TOKEN'),
+    ],
+
 ];

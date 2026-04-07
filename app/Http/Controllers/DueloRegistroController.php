@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DueloRegistro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
@@ -67,11 +68,13 @@ class DueloRegistroController extends Controller
         }
     }
 
-    public function registros()
+    public function registros(Request $request)
     {
+        $this->authorizeCongresoAdmin($request);
+
         $registros = DueloRegistro::orderByDesc('created_at')->get();
 
-        return response()->json([
+        $payload = [
             'total' => $registros->count(),
             'db_driver' => config('database.default'),
             'db_host' => config('database.connections.'.config('database.default').'.host') ?? 'N/A',
@@ -83,11 +86,43 @@ class DueloRegistroController extends Controller
                 'dias' => implode(', ', array_map(fn ($d) => $d === 'sabado' ? 'Sáb 18 abr' : 'Dom 19 abr', $r->dias_asistencia ?? [])),
                 'fecha' => $r->created_at?->format('d/m/Y H:i'),
             ]),
-        ], 200, [], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        ];
+
+        if ($request->wantsJson()) {
+            return response()->json($payload, 200, [], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+
+        return view('campaña-duelo.lista-registros', [
+            'registros' => $registros,
+            'total' => $payload['total'],
+        ]);
     }
 
-    public function dbInfo()
+    /**
+     * En producción: definir CONGRESO_ADMIN_TOKEN y abrir /congreso/registros?token=...
+     */
+    private function authorizeCongresoAdmin(Request $request): void
     {
+        if (! App::isProduction()) {
+            return;
+        }
+
+        $expected = config('services.congreso.admin_token');
+        $given = (string) $request->query('token', '');
+
+        if (! is_string($expected) || $expected === '') {
+            abort(403, 'Configura la variable CONGRESO_ADMIN_TOKEN en Railway (Variables del servicio web) y vuelve a abrir esta URL añadiendo ?token=TU_TOKEN al final.');
+        }
+
+        if (! hash_equals($expected, $given)) {
+            abort(403, 'Token incorrecto o falta ?token= en la URL.');
+        }
+    }
+
+    public function dbInfo(Request $request)
+    {
+        $this->authorizeCongresoAdmin($request);
+
         try {
             DB::connection()->getPdo();
             $connected = true;
