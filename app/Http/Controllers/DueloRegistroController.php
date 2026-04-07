@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DueloRegistro;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +33,26 @@ class DueloRegistroController extends Controller
                 'dias_asistencia' => 'required|array|min:1',
                 'dias_asistencia.*' => 'in:sabado,domingo',
             ]);
+
+            if (! Schema::connection('mysql')->hasTable('duelo_registros')) {
+                Log::critical('congreso: no existe la tabla duelo_registros (migraciones sin aplicar en este servidor)');
+
+                return back()
+                    ->withInput()
+                    ->withErrors([
+                        'db' => 'El sistema de inscripciones no está listo: falta crear las tablas en la base de datos. El administrador debe ejecutar en el servidor: php artisan migrate --force',
+                    ]);
+            }
+
+            if (! Schema::connection('mysql')->hasColumn('duelo_registros', 'dias_asistencia')) {
+                Log::critical('congreso: falta la columna dias_asistencia (migración 2026_03_30 sin aplicar)');
+
+                return back()
+                    ->withInput()
+                    ->withErrors([
+                        'db' => 'La base de datos está desactualizada: falta la columna de días de asistencia. El administrador debe ejecutar en el servidor: php artisan migrate --force',
+                    ]);
+            }
 
             $registro = DueloRegistro::create([
                 'nombre_completo' => $validated['nombre_completo'],
@@ -64,17 +85,29 @@ class DueloRegistroController extends Controller
             ]);
         } catch (ValidationException $e) {
             throw $e;
+        } catch (QueryException $e) {
+            Log::error('congreso registro: error SQL', [
+                'message' => $e->getMessage(),
+                'sql' => $e->getSql(),
+                'bindings' => $e->getBindings(),
+            ]);
+
+            $msg = $this->userMessageForQueryException($e);
+
+            return back()->withInput()->withErrors(['db' => $msg]);
         } catch (\Throwable $e) {
             Log::error('congreso registro: error al guardar', [
                 'message' => $e->getMessage(),
                 'file' => $e->getFile().':'.$e->getLine(),
+                'exception' => $e::class,
             ]);
 
-            return back()
-                ->withInput()
-                ->withErrors([
-                    'db' => 'No se pudo guardar el registro. Intente de nuevo o contacte a la parroquia. Si el problema continúa, el administrador del sitio debe verificar las migraciones de la base de datos.',
-                ]);
+            $msg = 'No se pudo guardar el registro. Intente de nuevo o contacte a la parroquia.';
+            if (config('app.debug')) {
+                $msg .= ' ('.$e->getMessage().')';
+            }
+
+            return back()->withInput()->withErrors(['db' => $msg]);
         }
     }
 
@@ -106,6 +139,35 @@ class DueloRegistroController extends Controller
             'registros' => $registros,
             'total' => $payload['total'],
         ]);
+    }
+
+    private function userMessageForQueryException(QueryException $e): string
+    {
+        $m = $e->getMessage();
+        $base = 'No se pudo guardar en la base de datos. ';
+
+        if (str_contains($m, 'Unknown column') || str_contains($m, '1054')) {
+            return $base.'Falta una columna nueva: el administrador debe ejecutar en el servidor: php artisan migrate --force';
+        }
+
+        if (str_contains($m, 'Base table') && str_contains($m, "doesn't exist")
+            || str_contains($m, '1146') || str_contains($m, 'SQLSTATE[42S02]')) {
+            return $base.'Falta la tabla de registros: el administrador debe ejecutar: php artisan migrate --force';
+        }
+
+        if (str_contains($m, 'Access denied') || str_contains($m, '1045')) {
+            return $base.'Error de usuario o contraseña de la base de datos (revisar variables MYSQL_* en el hosting).';
+        }
+
+        if (str_contains($m, 'Connection refused') || str_contains($m, 'timed out') || str_contains($m, 'getaddrinfo')) {
+            return $base.'No se puede conectar al servidor MySQL (host o red incorrectos en el hosting).';
+        }
+
+        if (config('app.debug')) {
+            return $base.'['.$m.']';
+        }
+
+        return $base.'Si el problema continúa, el administrador debe revisar los logs del servidor y las migraciones.';
     }
 
     /**
