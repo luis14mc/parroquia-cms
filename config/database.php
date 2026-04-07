@@ -2,6 +2,30 @@
 
 use Illuminate\Support\Str;
 
+/*
+| Railway suele definir DATABASE_URL para Postgres u otros servicios. Si Laravel usa esa URL
+| en el driver mysql, intenta conectar a un host que no es MySQL → timeout / connection refused.
+| Solo aceptamos DATABASE_URL cuando el esquema es mysql.
+*/
+$mysqlUrl = env('MYSQL_URL') ?: env('DB_URL');
+if (($mysqlUrl === null || $mysqlUrl === '') && is_string($db = env('DATABASE_URL')) && str_starts_with($db, 'mysql')) {
+    $mysqlUrl = $db;
+}
+
+$pdoMysqlOpts = [];
+if (extension_loaded('pdo_mysql')) {
+    $sslCa = env('MYSQL_ATTR_SSL_CA');
+    if (is_string($sslCa) && $sslCa !== '') {
+        $pdoMysqlOpts[PHP_VERSION_ID >= 80500 ? \Pdo\Mysql::ATTR_SSL_CA : \PDO::MYSQL_ATTR_SSL_CA] = $sslCa;
+    } elseif (defined('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT')) {
+        // Red interna / Railway: sin CA, la verificación estricta SSL suele romper el handshake PDO.
+        $pdoMysqlOpts[\PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = filter_var(
+            env('MYSQL_SSL_VERIFY_SERVER_CERT', 'false'),
+            FILTER_VALIDATE_BOOLEAN
+        );
+    }
+}
+
 return [
 
     /*
@@ -38,10 +62,9 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             /*
-            | URL: Railway MySQL usa MYSQL_URL; DATABASE_URL y DB_URL son alternativas
-            | habituales (Laravel / plantillas). Si hay URL, host/puerto del .env se ignoran.
+            | URL: prioridad MYSQL_URL (Railway). DATABASE_URL solo si es esquema mysql (ver arriba).
             */
-            'url' => env('MYSQL_URL') ?: env('DATABASE_URL') ?: env('DB_URL'),
+            'url' => $mysqlUrl,
             'host' => env('DB_HOST', env('MYSQLHOST', '127.0.0.1')),
             'port' => env('DB_PORT', env('MYSQLPORT', '3306')),
             'database' => env('DB_DATABASE', env('MYSQLDATABASE', env('MYSQL_DATABASE', 'laravel'))),
@@ -54,14 +77,12 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                (PHP_VERSION_ID >= 80500 ? \Pdo\Mysql::ATTR_SSL_CA : \PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
+            'options' => $pdoMysqlOpts,
         ],
 
         'mariadb' => [
             'driver' => 'mariadb',
-            'url' => env('MYSQL_URL') ?: env('DATABASE_URL') ?: env('DB_URL'),
+            'url' => $mysqlUrl,
             'host' => env('DB_HOST', env('MYSQLHOST', '127.0.0.1')),
             'port' => env('DB_PORT', env('MYSQLPORT', '3306')),
             'database' => env('DB_DATABASE', env('MYSQLDATABASE', env('MYSQL_DATABASE', 'laravel'))),
@@ -74,9 +95,7 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                (PHP_VERSION_ID >= 80500 ? \Pdo\Mysql::ATTR_SSL_CA : \PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
+            'options' => $pdoMysqlOpts,
         ],
 
         'pgsql' => [
