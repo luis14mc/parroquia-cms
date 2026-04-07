@@ -1,14 +1,19 @@
 # Railway Nixpacks configuration for Laravel 12
 # https://nixpacks.com/docs/providers/php
+#
+# IMPORTANTE: usar "..." para EXTENDER el plan del proveedor PHP. Si se lista solo php83
+# y paquetes sueltos sin "...", se REEMPLAZA el PHP que Nixpacks arma desde composer.json
+# (ext-pdo_mysql) y en runtime puede fallar con "could not find driver".
 
 [phases.setup]
-nixPkgs = ["php83", "php83Extensions.mbstring", "php83Extensions.tokenizer", "php83Extensions.xml", "php83Extensions.ctype", "php83Extensions.fileinfo", "php83Extensions.openssl", "php83Extensions.pdo", "php83Extensions.pdo_mysql", "nodejs_20"]
+nixPkgs = ["...", "nodejs_20"]
 
 [phases.install]
 cmds = ["composer install --no-dev --optimize-autoloader", "npm ci"]
 
 [phases.build]
 cmds = [
+    "php -r \"extension_loaded('pdo_mysql') || (fwrite(STDERR, 'FALTA ext-pdo_mysql en la imagen. Revisa nixpacks.toml (nixPkgs debe incluir ...).\\n') && exit(1));\"",
     "npm run build",
     "rm -f public/hot",
     "mkdir -p storage/framework/{cache/data,sessions,views,testing}",
