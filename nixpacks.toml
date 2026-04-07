@@ -17,5 +17,7 @@ cmds = [
 ]
 
 [start]
-# config:clear evita caché vieja de BD; luego migrate y optimize con variables ya inyectadas por Railway
-cmd = "rm -f public/hot && php artisan config:clear && php artisan migrate --force && php artisan optimize && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
+# NO usar "php artisan optimize" aquí: hace config:cache y en runtime env() deja de funcionar
+# fuera de config/*.php; además puede fijar credenciales vacías si algo falla al arrancar.
+# config:clear + migrate con las variables ya inyectadas por Railway; sin caché de config en disco.
+cmd = "rm -f public/hot && php artisan config:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"

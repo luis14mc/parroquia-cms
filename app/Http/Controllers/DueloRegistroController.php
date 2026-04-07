@@ -40,11 +40,21 @@ class DueloRegistroController extends Controller
                 'dias_asistencia' => $validated['dias_asistencia'],
             ]);
 
-            Log::info('Nuevo registro congreso', [
+            $liveDb = DB::connection('mysql')->getDatabaseName();
+            $serverDbName = null;
+            try {
+                $row = DB::connection('mysql')->selectOne('select database() as d');
+                $serverDbName = $row->d ?? null;
+            } catch (\Throwable) {
+                // no bloquear el flujo si el diagnóstico extra falla
+            }
+            Log::info('Nuevo registro congreso (verificar misma BD que Railway)', [
                 'id' => $registro->id,
                 'nombre' => $registro->nombre_completo,
-                'driver' => config('database.default'),
-                'database' => DB::connection()->getDatabaseName(),
+                'connection' => config('database.default'),
+                'laravel_database_name' => $liveDb,
+                'mysql_select_database()' => $serverDbName,
+                'table' => $registro->getTable(),
             ]);
 
             return redirect()->route('congreso.gracias')->with([
@@ -146,22 +156,41 @@ class DueloRegistroController extends Controller
             $liveCfg = [];
         }
 
+        // NUNCA usar env() aquí: con config:cache (o bootstrap cache viejo) env() devuelve null
+        // y el diagnóstico miente. Solo config() y getConfig() del PDO ya resuelto.
+        $urlFromConfig = $mysqlCfg['url'] ?? null;
+        $resolvedHost = $liveCfg['host'] ?? ($mysqlCfg['host'] ?? null);
+        $resolvedPort = $liveCfg['port'] ?? ($mysqlCfg['port'] ?? null);
+        $resolvedDatabase = $liveCfg['database'] ?? ($mysqlCfg['database'] ?? null);
+        $resolvedUser = $liveCfg['username'] ?? ($mysqlCfg['username'] ?? null);
+
+        $serverIdentity = null;
+        if ($connected) {
+            try {
+                $serverIdentity = DB::connection()->selectOne(
+                    'select database() as current_db, @@hostname as server_host, @@port as server_port'
+                );
+            } catch (\Throwable) {
+                $serverIdentity = null;
+            }
+        }
+
         return response()->json([
             'db_connection' => config('database.default'),
-            'mysql_url_in_env' => ! empty(env('MYSQL_URL')),
-            'resolved_host' => $liveCfg['host'] ?? ($mysqlCfg['host'] ?? null),
-            'resolved_port' => $liveCfg['port'] ?? ($mysqlCfg['port'] ?? null),
-            'db_host_env' => env('DB_HOST', env('MYSQLHOST')),
-            'db_port_env' => env('DB_PORT', env('MYSQLPORT')),
-            'db_database' => env('DB_DATABASE', env('MYSQLDATABASE')),
-            'db_username' => env('DB_USERNAME', env('MYSQLUSER')),
+            'note' => 'Los datos se guardan en la tabla duelo_registros de la base "current_db" que devuelve MySQL (debe coincidir con MYSQLDATABASE en Railway).',
+            'mysql_url_in_config' => is_string($urlFromConfig) && $urlFromConfig !== '',
+            'resolved_host' => $resolvedHost,
+            'resolved_port' => $resolvedPort,
+            'resolved_database_from_config' => $resolvedDatabase,
+            'resolved_username' => $resolvedUser,
             'connected' => $connected,
-            'database_name' => $dbName,
+            'database_name_from_laravel' => $dbName,
+            'server_says' => $serverIdentity,
             'duelo_registros_columns' => $columns,
             'has_dias_asistencia_column' => $hasDias,
             'registros_count' => $connected && Schema::hasTable('duelo_registros')
                 ? DueloRegistro::count()
                 : null,
-        ], 200, [], JSON_PRETTY_PRINT);
+        ], 200, [], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 }
