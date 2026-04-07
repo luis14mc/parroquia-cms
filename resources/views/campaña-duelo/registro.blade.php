@@ -614,7 +614,7 @@
                     <p class="field-error" style="margin-bottom:1rem;padding:0.75rem 1rem;background:rgba(229,62,62,0.08);border-radius:0.5rem;border:1px solid rgba(229,62,62,0.25);">{{ $message }}</p>
                 @enderror
 
-                <form action="{{ url('/congreso') }}" method="POST">
+                <form id="congreso-registro-form" action="{{ url('/congreso') }}" method="POST">
                     @csrf
 
                     {{-- Nombre Completo --}}
@@ -731,6 +731,42 @@
         {{-- Footer --}}
         <p class="page-footer">&copy; {{ date('Y') }} Pastoral del Duelo · Arquidiócesis de Tegucigalpa</p>
     </div>
+
+    <script>
+        (function () {
+            var TAG = '[Parroquia congreso]';
+            var env = @json(config('app.env'));
+            var debug = @json((bool) config('app.debug'));
+
+            console.info(TAG, 'Registro cargado', {
+                env: env,
+                appDebug: debug,
+                path: window.location.pathname,
+                time: new Date().toISOString(),
+                tieneErroresServidor: @json($errors->any()),
+                tieneInputPrevio: @json(filled(old('nombre_completo')) || filled(old('telefono'))),
+            });
+
+            @if ($errors->any())
+                console.warn(TAG, 'Respuesta con errores (revisa mensajes abajo)', @json($errors->messages()));
+            @endif
+
+            var form = document.getElementById('congreso-registro-form');
+            if (form) {
+                form.addEventListener('submit', function () {
+                    var dias = form.querySelectorAll('input[name="dias_asistencia[]"]:checked');
+                    console.info(TAG, 'Enviando formulario POST', {
+                        action: form.action,
+                        diasMarcados: dias.length,
+                    });
+                });
+            }
+
+            window.addEventListener('error', function (e) {
+                console.error(TAG, 'Error JS en página', e.message, e.filename, e.lineno);
+            });
+        })();
+    </script>
 
 </body>
 </html>
