@@ -19,6 +19,7 @@
         "libjpeg-dev",
         "libfreetype6-dev",
         "libwebp-dev",
+        "libgd-dev",
         "libonig-dev",
         "libreadline-dev",
         "libgmp-dev",
