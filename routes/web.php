@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\TallerSolidaridadRegistroController;
+use App\Http\Controllers\DynamicSiteFormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// ── Taller de la Solidaridad (inscripción)
-Route::get('/taller-solidaridad', [TallerSolidaridadRegistroController::class, 'index'])->name('taller-solidaridad.index');
-Route::post('/taller-solidaridad', [TallerSolidaridadRegistroController::class, 'store'])->name('taller-solidaridad.store');
-Route::get('/taller-solidaridad/gracias', fn () => view('taller-solidaridad.gracias'))->name('taller-solidaridad.gracias');
-Route::get('/taller-solidaridad/registros', [TallerSolidaridadRegistroController::class, 'registros'])->name('taller-solidaridad.registros');
-Route::get('/taller-solidaridad/db-info', [TallerSolidaridadRegistroController::class, 'dbInfo'])->name('taller-solidaridad.db-info');
-Route::get('/taller-solidaridad/limpiar-sesion', [TallerSolidaridadRegistroController::class, 'limpiarSesion'])->name('taller-solidaridad.limpiar-sesion');
+// ── Formularios públicos (configurados en /admin → Formularios)
+Route::get('/forms/{slug}/gracias', [DynamicSiteFormController::class, 'thanks'])->name('forms.thanks');
+Route::get('/forms/{slug}', [DynamicSiteFormController::class, 'show'])->name('forms.show');
+Route::post('/forms/{slug}', [DynamicSiteFormController::class, 'store'])
+    ->middleware('throttle:site-forms')
+    ->name('forms.store');
+
+Route::redirect('/taller-solidaridad', '/forms/taller-solidaridad', 301);
 
 // ── Páginas principales ──────────────────────────────────
 Route::view('/', 'home')->name('home');

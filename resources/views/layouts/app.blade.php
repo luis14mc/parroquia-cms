@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

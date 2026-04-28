@@ -1,27 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // Admin principal
-        User::updateOrCreate(
-            ['email' => 'admin@cristoresucitado.hn'],
-            [
-                'name' => 'Administrador',
-                'password' => bcrypt('PCR2026admin!'),
-            ]
-        );
+        $email = config('cms.admin_email');
+        $plain = config('cms.admin_password');
+
+        if (is_string($email) && $email !== '' && is_string($plain) && $plain !== '') {
+            \App\Models\User::updateOrCreate(
+                ['email' => $email],
+                [
+                    'name' => 'Administrador CMS',
+                    'password' => bcrypt($plain),
+                    'is_admin' => true,
+                ]
+            );
+        }
+
+        $this->call(SiteFormSeeder::class);
     }
 }

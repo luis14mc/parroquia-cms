@@ -35,11 +35,4 @@ return [
         ],
     ],
 
-    /*
-    | Rutas admin de formularios (p. ej. /taller-solidaridad/registros). En producción: CONGRESO_ADMIN_TOKEN.
-    */
-    'parroquia' => [
-        'admin_token' => env('CONGRESO_ADMIN_TOKEN'),
-    ],
-
 ];
