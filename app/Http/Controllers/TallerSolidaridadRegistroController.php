@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DueloRegistro;
+use App\Models\TallerSolidaridadRegistro;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -11,22 +11,30 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Validation\ValidationException;
 
-class DueloRegistroController extends Controller
+class TallerSolidaridadRegistroController extends Controller
 {
     public function index()
     {
-        return view('campaña-duelo.registro');
+        return view('taller-solidaridad.registro');
+    }
+
+    public function limpiarSesion(Request $request)
+    {
+        $this->authorizeParroquiaAdmin($request);
+        session()->flush();
+
+        return redirect()->route('taller-solidaridad.index');
     }
 
     public function store(Request $request)
     {
-        Log::info('congreso.store: petición recibida', [
+        Log::info('taller-solidaridad.store: petición recibida', [
             'session_driver' => config('session.driver'),
-            'has_dias' => $request->filled('dias_asistencia'),
         ]);
 
         try {
-            if (config('database.default') === 'mysql' && ! extension_loaded('pdo_mysql')) {
+            $driver = config('database.connections.'.config('database.default').'.driver');
+            if (($driver === 'mysql' || $driver === 'mariadb') && ! extension_loaded('pdo_mysql')) {
                 return back()
                     ->withInput()
                     ->withErrors([
@@ -36,14 +44,13 @@ class DueloRegistroController extends Controller
 
             $validated = $request->validate([
                 'nombre_completo' => 'required|string|max:255',
-                'telefono' => 'required|string|max:20',
-                'email' => 'nullable|email|max:255',
-                'dias_asistencia' => 'required|array|min:1',
-                'dias_asistencia.*' => 'in:sabado,domingo',
+                'telefono' => 'required|string|max:32',
+                'email' => 'required|email|max:255',
+                'sector_parroquial' => 'required|string|max:255',
             ]);
 
-            if (! Schema::connection('mysql')->hasTable('duelo_registros')) {
-                Log::critical('congreso: no existe la tabla duelo_registros (migraciones sin aplicar en este servidor)');
+            if (! Schema::hasTable('taller_solidaridad_registros')) {
+                Log::critical('taller-solidaridad: no existe la tabla taller_solidaridad_registros');
 
                 return back()
                     ->withInput()
@@ -52,49 +59,35 @@ class DueloRegistroController extends Controller
                     ]);
             }
 
-            if (! Schema::connection('mysql')->hasColumn('duelo_registros', 'dias_asistencia')) {
-                Log::critical('congreso: falta la columna dias_asistencia (migración 2026_03_30 sin aplicar)');
-
-                return back()
-                    ->withInput()
-                    ->withErrors([
-                        'db' => 'La base de datos está desactualizada: falta la columna de días de asistencia. El administrador debe ejecutar en el servidor: php artisan migrate --force',
-                    ]);
-            }
-
-            $registro = DueloRegistro::create([
+            $registro = TallerSolidaridadRegistro::create([
                 'nombre_completo' => $validated['nombre_completo'],
                 'telefono' => $validated['telefono'],
-                'email' => $validated['email'] ?? null,
-                'dias_asistencia' => $validated['dias_asistencia'],
+                'email' => $validated['email'],
+                'sector_parroquial' => $validated['sector_parroquial'],
             ]);
 
-            $liveDb = DB::connection('mysql')->getDatabaseName();
-            $serverDbName = null;
             try {
-                $row = DB::connection('mysql')->selectOne('select database() as d');
+                $row = DB::connection()->selectOne('select database() as d');
                 $serverDbName = $row->d ?? null;
             } catch (\Throwable) {
-                // no bloquear el flujo si el diagnóstico extra falla
+                $serverDbName = null;
             }
-            Log::info('Nuevo registro congreso (verificar misma BD que Railway)', [
+
+            Log::info('Nuevo registro taller solidaridad', [
                 'id' => $registro->id,
                 'nombre' => $registro->nombre_completo,
                 'connection' => config('database.default'),
-                'laravel_database_name' => $liveDb,
                 'mysql_select_database()' => $serverDbName,
                 'table' => $registro->getTable(),
             ]);
 
-            return redirect()->route('congreso.gracias')->with([
+            return redirect()->route('taller-solidaridad.gracias')->with([
                 'nombre' => $registro->nombre_completo,
-                'telefono' => $registro->telefono,
-                'dias' => $registro->dias_asistencia,
             ]);
         } catch (ValidationException $e) {
             throw $e;
         } catch (QueryException $e) {
-            Log::error('congreso registro: error SQL', [
+            Log::error('taller-solidaridad registro: error SQL', [
                 'message' => $e->getMessage(),
                 'sql' => $e->getSql(),
                 'bindings' => $e->getBindings(),
@@ -104,7 +97,7 @@ class DueloRegistroController extends Controller
 
             return back()->withInput()->withErrors(['db' => $msg]);
         } catch (\Throwable $e) {
-            Log::error('congreso registro: error al guardar', [
+            Log::error('taller-solidaridad registro: error al guardar', [
                 'message' => $e->getMessage(),
                 'file' => $e->getFile().':'.$e->getLine(),
                 'exception' => $e::class,
@@ -125,9 +118,9 @@ class DueloRegistroController extends Controller
 
     public function registros(Request $request)
     {
-        $this->authorizeCongresoAdmin($request);
+        $this->authorizeParroquiaAdmin($request);
 
-        $registros = DueloRegistro::orderByDesc('created_at')->get();
+        $registros = TallerSolidaridadRegistro::orderByDesc('created_at')->get();
 
         $payload = [
             'total' => $registros->count(),
@@ -138,7 +131,7 @@ class DueloRegistroController extends Controller
                 'nombre' => $r->nombre_completo,
                 'telefono' => $r->telefono,
                 'email' => $r->email,
-                'dias' => implode(', ', array_map(fn ($d) => $d === 'sabado' ? 'Sáb 18 abr' : 'Dom 19 abr', $r->dias_asistencia ?? [])),
+                'sector_parroquial' => $r->sector_parroquial,
                 'fecha' => $r->created_at?->format('d/m/Y H:i'),
             ]),
         ];
@@ -147,7 +140,7 @@ class DueloRegistroController extends Controller
             return response()->json($payload, 200, [], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         }
 
-        return view('campaña-duelo.lista-registros', [
+        return view('taller-solidaridad.lista-registros', [
             'registros' => $registros,
             'total' => $payload['total'],
         ]);
@@ -160,9 +153,6 @@ class DueloRegistroController extends Controller
         return 'PHP no tiene la extensión pdo_mysql (necesaria para MySQL). En WSL/Ubuntu: sudo apt install php'.$php.'-mysql && reinicia el servidor. Comprueba con: php -m | grep pdo_mysql. En Railway (Nixpacks) ya está incluida; este fallo suele ser en tu PC.';
     }
 
-    /**
-     * Errores de entorno (p. ej. sin extensión PDO MySQL) que no deben mostrar el dump técnico al usuario.
-     */
     private function friendlyDatabaseErrorMessage(\Throwable $e): ?string
     {
         $m = $e->getMessage();
@@ -206,20 +196,17 @@ class DueloRegistroController extends Controller
         return $base.'Si el problema continúa, el administrador debe revisar los logs del servidor y las migraciones.';
     }
 
-    /**
-     * En producción: definir CONGRESO_ADMIN_TOKEN y abrir /congreso/registros?token=...
-     */
-    private function authorizeCongresoAdmin(Request $request): void
+    private function authorizeParroquiaAdmin(Request $request): void
     {
         if (! App::isProduction()) {
             return;
         }
 
-        $expected = config('services.congreso.admin_token');
+        $expected = config('parroquia.admin_token');
         $given = (string) $request->query('token', '');
 
         if (! is_string($expected) || $expected === '') {
-            abort(403, 'Configura la variable CONGRESO_ADMIN_TOKEN en Railway (Variables del servicio web) y vuelve a abrir esta URL añadiendo ?token=TU_TOKEN al final.');
+            abort(403, 'Configura CONGRESO_ADMIN_TOKEN en el servidor (Variables) y abre esta URL con ?token=TU_TOKEN.');
         }
 
         if (! hash_equals($expected, $given)) {
@@ -229,7 +216,7 @@ class DueloRegistroController extends Controller
 
     public function dbInfo(Request $request)
     {
-        $this->authorizeCongresoAdmin($request);
+        $this->authorizeParroquiaAdmin($request);
 
         try {
             DB::connection()->getPdo();
@@ -241,21 +228,18 @@ class DueloRegistroController extends Controller
         }
 
         $columns = [];
-        $hasDias = false;
-        if ($connected && Schema::hasTable('duelo_registros')) {
-            $columns = Schema::getColumnListing('duelo_registros');
-            $hasDias = Schema::hasColumn('duelo_registros', 'dias_asistencia');
+        if ($connected && Schema::hasTable('taller_solidaridad_registros')) {
+            $columns = Schema::getColumnListing('taller_solidaridad_registros');
         }
 
-        $mysqlCfg = config('database.connections.mysql');
+        $connName = config('database.default');
+        $mysqlCfg = config('database.connections.'.$connName, []);
         try {
             $liveCfg = DB::connection()->getConfig();
         } catch (\Throwable) {
             $liveCfg = [];
         }
 
-        // NUNCA usar env() aquí: con config:cache (o bootstrap cache viejo) env() devuelve null
-        // y el diagnóstico miente. Solo config() y getConfig() del PDO ya resuelto.
         $urlFromConfig = $mysqlCfg['url'] ?? null;
         $resolvedHost = $liveCfg['host'] ?? ($mysqlCfg['host'] ?? null);
         $resolvedPort = $liveCfg['port'] ?? ($mysqlCfg['port'] ?? null);
@@ -275,7 +259,7 @@ class DueloRegistroController extends Controller
 
         return response()->json([
             'db_connection' => config('database.default'),
-            'note' => 'Los datos se guardan en la tabla duelo_registros de la base "current_db" que devuelve MySQL (debe coincidir con MYSQLDATABASE en Railway).',
+            'note' => 'Los datos se guardan en taller_solidaridad_registros (current_db debe coincidir con MYSQLDATABASE en Railway).',
             'mysql_url_in_config' => is_string($urlFromConfig) && $urlFromConfig !== '',
             'resolved_host' => $resolvedHost,
             'resolved_port' => $resolvedPort,
@@ -284,10 +268,9 @@ class DueloRegistroController extends Controller
             'connected' => $connected,
             'database_name_from_laravel' => $dbName,
             'server_says' => $serverIdentity,
-            'duelo_registros_columns' => $columns,
-            'has_dias_asistencia_column' => $hasDias,
-            'registros_count' => $connected && Schema::hasTable('duelo_registros')
-                ? DueloRegistro::count()
+            'taller_solidaridad_registros_columns' => $columns,
+            'registros_count' => $connected && Schema::hasTable('taller_solidaridad_registros')
+                ? TallerSolidaridadRegistro::count()
                 : null,
         ], 200, [], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }

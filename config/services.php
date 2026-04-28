@@ -36,9 +36,9 @@ return [
     ],
 
     /*
-    | Lista de inscritos al congreso (/congreso/registros). En producción obligatorio.
+    | Rutas admin de formularios (p. ej. /taller-solidaridad/registros). En producción: CONGRESO_ADMIN_TOKEN.
     */
-    'congreso' => [
+    'parroquia' => [
         'admin_token' => env('CONGRESO_ADMIN_TOKEN'),
     ],
 

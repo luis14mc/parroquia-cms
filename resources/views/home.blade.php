@@ -4,7 +4,7 @@
          1. HERO SECTION
     ═══════════════════════════════════════════════════════ --}}
     <section class="relative w-full h-[500px] sm:h-[600px] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/heroes/home-hero.png') }}');">
+        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/heroes/Hero_pascua.webp') }}');">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"></div>
         </div>
         <div class="relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
@@ -127,48 +127,23 @@
     {{-- ═══════════════════════════════════════════════════════
          3. INSCRIPCIONES
     ═══════════════════════════════════════════════════════ --}}
-    <section class="py-20 bg-background-light dark:bg-background-dark">
+    <section id="inscripciones" class="py-20 bg-background-light dark:bg-background-dark">
         <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Participa</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white">Inscripciones Abiertas</h2>
-                <p class="text-gray-500 dark:text-gray-400 mt-3 max-w-2xl mx-auto">Inscríbete en los distintos sacramentos, actividades y programas de nuestra parroquia.</p>
+                <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white">Taller de la Solidaridad</h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-3 max-w-2xl mx-auto">Inscripción abierta: nombre completo, teléfono, correo electrónico y sector parroquial.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Card: Confirmación -->
-                <div class="bg-white dark:bg-[#211c11] rounded-xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all group">
+            <div class="max-w-lg mx-auto">
+                <div class="bg-white dark:bg-[#211c11] rounded-xl p-8 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all group ring-2 ring-primary/15">
                     <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
-                        <span class="material-symbols-outlined text-2xl">local_fire_department</span>
+                        <span class="material-symbols-outlined text-2xl">volunteer_activism</span>
                     </div>
-                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">Confirmación</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">Inscripción para Confirma (niños). Inicio: 21 de marzo de 2026, 10:00 am. Modalidad: Presencial.</p>
-                    <a href="https://forms.gle/Gc8yWU1FMNAHTJqj6" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-secondary transition-colors group-hover:gap-2">
-                        Inscribirse
-                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                    </a>
-                </div>
-                <!-- Card: Primera Comunión -->
-                <div class="bg-white dark:bg-[#211c11] rounded-xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all group">
-                    <div class="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary mb-5">
-                        <span class="material-symbols-outlined text-2xl">menu_book</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">Primera Comunión</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">Inscripción para Primera Comunión (niños). Inicio: 21 y 22 de marzo de 2026, 10:00 am. Modalidad: Presencial.</p>
-                    <a href="https://forms.gle/iNXTNbtYUa4RmchL9" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-secondary transition-colors group-hover:gap-2">
-                        Inscribirse
-                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                    </a>
-                </div>
-                <!-- Card: Sacramento de Adultos -->
-                <div class="bg-white dark:bg-[#211c11] rounded-xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all group">
-                    <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
-                        <span class="material-symbols-outlined text-2xl">school</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">Sacramento de Adultos</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">Inscripción para Primera Comunión y Confirma (adultos). Inicio: 12 de marzo de 2025, 7:00 pm. Modalidad: Virtual.</p>
-                    <a href="https://forms.gle/tuscc6ZoZy5iLqLf8" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-secondary transition-colors group-hover:gap-2">
-                        Inscribirse
-                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">Inscríbete aquí</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-6">Completa el formulario en línea para confirmar tu participación en el taller.</p>
+                    <a href="{{ route('taller-solidaridad.index') }}" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 text-base font-bold text-text-dark bg-primary rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/25">
+                        Ir al formulario
+                        <span class="material-symbols-outlined text-lg">arrow_forward</span>
                     </a>
                 </div>
             </div>

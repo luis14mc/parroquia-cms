@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\DueloRegistroController;
+use App\Http\Controllers\TallerSolidaridadRegistroController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -10,17 +10,17 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Sitio web 100% estático — Parroquia Cristo Resucitado.
-| Solo Route::view(), sin controladores ni base de datos.
+| Sitio web — Parroquia Cristo Resucitado.
 |
 */
 
-// ── Campaña de Duelo (Privada). Nombres de ruta solo ASCII (evita fallos con route:cache / prod).
-Route::get('/congreso', [DueloRegistroController::class, 'index'])->name('congreso.index');
-Route::post('/congreso', [DueloRegistroController::class, 'store'])->name('congreso.store');
-Route::get('/congreso/gracias', fn () => view('campaña-duelo.gracias'))->name('congreso.gracias');
-Route::get('/congreso/registros', [DueloRegistroController::class, 'registros'])->name('congreso.registros');
-Route::get('/congreso/db-info', [DueloRegistroController::class, 'dbInfo'])->name('congreso.db-info');
+// ── Taller de la Solidaridad (inscripción)
+Route::get('/taller-solidaridad', [TallerSolidaridadRegistroController::class, 'index'])->name('taller-solidaridad.index');
+Route::post('/taller-solidaridad', [TallerSolidaridadRegistroController::class, 'store'])->name('taller-solidaridad.store');
+Route::get('/taller-solidaridad/gracias', fn () => view('taller-solidaridad.gracias'))->name('taller-solidaridad.gracias');
+Route::get('/taller-solidaridad/registros', [TallerSolidaridadRegistroController::class, 'registros'])->name('taller-solidaridad.registros');
+Route::get('/taller-solidaridad/db-info', [TallerSolidaridadRegistroController::class, 'dbInfo'])->name('taller-solidaridad.db-info');
+Route::get('/taller-solidaridad/limpiar-sesion', [TallerSolidaridadRegistroController::class, 'limpiarSesion'])->name('taller-solidaridad.limpiar-sesion');
 
 // ── Páginas principales ──────────────────────────────────
 Route::view('/', 'home')->name('home');

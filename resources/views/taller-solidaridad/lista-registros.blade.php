@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inscripciones — Congreso</title>
+    <title>Inscripciones — Taller de la Solidaridad</title>
     <style>
         :root { font-family: system-ui, sans-serif; color: #1a1a1a; }
         body { margin: 0; padding: 1.5rem; background: #f6f6f6; }
@@ -17,8 +17,8 @@
     </style>
 </head>
 <body>
-    <h1>Inscripciones al congreso</h1>
-    <p class="meta">Total: <strong>{{ $total }}</strong> @if($total === 0) (aún no hay filas en esta base de datos) @endif</p>
+    <h1>Inscripciones — Taller de la Solidaridad</h1>
+    <p class="meta">Total: <strong>{{ $total }}</strong> @if($total === 0) (sin registros en esta base de datos) @endif</p>
 
     @if($registros->isEmpty())
         <p class="empty">No hay registros.</p>
@@ -29,8 +29,8 @@
                     <th>#</th>
                     <th>Nombre</th>
                     <th>Teléfono</th>
-                    <th>Email</th>
-                    <th>Días</th>
+                    <th>Correo</th>
+                    <th>Sector parroquial</th>
                     <th>Fecha</th>
                 </tr>
             </thead>
@@ -40,12 +40,8 @@
                         <td>{{ $r->id }}</td>
                         <td>{{ $r->nombre_completo }}</td>
                         <td>{{ $r->telefono }}</td>
-                        <td>{{ $r->email ?? '—' }}</td>
-                        <td>
-                            @foreach($r->dias_asistencia ?? [] as $d)
-                                {{ $d === 'sabado' ? 'Sáb 18 abr' : 'Dom 19 abr' }}@if(!$loop->last), @endif
-                            @endforeach
-                        </td>
+                        <td>{{ $r->email }}</td>
+                        <td>{{ $r->sector_parroquial }}</td>
                         <td>{{ $r->created_at?->format('d/m/Y H:i') ?? '—' }}</td>
                     </tr>
                 @endforeach
