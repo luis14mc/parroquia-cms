@@ -158,7 +158,7 @@
             <div class="flex flex-col lg:flex-row gap-12 items-center">
                 <div class="lg:w-1/2 relative">
                     <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-200 relative shadow-2xl">
-                        <img alt="Retrato del párroco" class="object-cover w-full h-full" src="{{ asset('images/fondos/mensaje.jpg') }}" loading="lazy">
+                        <img alt="Retrato del párroco" class="object-cover w-full h-full" src="{{ asset('images/fondos/resucitado.webp') }}" loading="lazy">
                     </div>
                     <div class="absolute -bottom-6 -right-6 bg-white dark:bg-[#2a2418] p-6 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 max-w-xs hidden sm:block">
                         <div class="flex items-center gap-3 mb-2">
