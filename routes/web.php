@@ -27,6 +27,7 @@ Route::post('/forms/{slug}', [DynamicSiteFormController::class, 'store'])
     ->middleware('throttle:site-forms')
     ->name('forms.store');
 
+    
 Route::redirect('/taller-solidaridad', '/forms/taller-solidaridad', 301);
 
 
