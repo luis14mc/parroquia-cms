@@ -28,6 +28,12 @@
                     </div>
                 @enderror
 
+                @error('form')
+                    <div class="mb-6 rounded-xl border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-950/30 px-4 py-3 text-sm text-red-800 dark:text-red-200">
+                        {{ $message }}
+                    </div>
+                @enderror
+
                 <form action="{{ route('forms.store', ['slug' => $form->slug]) }}" method="POST" class="space-y-6">
                     @csrf
 

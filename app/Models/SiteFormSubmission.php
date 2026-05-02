@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SiteFormSubmission extends Model
 {
@@ -25,5 +26,10 @@ class SiteFormSubmission extends Model
     public function siteForm(): BelongsTo
     {
         return $this->belongsTo(SiteForm::class);
+    }
+
+    public function tallerSolidaridadRegistro(): HasOne
+    {
+        return $this->hasOne(TallerSolidaridadRegistro::class);
     }
 }

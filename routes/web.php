@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\DynamicSiteFormController;
+use App\Http\Controllers\TallerSolidaridadRegistrosPublicController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 // ── Formularios públicos (configurados en /admin → Formularios)
+// URL conocida para pastoral (sin panel admin): debe declararse antes de /forms/{slug}
+Route::get('/forms/taller-solidaridad/registros', [TallerSolidaridadRegistrosPublicController::class, 'index'])
+    ->middleware('throttle:60,1')
+    ->name('forms.taller-solidaridad.registros');
+
 Route::get('/forms/{slug}/gracias', [DynamicSiteFormController::class, 'thanks'])->name('forms.thanks');
 Route::get('/forms/{slug}', [DynamicSiteFormController::class, 'show'])->name('forms.show');
 Route::post('/forms/{slug}', [DynamicSiteFormController::class, 'store'])
