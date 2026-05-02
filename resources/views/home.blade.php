@@ -142,7 +142,7 @@
                     <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">Inscríbete aquí</h3>
                     <p class="text-gray-500 dark:text-gray-400 text-sm mb-6">Completa el formulario en línea para confirmar tu participación en el taller.</p>
                     <a href="https://forms.gle/NjtwFo9vZjowVPma6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 text-base font-bold text-text-dark bg-primary rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/25">
-                        Ir al formulario
+                        Ir al formulario 
                         <span class="material-symbols-outlined text-lg">arrow_forward</span>
                     </a>
                 </div>
