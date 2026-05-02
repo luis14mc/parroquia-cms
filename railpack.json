@@ -23,6 +23,7 @@
         "libonig-dev",
         "libreadline-dev",
         "libgmp-dev",
-        "libsodium-dev"
+        "libsodium-dev",
+        "libpq-dev"
     ]
 }
