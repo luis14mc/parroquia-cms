@@ -29,6 +29,7 @@ Route::post('/forms/{slug}', [DynamicSiteFormController::class, 'store'])
 
 Route::redirect('/taller-solidaridad', '/forms/taller-solidaridad', 301);
 
+
 // ── Páginas principales ──────────────────────────────────
 Route::view('/', 'home')->name('home');
 Route::view('/nosotros', 'nosotros')->name('nosotros');
