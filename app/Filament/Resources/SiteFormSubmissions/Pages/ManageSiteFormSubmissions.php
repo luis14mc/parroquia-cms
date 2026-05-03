@@ -38,7 +38,7 @@ final class ManageSiteFormSubmissions extends ManageRecords
         fwrite($handle, "\xEF\xBB\xBF");
         fputcsv($handle, ['id', 'formulario_slug', 'formulario_nombre', 'fecha_iso', 'ip', 'payload_json']);
 
-        $query = $this->getTableQueryForExport()->with('siteForm');
+        $query = $this->getTableQuery()->with('siteForm');
 
         foreach ($query->cursor() as $submission) {
             $form = $submission->siteForm;

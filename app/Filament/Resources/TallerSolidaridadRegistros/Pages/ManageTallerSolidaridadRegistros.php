@@ -38,7 +38,7 @@ final class ManageTallerSolidaridadRegistros extends ManageRecords
         fwrite($handle, "\xEF\xBB\xBF");
         fputcsv($handle, ['id', 'nombre_completo', 'telefono', 'email', 'sector_parroquial', 'fecha_iso', 'site_form_submission_id']);
 
-        foreach ($this->getTableQueryForExport()->cursor() as $registro) {
+        foreach ($this->getTableQuery()->cursor() as $registro) {
             fputcsv($handle, [
                 $registro->id,
                 $registro->nombre_completo,
