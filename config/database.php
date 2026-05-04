@@ -41,10 +41,10 @@ return [
     */
 
     /*
-    | Por defecto "mysql". Railway: MYSQL_URL / DATABASE_URL / MYSQL* o PG* (pgsql).
-    | Tests (phpunit.xml): MySQL en 127.0.0.1, base "testing" — ver .env.example.
+    | Sitio estático: por defecto SQLite en memoria (sin archivo ni servidor MySQL).
+    | No se ejecutan migraciones en deploy. Solo define otra conexión si en el futuro la necesitas.
     */
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'sqlite'),
 
     /*
     |--------------------------------------------------------------------------
@@ -58,6 +58,14 @@ return [
     */
 
     'connections' => [
+
+        'sqlite' => [
+            'driver' => 'sqlite',
+            'url' => env('DB_URL'),
+            'database' => env('DB_DATABASE', ':memory:'),
+            'prefix' => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
 
         'mysql' => [
             'driver' => 'mysql',
