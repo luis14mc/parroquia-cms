@@ -10,8 +10,6 @@
         "ext-intl": "*",
         "ext-pdo": "*",
         "ext-pdo_mysql": "*",
-        "ext-zip": "*",
-        "filament/filament": "^4.10",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1"
     },
@@ -45,21 +43,20 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php artisan key:generate",
             "@php artisan migrate --force",
-            "npm install",
-            "npm run build"
+            "pnpm install",
+            "pnpm run build"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
-            "npx concurrently -c \"#93c5fd,#fdba74\" \"php artisan serve\" \"npm run dev\" --names=server,vite --kill-others"
+            "npx concurrently -c \"#93c5fd,#fdba74\" \"php artisan serve\" \"pnpm run dev\" --names=server,vite --kill-others"
         ],
         "test": [
-            "@php artisan config:clear --ansi",
+            "@php artisan view:clear --ansi",
             "@php artisan test"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "@php artisan filament:upgrade"
+            "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

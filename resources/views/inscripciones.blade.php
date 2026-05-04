@@ -70,7 +70,7 @@
                 </p>
                 <div class="space-y-3">
                     @foreach($programas as $key => $label)
-                        <a href="{{ route('inscripciones', ['programa' => $key]) }}"
+                        <a href="{{ route('inscripciones') }}?programa={{ urlencode($key) }}"
                            class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 dark:border-white/10 hover:border-primary/30 hover:bg-primary/5 transition-all group
                                   {{ $programaActual === $key ? 'border-primary bg-primary/5' : '' }}">
                             <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
