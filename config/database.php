@@ -41,10 +41,10 @@ return [
     */
 
     /*
-    | Sitio estático: por defecto SQLite en memoria (sin archivo ni servidor MySQL).
-    | No se ejecutan migraciones en deploy. Solo define otra conexión si en el futuro la necesitas.
+    | Sitio estático: no usamos BD en runtime (caché/cola ya van a file/sync en config).
+    | Si defines DB_CONNECTION en .env, Laravel usará esa conexión solo si algo consulta la BD.
     */
-    'default' => env('DB_CONNECTION', 'sqlite'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -58,14 +58,6 @@ return [
     */
 
     'connections' => [
-
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'url' => env('DB_URL'),
-            'database' => env('DB_DATABASE', ':memory:'),
-            'prefix' => '',
-            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-        ],
 
         'mysql' => [
             'driver' => 'mysql',
