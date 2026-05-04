@@ -19,10 +19,9 @@ return [
     */
 
     /*
-    | Por defecto "file": no requiere tabla `sessions`. Si usas "database",
-    | ejecuta: php artisan session:table && php artisan migrate
+    | Por defecto "cookie": evita requerir base de datos o almacenamiento en disco.
     */
-    'driver' => env('SESSION_DRIVER', 'file'),
+    'driver' => 'cookie',
 
     /*
     |--------------------------------------------------------------------------
