@@ -2,14 +2,15 @@
 # https://nixpacks.com/docs/providers/php
 
 [phases.setup]
-nixPkgs = ["...", "nodejs_20"]
+nixPkgs = ["..."]
 
 [phases.install]
-cmds = ["composer install --no-dev --optimize-autoloader", "npm ci"]
+cmds = ["composer install --no-dev --optimize-autoloader"]
 
 [phases.build]
 cmds = [
-    "npm run build",
+    "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+    "php artisan key:generate",
     "rm -f public/hot",
     "mkdir -p storage/framework/{cache/data,sessions,views,testing}",
     "mkdir -p storage/logs",
