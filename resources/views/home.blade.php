@@ -125,8 +125,8 @@
     </div>
 
     {{-- ═══════════════════════════════════════════════════════
-         3. INSCRIPCIONES
-    ═══════════════════════════════════════════════════════ --}}
+         3. INSCRIPCIONES (oculto)
+    ═══════════════════════════════════════════════════════
     <section id="inscripciones" class="py-20 bg-background-light dark:bg-background-dark">
         <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
@@ -149,6 +149,7 @@
             </div>
         </div>
     </section>
+    --}}
 
     {{-- ═══════════════════════════════════════════════════════
          4. MENSAJE DEL PÁRROCO
