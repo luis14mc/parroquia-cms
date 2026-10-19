@@ -18,7 +18,8 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('images/Logo_PCR.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('images/Logo_PCR.png') }}" type="image/png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
