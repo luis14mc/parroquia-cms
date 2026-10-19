@@ -125,31 +125,35 @@
     </div>
 
     {{-- ═══════════════════════════════════════════════════════
-         3. INSCRIPCIONES (oculto)
-    ═══════════════════════════════════════════════════════
+         3. INSCRIPCIONES — CURSO DE LECTORES
+    ═══════════════════════════════════════════════════════ --}}
     <section id="inscripciones" class="py-20 bg-background-light dark:bg-background-dark">
         <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <span class="text-primary font-bold tracking-wide uppercase text-sm mb-2 block">Participa</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white">Taller de la Solidaridad</h2>
-                <p class="text-gray-500 dark:text-gray-400 mt-3 max-w-2xl mx-auto">Inscripción abierta: nombre completo, teléfono, correo electrónico y sector parroquial.</p>
+                <h2 class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white">Curso de Lectores</h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-3 max-w-2xl mx-auto">✨ <strong>Curso de Lectores — Parroquia Cristo Resucitado</strong> ✨<br>Acompáñanos a formarte para servir a la comunidad mediante la proclamación de la Palabra.</p>
             </div>
             <div class="max-w-lg mx-auto">
                 <div class="bg-white dark:bg-[#211c11] rounded-xl p-8 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all group ring-2 ring-primary/15">
                     <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
-                        <span class="material-symbols-outlined text-2xl">volunteer_activism</span>
+                        <span class="material-symbols-outlined text-2xl">auto_stories</span>
                     </div>
                     <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">Inscríbete aquí</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-6">Completa el formulario en línea para confirmar tu participación en el taller.</p>
-                    <a href="https://forms.gle/NjtwFo9vZjowVPma6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 text-base font-bold text-text-dark bg-primary rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/25">
-                        Ir al formulario 
+                    <ul class="text-gray-500 dark:text-gray-400 text-sm mb-6 space-y-1">
+                        <li>🗓️ <strong>Inicio:</strong> Sábado 7 de noviembre</li>
+                        <li>🕒 <strong>Horario:</strong> 3:00 p.m. a 4:00 p.m.</li>
+                        <li>📍 <strong>Modalidad:</strong> Presencial</li>
+                    </ul>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-6">También puedes hacer tu inscripción en la oficina de la parroquia.</p>
+                    <a href="https://forms.gle/Emuuj6ySHV8rJRZA6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 text-base font-bold text-text-dark bg-primary rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/25">
+                        Ir al formulario
                         <span class="material-symbols-outlined text-lg">arrow_forward</span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
-    --}}
 
     {{-- ═══════════════════════════════════════════════════════
          4. MENSAJE DEL PÁRROCO
